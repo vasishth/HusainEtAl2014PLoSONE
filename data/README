@@ -1,0 +1,59 @@
+
+RC1: Distance manipulaton between relative pronoun and the relative clause verb in Subject RCs and Object RCs. Replication of the Levy Russian RC paper.
+
+No. of conditions: 4
+Condition a: Subject RC, Long (Canonical word-order)
+Condition b: Subject RC, Short (Non-Canonical word-order)
+Condition c: Object RC, Long (Canonical word-order)
+Condition d: Object RC, Short (Non-Canonical word-order)
+
+Total items: 24
+
+Critical region: RCVerb
+
+--------------------
+
+RC2: Expectation build up in conditions (a) and (b) due to Relative-Correlative construction. No such expectation in (c) and (d).
+
+No. of conditions: 4
+Condition a: Expectation, Short
+Condition b: Expectation, Long
+Condition c: No Expectation, Short
+Condition d: No Expectation, Long
+
+Total items: 24
+
+Critical region (a)/(b): NP1
+Critical region (c)/(d): RCPn
+
+--------------------
+
+PP1: Expectation manipulation for the head noun due to presence/absence of genitive.
+
+No. of conditions: 4
+Condition a: No Expectation, Long
+Condition b: Expectation, Long
+Condition c: No Expectation, Short
+Condition d: Expectation, Short
+
+Total items: 12
+
+Critical region: HeadNP
+Precritical region: Everything between GenDep and HeadNP
+
+--------------------
+
+CP1: Expectation build-up for the verb due to nominal predicate of Complex Predicate. Effect of suprisal/locality on Normal vs Complex predicate.
+
+No. of conditions: 4
+Condition a: Expectation, Long
+Condition b: Expectation, Short
+Condition c: No Expectation, Long
+Condition d: No Expectation, Short
+
+Total items: 16
+
+Critical region: CPLightVerb
+
+--------------------
+

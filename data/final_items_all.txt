@@ -1,0 +1,1007 @@
+# RC1 1 a
+वह_लड़का,@NP1 जिसने@RCPn किताब@RCObj बहुत_दिलचस्पी_से@PreRCVerb पढ़ी_थी,@RCVerb मेरा_दोस्त@PreMainVerb है।@MainVerb
+? क्या किताब लड़के ने दिलचस्पी से पढ़ी थी? Y
+# RC1 1 b
+वह_लड़का,@NP1 जिसने@RCPn बहुत_दिलचस्पी_से@PreRCVerb पढ़ी_थी@RCVerb किताब,@RCObj मेरा_दोस्त@PreMainVerb है।@MainVerb
+? क्या किताब लड़के ने दिलचस्पी से पढ़ी थी? Y
+# RC1 1 c
+वह_किताब,@NP1 जिसको@RCPn उस_लड़के_ने@RCSubj बहुत_दिलचस्पी_से@PreRCVerb पढ़ा_था,@RCVerb बहुत_मोटी@PreMainVerb है।@MainVerb
+? क्या किताब मोटी है? Y
+# RC1 1 d
+वह_किताब,@NP1 जिसको@RCPn बहुत_दिलचस्पी_से@PreRCVerb पढ़ा_था@RCVerb उस_लड़के_ने,@RCSubj बहुत_मोटी@PreMainVerb है।@MainVerb
+? क्या किताब मोटी है? Y
+
+# RC1 2 a
+वह_बच्चा,@NP1 जिसने@RCPn रोटी@RCObj बहुत_जल्दी_से@PreRCVerb खायी_थी,@RCVerb मेरा_भतीजा@PreMainVerb है।@MainVerb
+? क्या रोटी बच्चे ने धीरे-धीरे खाई? N
+# RC1 2 b
+वह_बच्चा,@NP1 जिसने@RCPn बहुत_जल्दी_से@PreRCVerb खायी_थी@RCVerb रोटी,@RCObj मेरा_भतीजा@PreMainVerb है।@MainVerb
+? क्या रोटी बच्चे ने धीरे-धीरे खाई? N
+# RC1 2 c
+वह_रोटी,@NP1 जिसको@RCPn उस_बच्चे_ने@RCSubj बहुत_जल्दी_से@PreRCVerb खाया_था,@RCVerb दो_दिन_पुरानी@PreMainVerb है।@MainVerb
+? क्या रोटी ताजी है? N
+# RC1 2 d
+वह_रोटी,@NP1 जिसको@RCPn बहुत_जल्दी_से@PreRCVerb खाया_था@RCVerb उस_बच्चे_ने,@RCSubj दो_दिन_पुरानी@PreMainVerb है।@MainVerb
+? क्या रोटी ताजी है? N
+
+# RC1 3 a
+वह_आदमी,@NP1 जिसने@RCPn सब्जीयाँ@RCObj धीरे-धीरे@PreRCVerb चुनी_थीं,@RCVerb मेरे@PreMainVerb मुहल्ले_में@PreMainVerb रहता_है।@MainVerb
+? क्या आदमी मेरे मुहल्ले में रहता है? Y
+# RC1 3 b
+वह_आदमी,@NP1 जिसने@RCPn धीरे-धीरे@PreRCVerb चुनी_थीं@RCVerb सब्जीयाँ,@RCObj मेरे@PreMainVerb मुहल्ले_में@PreMainVerb रहता_है।@MainVerb
+? क्या आदमी मेरे मुहल्ले में रहता है? Y
+# RC1 3 c
+वह_सब्जीयाँ,@NP1 जिनको@RCPn उस_आदमी_ने@RCSubj धीरे-धीरे@PreRCVerb चुना_था,@RCVerb बहुत_महंगी@PreMainVerb हैं।@MainVerb
+? क्या आदमी ने सब्जीयों को धीरे-धीरे चुना था? Y
+# RC1 3 d
+वह_सब्जीयाँ,@NP1 जिनको@RCPn धीरे-धीरे@PreRCVerb चुना_था@RCVerb उस_आदमी_ने,@RCSubj बहुत_महंगी@PreMainVerb हैं।@MainVerb
+? क्या आदमी ने सब्जीयों को धीरे-धीरे चुना था? Y
+
+# RC1 4 a
+वह_बच्ची,@NP1 जिसने@RCPn मिठाई@RCObj आराम_से@PreRCVerb खायी_थी,@RCVerb मेरी@PreMainVerb बहन@PreMainVerb है।@MainVerb
+? क्या बच्ची मेरी बेटी है? N
+# RC1 4 b
+वह_बच्ची,@NP1 जिसने@RCPn आराम_से@PreRCVerb खायी_थी@RCVerb मिठाई,@RCObj मेरी@PreMainVerb बहन@PreMainVerb है।@MainVerb
+? क्या बच्ची मेरी बेटी है? N
+# RC1 4 c
+वह_मिठाई,@NP1 जिसको@RCPn उस_बच्ची_ने@RCSubj आराम_से@PreRCVerb खाया_था,@RCVerb बहुत_मीठी@PreMainVerb होती_है।@MainVerb
+? क्या बच्ची ने मिठाई जल्दबाजी में खाई? N
+# RC1 4 d
+वह_मिठाई,@NP1 जिसको@RCPn आराम_से@PreRCVerb खाया_था@RCVerb उस_बच्ची_ने,@RCSubj बहुत_मीठी@PreMainVerb होती_है।@MainVerb
+? क्या बच्ची ने मिठाई जल्दबाजी में खाई? N
+
+# RC1 5 a
+वह_औरत,@NP1 जिसने@RCPn नाव@RCObj पिछले_हफ्ते@PreRCVerb खरीदी_थी,@RCVerb इस_गाँव_की@PreMainVerb सरपंच@PreMainVerb है।@MainVerb
+? क्या औरत ने नाव पिछले हफ्ते खरीदी थी? Y
+# RC1 5 b
+वह_औरत,@NP1 जिसने@RCPn पिछले_हफ्ते@PreRCVerb खरीदी_थी@RCVerb नाव,@RCObj इस_गाँव_की@PreMainVerb सरपंच@PreMainVerb है।@MainVerb
+? क्या औरत ने नाव पिछले हफ्ते खरीदी थी? Y
+# RC1 5 c
+वह_नाव,@NP1 जिसको@RCPn उस_औरत_ने@RCSubj पिछले_हफ्ते@PreRCVerb खरीदा_था,@RCVerb बहुत_प्रसिद्ध@PreMainVerb है।@MainVerb
+? क्या औरत ने नाव पिछले हफ्ते खरीदी थी? Y
+# RC1 5 d
+वह_नाव,@NP1 जिसको@RCPn पिछले_हफ्ते@PreRCVerb खरीदा_था@RCVerb उस_औरत_ने,@RCSubj बहुत_﻿प्रसिद्ध@PreMainVerb है।@MainVerb
+? क्या औरत ने नाव पिछले हफ्ते खरीदी थी? Y
+
+# RC1 6 a
+वह_लड़की,@NP1 जिसने@RCPn कविता@RCObj सारे_लोगो_के_सामने@PreRCVerb गायी_थी,@RCVerb बहुत_गरीब@PreMainVerb है।@MainVerb
+? क्या लड़की ने कविता अकेले गायी थी? N
+# RC1 6 b
+वह_लड़की,@NP1 जिसने@RCPn सारे_लोगो_के_सामने@PreRCVerb गायी_थी@RCVerb कविता,@RCObj बहुत_गरीब@PreMainVerb है।@MainVerb
+? क्या लड़की ने कविता अकेले गायी थी? N
+# RC1 6 c
+वह_कविता,@NP1 जिसको@RCPn उस_लड़की_ने@RCSubj सारे_लोगो_के_सामने@PreRCVerb गाया_था,@RCVerb काफी_पुरानी@PreMainVerb है।@MainVerb
+? क्या लड़की ने कविता अकेले गायी थी? N
+# RC1 6 d
+वह_कविता,@NP1 जिसको@RCPn सारे_लोगो_के_सामने@PreRCVerb गाया_था@RCVerb उस_लड़की_ने,@RCSubj काफी_पुरानी@PreMainVerb है।@MainVerb
+? क्या लड़की ने कविता अकेले गायी थी? N
+
+# RC1 7 a
+वह_आदमी,@NP1 जिसने@RCPn स्कूटर@RCObj बड़ी_मेहनत_से@PreRCVerb साफ_की_थी,@RCVerb पुराना_कर्मचारी@PreMainVerb है।@MainVerb
+? क्या आदमी पुराना कर्मचारी है? Y
+# RC1 7 b
+वह_आदमी,@NP1 जिसने@RCPn बड़ी_मेहनत_से@PreRCVerb साफ_की_थी@RCVerb स्कूटर,@RCObj पुराना_कर्मचारी@PreMainVerb है।@MainVerb
+? क्या आदमी पुराना कर्मचारी है? Y
+# RC1 7 c
+वह_स्कूटर,@NP1 जिसको@RCPn उस_आदमी_ने@RCSubj बड़ी_मेहनत_से@PreRCVerb साफ_किया_था,@RCVerb बैटरी_से@PreMainVerb चलती_है।@MainVerb
+? क्या स्कूटर बैटरी से चलती है? Y
+# RC1 7 d
+वह_स्कूटर,@NP1 जिसको@RCPn बड़ी_मेहनत_से@PreRCVerb साफ_किया_था@RCVerb उस_आदमी_ने,@RCSubj बैटरी_से@PreMainVerb चलती_है।@MainVerb
+? क्या स्कूटर बैटरी से चलती है? Y
+
+# RC1 8 a
+वह_माली,@NP1 जिसने@RCPn लकड़ी@RCObj बहुत_दिलचस्पी_से@PreRCVerb रखी_थी,@RCVerb बहुत_बूढ़ा@PreMainVerb है।@MainVerb
+? क्या माली जवान है? N
+# RC1 8 b
+वह_माली,@NP1 जिसने@RCPn बहुत_दिलचस्पी_से@PreRCVerb रखी_थी@RCVerb लकड़ी,@RCObj बहुत_बूढ़ा@PreMainVerb है।@MainVerb
+? क्या माली जवान है? N
+# RC1 8 c
+वह_लकड़ी,@NP1 जिसको@RCPn उस_माली_ने@RCSubj बहुत_दिलचस्पी_से@PreRCVerb रखा_था,@RCVerb बहुत_विचित्र@PreMainVerb है।@MainVerb
+? क्या लकड़ी साधारण है? N
+# RC1 8 d
+वह_लकड़ी,@NP1 जिसको@RCPn बहुत_दिलचस्पी_से@PreRCVerb रखा_था@RCVerb उस_माली_ने,@RCSubj बहुत_विचित्र@PreMainVerb है।@MainVerb
+? क्या लकड़ी साधारण है? N
+
+# RC1 9 a
+वह_किसान,@NP1 जिसने@RCPn फसल@RCObj कल_सुबाह@PreRCVerb मैदान_में@PreRCVerb काटी_थी,@RCVerb बहुत_मेहनती@PreMainVerb है।@MainVerb
+? क्या किसान ने फसल आज काटी थी? N
+# RC1 9 b
+वह_किसान,@NP1 जिसने@RCPn कल_सुबाह@PreRCVerb मैदान_में@PreRCVerb काटी_थी@RCVerb फसल,@RCObj बहुत_मेहनती@PreMainVerb है।@MainVerb
+? क्या किसान ने फसल आज काटी थी? N
+# RC1 9 c
+वह_फसल,@NP1 जिसको@RCPn उस_किसान_ने@RCSubj कल_सुबाह@PreRCVerb मैदान_में@PreRCVerb काटा_था,@RCVerb काफी_महंगी@PreMainVerb है।@MainVerb
+? क्या फसल सस्ती है? N
+# RC1 9 d
+वह_फसल,@NP1 जिसको@RCPn कल_सुबाह@PreRCVerb मैदान_में@PreRCVerb काटा_था@RCVerb उस_किसान_ने,@RCSubj काफी_महंगी@PreMainVerb है।@MainVerb
+? क्या फसल सस्ती है? N
+
+# RC1 10 a
+वह_टी-टी,@NP1 जिसने@RCPn सिगरेट@RCObj वेटिंग_रूम_के_सामने@PreRCVerb मांगी_थी,@RCVerb मेरी@PreMainVerb मौसी_का@PreMainVerb रिशतेदार@PreMainVerb है।@MainVerb
+? क्या टीटी ने सिगरेट वेटिंग रूम के सामने मांगी थी? Y
+# RC1 10 b
+वह_टी-टी,@NP1 जिसने@RCPn वेटिंग_रूम_के_सामने@PreRCVerb मांगी_थी@RCVerb सिगरेट,@RCObj मेरी@PreMainVerb मौसी_का@PreMainVerb रिशतेदार@PreMainVerb है।@MainVerb
+? क्या टीटी ने सिगरेट वेटिंग रूम के सामने मांगी थी? Y
+# RC1 10 c
+वह_सिगरेट,@NP1 जिसको@RCPn उस_टी-टी_ने@RCSubj वेटिंग_रूम_के_सामने@PreRCVerb मांगा_था,@RCVerb विलायत_से@PreMainVerb आती_है।@MainVerb
+? क्या सिगरेट विलायती है? Y
+# RC1 10 d
+वह_सिगरेट,@NP1 जिसको@RCPn वेटिंग_रूम_के_सामने@PreRCVerb मांगा_था@RCVerb उस_टी-टी_ने,@RCSubj विलायत_से@PreMainVerb आती_है।@MainVerb
+? क्या सिगरेट विलायती है? Y
+
+# RC1 11 a
+वह_बढ़ई,@NP1 जिसने@RCPn अलमारी@RCObj नीम_के_पेड़_के_नीचे@PreRCVerb बनायी_थी,@RCVerb यहाँ@PreMainVerb कई_सालों_से@PreMainVerb काम_कर_रहा_है।@MainVerb
+? क्या बढ़ई यहाँ नया है? N
+# RC1 11 b
+वह_बढ़ई,@NP1 जिसने@RCPn नीम_के_पेड़_के_नीचे@PreRCVerb बनायी_थी@RCVerb अलमारी,@RCObj यहाँ@PreMainVerb कई_सालों_से@PreMainVerb काम_कर_रहा_है।@MainVerb
+? क्या बढ़ई यहाँ नया है? N
+# RC1 11 c
+वह_अलमारी,@NP1 जिसको@RCPn उस_बढ़ई_ने@RCSubj नीम_के_पेड़_के_नीचे@PreRCVerb बनाया_था,@RCVerb लकड़ी_की@PreMainVerb है।@MainVerb
+? क्या बढ़ई ने अलमारी आम के पेड़ के नीचे बनाया था? N
+# RC1 11 d
+वह_अलमारी,@NP1 जिसको@RCPn नीम_के_पेड़_के_नीचे@PreRCVerb बनाया_था@RCVerb उस_बढ़ई_ने,@RCSubj लकड़ी_की@PreMainVerb है।@MainVerb
+? क्या बढ़ई ने अलमारी आम के पेड़ के नीचे बनाया था? N
+
+# RC1 12 a
+वह_दुकानदार,@NP1 जिसने@RCPn पुरानी_बन्दूक@RCObj इस_साल@PreRCVerb एक-दो_बार@PreRCVerb म्यूजियम_में@PreRCVerb दिखायी_थी,@RCVerb मशहूर_संग्रहकर्ता@PreMainVerb है।@MainVerb
+? क्या दुकानदार मशहूर संग्रहकर्ता है? Y
+# RC1 12 b
+वह_दुकानदार,@NP1 जिसने@RCPn इस_साल@PreRCVerb एक-दो_बार@PreRCVerb म्यूजियम_में@PreRCVerb दिखायी_थी@RCVerb पुरानी_बन्दूक,@RCObj मशहूर_संग्रहकर्ता@PreMainVerb है।@MainVerb
+? क्या दुकानदार मशहूर संग्रहकर्ता है? Y
+# RC1 12 c
+वह_बन्दूक,@NP1 जिसको@RCPn उस_दुकानदार_ने@RCSubj इस_साल@PreRCVerb एक-दो_बार@PreRCVerb म्यूजियम_में@PreRCVerb दिखाया_था,@RCVerb अंग्रेज़ो_के_ज़माने_की@PreMainVerb है।@MainVerb
+? क्या दुकानदार ने बन्दूक म्यूजियम में दिखायी थी? Y
+# RC1 12 d
+वह_बन्दूक,@NP1 जिसको@RCPn इस_साल@PreRCVerb एक-दो_बार@PreRCVerb म्यूजियम_में@PreRCVerb दिखाया_था@RCVerb उस_दुकानदार_ने,@RCSubj अंग्रेज़ो_के_ज़माने_की@PreMainVerb है।@MainVerb
+? क्या दुकानदार ने बन्दूक म्यूजियम में दिखायी थी? Y
+
+# RC1 13 a
+वह_प्रोफेसर,@NP1 जिसने@RCPn पहेली@RCObj क्लास_में@PreRCVerb सुलझाई_थी,@RCVerb गणित@PreMainVerb बहुत_अच्छा@PreMainVerb पढ़ाते_हैं।@MainVerb
+# RC1 13 b
+वह_प्रोफेसर,@NP1 जिसने@RCPn क्लास_में@PreRCVerb सुलझाई_थी@RCVerb पहेली,@RCObj गणित@PreMainVerb बहुत_अच्छा@PreMainVerb पढ़ाते_हैं।@MainVerb
+# RC1 13 c
+वह_पहेली,@NP1 जिसको@RCPn उस_प्रोफेसर_ने@RCSubj क्लास_में@PreRCVerb सुलझाया_था,@RCVerb बहुत_कठिन@PreMainVerb थी।@MainVerb
+# RC1 13 d
+वह_पहेली,@NP1 जिसको@RCPn क्लास_में@PreRCVerb सुलझाया_था@RCVerb उस_प्रोफेसर_ने,@RCSubj बहुत_कठिन@PreMainVerb थी।@MainVerb
+
+# RC1 14 a
+वह_ग्राहक,@NP1 जिसने@RCPn कमीज@RCObj बहुत_जल्दीबाजी_में@PreRCVerb खरीदी_थी,@RCVerb इस_दुकान_में@PreMainVerb कई_बार@PreMainVerb आ_चुका_है।@MainVerb
+# RC1 14 b
+वह_ग्राहक,@NP1 जिसने@RCPn बहुत_जल्दीबाजी_में@PreRCVerb खरीदी_थी@RCVerb कमीज,@RCObj इस_दुकान_में@PreMainVerb कई_बार@PreMainVerb आ_चुका_है।@MainVerb
+# RC1 14 c
+वह_कमीज,@NP1 जिसको@RCPn उस_ग्राहक_ने@RCSubj बहुत_जल्दीबाजी_में@PreRCVerb खरीदा_था,@RCVerb जापान_में@PreMainVerb बनती_है।@MainVerb
+# RC1 14 d
+वह_कमीज,@NP1 जिसको@RCPn बहुत_जल्दीबाजी_में@PreRCVerb खरीदा_था@RCVerb उस_ग्राहक_ने,@RCSubj जापान_में@PreMainVerb बनती_है।@MainVerb
+
+# RC1 15 a
+वह_लड़का,@NP1 जिसने@RCPn मोटरसाइकिल@RCObj पिछले_हफते@PreRCVerb खरीदी_थी,@RCVerb डाक्टरी_की@PreMainVerb पढ़ाई_कर_रहा_है।@MainVerb
+# RC1 15 b
+वह_लड़का,@NP1 जिसने@RCPn पिछले_हफते@PreRCVerb खरीदी_थी@RCVerb मोटरसाइकिल,@RCObj डाक्टरी_की@PreMainVerb पढ़ाई_कर_रहा_है।@MainVerb
+# RC1 15 c
+वह_मोटरसाइकिल,@NP1 जिसको@RCPn उस_लड़के_ने@RCSubj पिछले_हफते@PreRCVerb खरीदा_था,@RCVerb बजाज_की@PreMainVerb नई_पेशकश@PreMainVerb है।@MainVerb
+# RC1 15 d
+वह_मोटरसाइकिल,@NP1 जिसको@RCPn पिछले_हफते@PreRCVerb खरीदा_था@RCVerb उस_लड़के_ने,@RCSubj बजाज_की@PreMainVerb नई_पेशकश@PreMainVerb है।@MainVerb
+
+# RC1 16 a
+वह_बच्ची,@NP1 जिसने@RCPn डिब्बी@RCObj धीरे_से@PreRCVerb चुपके-चुपके@PreRCVerb खोली_थी,@RCVerb बहुत_शरारती@PreMainVerb है।@MainVerb
+# RC1 16 b
+वह_बच्ची,@NP1 जिसने@RCPn धीरे_से@PreRCVerb चुपके-चुपके@PreRCVerb खोली_थी@RCVerb डिब्बी,@RCObj बहुत_शरारती@PreMainVerb है।@MainVerb
+# RC1 16 c
+वह_डिब्बी,@NP1 जिसको@RCPn उस_बच्ची_ने@RCSubj धीरे_से@PreRCVerb चुपके-चुपके@PreRCVerb खोला_था,@RCVerb मेरी@PreMainVerb दादी_की@PreMainVerb है।@MainVerb
+# RC1 16 d
+वह_डिब्बी,@NP1 जिसको@RCPn धीरे_से@PreRCVerb चुपके-चुपके@PreRCVerb खोला_था@RCVerb उस_बच्ची_ने,@RCSubj मेरी@PreMainVerb दादी_की@PreMainVerb है।@MainVerb
+
+# RC1 17 a
+वह_आदमी,@NP1 जिसने@RCPn टाई@RCObj बड़ी_स्टाईल_से@PreRCVerb पहनी_हुई_थी,@RCVerb हमारे_कालेज_में@PreMainVerb काम_करता_है।@MainVerb
+# RC1 17 b
+वह_आदमी,@NP1 जिसने@RCPn बड़ी_स्टाईल_से@PreRCVerb पहनी_हुई_थी@RCVerb टाई,@RCObj हमारे_कालेज_में@PreMainVerb काम_करता_है।@MainVerb
+# RC1 17 c
+वह_टाई,@NP1 जिसको@RCPn उस_आदमी_ने@RCSubj बड़ी_स्टाईल_से@PreRCVerb पहना_हुआ_था,@RCVerb आज_कल@PreMainVerb फैशन_में@PreMainVerb है।@MainVerb
+# RC1 17 d
+वह_टाई,@NP1 जिसको@RCPn बड़ी_स्टाईल_से@PreRCVerb पहना_हुआ_था@RCVerb उस_आदमी_ने,@RCSubj आज_कल@PreMainVerb फैशन_में@PreMainVerb है।@MainVerb
+
+# RC1 18 a
+वह_औरत,@NP1 जिसने@RCPn लाल_गाड़ी@RCObj पिछले_महीने@PreRCVerb खरीदी_थी,@RCVerb मेरे@PreMainVerb बेटे_की@PreMainVerb टीचर@PreMainVerb है।@MainVerb
+# RC1 18 b
+वह_औरत,@NP1 जिसने@RCPn पिछले_महीने@PreRCVerb खरीदी_थी@RCVerb लाल_गाड़ी,@RCObj मेरे@PreMainVerb बेटे_की@PreMainVerb टीचर@PreMainVerb है।@MainVerb
+# RC1 18 c
+वह_लाल_गाड़ी,@NP1 जिसको@RCPn उस_औरत_ने@RCSubj पिछले_महीने@PreRCVerb खरीदा_था,@RCVerb लोगो_में@PreMainVerb काफी_लोकप्रिय@PreMainVerb है।@MainVerb
+# RC1 18 d
+वह_लाल_गाड़ी,@NP1 जिसको@RCPn पिछले_महीने@PreRCVerb खरीदा_था@RCVerb उस_औरत_ने,@RCSubj लोगो_में@PreMainVerb काफी_लोकप्रिय@PreMainVerb है।@MainVerb
+
+# RC1 19 a
+वह_डाक्टर,@NP1 जिसने@RCPn दवाईयां@RCObj कल_शाम@PreRCVerb फेकीं_थीं,@RCVerb बहुत_होशियार@PreMainVerb है।@MainVerb
+# RC1 19 b
+वह_डाक्टर,@NP1 जिसने@RCPn कल_शाम@PreRCVerb फेकीं_थीं@RCVerb दवाईयां,@RCObj बहुत_होशियार@PreMainVerb है।@MainVerb
+# RC1 19 c
+वह_दवाईयां,@NP1 जिनको@RCPn उस_डाक्टर_ने@RCSubj कल_शाम@PreRCVerb फेका_था,@RCVerb खराब@PreMainVerb हो_गईं_थीं।@MainVerb
+# RC1 19 d
+वह_दवाईयां,@NP1 जिनको@RCPn कल_शाम@PreRCVerb फेका_था@RCVerb उस_डाक्टर_ने,@RCSubj खराब@PreMainVerb हो_गईं_थीं।@MainVerb
+
+# RC1 20 a
+वह_इंजीनियर,@NP1 जिसने@RCPn वह_बिल्डिंग@RCObj बहुत_धीरे-धीरे@PreRCVerb बनायी_थी,@RCVerb मरे@PreMainVerb दोस्त_की@PreMainVerb कंपनी_में@PreMainVerb काम_करता_है।@MainVerb
+# RC1 20 b
+वह_इंजीनियर,@NP1 जिसने@RCPn बहुत_धीरे-धीरे@PreRCVerb बनायी_थी@RCVerb वह_बिल्डिंग,@RCObj मरे@PreMainVerb दोस्त_की@PreMainVerb कंपनी_में@PreMainVerb काम_करता_है।@MainVerb
+# RC1 20 c
+हमारी_बिल्डिंग,@NP1 जिसको@RCPn उस_इंजीनियर_ने@RCSubj बहुत_धीरे-धीरे@PreRCVerb बनाया_था,@RCVerb बहुत_सुनसान_इलाके_में@PreMainVerb है।@MainVerb
+# RC1 20 d
+हमारी_बिल्डिंग,@NP1 जिसको@RCPn बहुत_धीरे-धीरे@PreRCVerb बनाया_था@RCVerb उस_इंजीनियर_ने,@RCSubj बहुत_सुनसान_इलाके_में@PreMainVerb है।@MainVerb
+
+# RC1 21 a
+वह_लड़की,@NP1 जिसने@RCPn सारी_फाइलें@RCObj पिछले_हफते@PreRCVerb शाम_के_समय@PreRCVerb उठायीं_थीं,@RCVerb बहुत_अच्छा_गाना@PreMainVerb गाती_है।@MainVerb
+# RC1 21 b
+वह_लड़की,@NP1 जिसने@RCPn पिछले_हफते@PreRCVerb शाम_के_समय@PreRCVerb उठायीं_थीं@RCVerb सारी_फाइलें,@RCObj बहुत_अच्छा_गाना@PreMainVerb गाती_है।@MainVerb
+# RC1 21 c
+वह_फाइलें,@NP1 जिनको@RCPn उस_लड़की_ने@RCSubj पिछले_हफते@PreRCVerb शाम_के_समय@PreRCVerb उठाया_था,@RCVerb दो_साल_से@PreMainVerb एक_जगह_पर@PreMainVerb सड़_रहीं_थीं।@MainVerb
+# RC1 21 d
+वह_फाइलें,@NP1 जिनको@RCPn पिछले_हफते@PreRCVerb शाम_के_समय@PreRCVerb उठाया_था@RCVerb उस_लड़की_ने,@RCSubj दो_साल_से@PreMainVerb एक_जगह_पर@PreMainVerb सड़_रहीं_थीं।@MainVerb
+
+# RC1 22 a
+वह_हलवाई,@NP1 जिसने@RCPn कढाई@RCObj बड़ी_सावधानी_से@PreRCVerb पकड़ी_थी,@RCVerb इस_मोहल्ले_में@PreMainVerb एक_नई_दुकान@PreMainVerb खोल_रहा_है।@MainVerb
+# RC1 22 b
+वह_हलवाई,@NP1 जिसने@RCPn बड़ी_सावधानी_से@PreRCVerb पकड़ी_थी@RCVerb कढाई,@RCObj इस_मोहल्ले_में@PreMainVerb एक_नई_दुकान@PreMainVerb खोल_रहा_है।@MainVerb
+# RC1 22 c
+वह_कढाई,@NP1 जिसको@RCPn उस_हलवाई_ने@RCSubj बड़ी_सावधानी_से@PreRCVerb पकड़ा_था,@RCVerb असली_पीतल_से@PreMainVerb बनी_है।@MainVerb
+# RC1 22 d
+वह_कढाई,@NP1 जिसको@RCPn बड़ी_सावधानी_से@PreRCVerb पकड़ा_था@RCVerb उस_हलवाई_ने,@RCSubj असली_पीतल_से@PreMainVerb बनी_है।@MainVerb
+
+# RC1 23 a
+वह_कुली,@NP1 जिसने@RCPn बड़ी_अटैची@RCObj एक_झटके_में@PreRCVerb उठा_ली_थी,@RCVerb रात_में@PreMainVerb टैक्सी@PreMainVerb चलाता_है।@MainVerb
+# RC1 23 b
+वह_कुली,@NP1 जिसने@RCPn एक_झटके_में@PreRCVerb उठा_ली_थी@RCVerb बड़ी_अटैची,@RCObj रात_में@PreMainVerb टैक्सी@PreMainVerb चलाता_है।@MainVerb
+# RC1 23 c
+वह_बड़ी_अटैची,@NP1 जिसको@RCPn उस_कुली_ने@RCSubj एक_झटके_में@PreRCVerb उठा_लिया_था,@RCVerb ट्रेन_में@PreMainVerb गुम_हो_गयी।@MainVerb
+# RC1 23 d
+वह_बड़ी_अटैची,@NP1 जिसको@RCPn एक_झटके_में@PreRCVerb उठा_लिया_था@RCVerb उस_कुली_ने,@RCSubj ट्रेन_में@PreMainVerb गुम_हो_गयी।@MainVerb
+
+# RC1 24 a
+वह_अध्यापक,@NP1 जिसने@RCPn किताबें@RCObj पिछले_साल@PreRCVerb गर्मियों_में@PreRCVerb बेचीं_थीं,@RCVerb बरेली_का@PreMainVerb रहनेवाला है।@MainVerb
+# RC1 24 b
+वह_अध्यापक,@NP1 जिसने@RCPn पिछले_साल@PreRCVerb गर्मियों_में@PreRCVerb बेचीं_थीं@RCVerb किताबें,@RCObj बरेली_का@PreMainVerb रहनेवाला है।@MainVerb
+# RC1 24 c
+वह_किताबें,@NP1 जिनको@RCPn उस_अध्यापक_ने@RCSubj पिछले_साल@PreRCVerb गर्मियों_में@PreRCVerb बेचा_था,@RCVerb पुरानी@PreMainVerb हो_रहीं_थीं।@MainVerb
+# RC1 24 d
+वह_किताबें,@NP1 जिनको@RCPn पिछले_साल@PreRCVerb गर्मियों_में@PreRCVerb बेचा_था@RCVerb उस_अध्यापक_ने,@RCSubj पुरानी@PreMainVerb हो_रहीं_थीं।@MainVerb
+
+
+# RC2 1 a
+जो@RCPn वहाँ@PreRCVerb खड़ा_था,@RCVerb वह_लड़का@NP1 मेरे@PreMainVerb भाई_का@PreMainVerb दोस्त@PreMainVerb था।@MainVerb
+? क्या लड़का मेरे भाई का दोस्त था? Y
+# RC2 1 b
+जो@RCPn कल_शाम@PreRCVerb1 सूरज_ढलने_से_पहले@PreRCVerb1 वहाँ@PreRCVerb खड़ा_था,@RCVerb वह_लड़का@NP1 मेरे@PreMainVerb भाई_का@PreMainVerb दोस्त@PreMainVerb था।@MainVerb
+? क्या लड़का मेरे भाई का दोस्त था? Y
+# RC2 1 c
+वह_लड़का@NP1 मेरे@PreMainVerb भाई_का@PreMainVerb दोस्त@PreMainVerb था,@MainVerb जिसने@RCPn कल@PreRCVerb स्कूल_में@PreRCVerb गाना@PreRCVerb गाया_था।@RCVerb
+? क्या लड़के ने स्कूल में गाना गाया? Y
+# RC2 1 d
+वह_लड़का@NP1 कुछ_सालों_तक@PreMainVerb1 मेरे@PreMainVerb भाई_का@PreMainVerb दोस्त@PreMainVerb था,@MainVerb जिसने@RCPn कल@PreRCVerb स्कूल_में@PreRCVerb गाना@PreRCVerb गाया_था।@RCVerb
+? क्या लड़के ने स्कूल में गाना गाया? Y
+
+# RC2 2 a
+जो@RCPn वहाँ@PreRCVerb सब्ज़ी@PreRCVerb बेचता_है,@RCVerb वह_ठेलेवाला@NP1 हमारे@PreMainVerb घर@PreMainVerb रोज़@PreMainVerb आता_है।@MainVerb
+? क्या ठेलेवाला हमारे दुकान रोज़ आता है? N
+# RC2 2 b
+जो@RCPn सोमवार_के_दिन@PreRCVerb1 दोपहर_तीन_बजे@PreRCVerb1 वहाँ@PreRCVerb सब्ज़ी@PreRCVerb बेचता_है,@RCVerb वह_ठेलेवाला@NP1 हमारे@PreMainVerb घर@PreMainVerb रोज़@PreMainVerb आता_है।@MainVerb
+? क्या ठेलेवाला हमारे दुकान रोज़ आता है? N
+# RC2 2 c
+वह_ठेलेवाला@NP1 हमारे@PreMainVerb घर@PreMainVerb आता_है,@MainVerb जिसने@RCPn आज@PreRCVerb बाज़ार_में@PreRCVerb लड़ाई_की।@RCVerb
+? क्या ठेलेवाले ने बाज़ार में पिछले हफते लड़ाई की? N
+# RC2 2 d
+वह_ठेलेवाला@NP1 सोमवार_के_दिन@PreMainVerb1 दोपहर_तीन_बजे@PreMainVerb1 हमारे@PreMainVerb घर@PreMainVerb आता_है,@MainVerb जिसने@RCPn आज@PreRCVerb बाज़ार_में@PreRCVerb लड़ाई_की।@RCVerb
+? क्या ठेलेवाले ने बाज़ार में पिछले हफते लड़ाई की? N
+
+# RC2 3 a
+जो@RCPn जंगल_में@PreRCVerb पेड़@PreRCVerb काट_रहा_था,@RCVerb वह_आदमी@NP1 इस_गाँव_का@PreMainVerb मुखिया@PreMainVerb है।@MainVerb
+? क्या आदमी जंगल में पेड़ काट रहा था? Y
+# RC2 3 b
+जो@RCPn पिछले_हफ़ते@PreRCVerb1 सुबह-सुबह@PreRCVerb1 जंगल_में@PreRCVerb पेड़@PreRCVerb काट_रहा_था,@RCVerb वह_आदमी@NP1 इस_गाँव_का@PreMainVerb मुखिया@PreMainVerb है।@MainVerb
+? क्या आदमी जंगल में पेड़ काट रहा था? Y
+# RC2 3 c
+वह_आदमी@NP1 इस_गाँव_का@PreMainVerb मुखिया@PreMainVerb है,@MainVerb जिसने@RCPn पिछले_हफ़ते@PreRCVerb यह_पेड़@PreRCVerb काट_डाला।@RCVerb
+? क्या आदमी गाँव का मुखिया है? Y
+# RC2 3 d
+वह_आदमी@NP1 पिछले_दस_साल_से@PreMainVerb1 इस_गाँव_का@PreMainVerb मुखिया@PreMainVerb है,@MainVerb जिसने@RCPn पिछले_हफ़ते@PreRCVerb यह_पेड़@PreRCVerb काट_डाला।@RCVerb
+? क्या आदमी गाँव का मुखिया है? Y
+
+# RC2 4 a
+जो@RCPn पेड़_से@PreRCVerb आम@PreRCVerb तोड़_रहा_था,@RCVerb वह_लड़का@NP1 मेरे@PreMainVerb मामा_की@PreMainVerb दुकान_में@PreMainVerb काम_करता_है।@MainVerb
+? क्या लड़का पेड़ से अमरूद तोड़ रहा था? N
+# RC2 4 b
+जो@RCPn आज_सुबह@PreRCVerb1 चुपके_से@PreRCVerb1 पेड़_से@PreRCVerb आम@PreRCVerb तोड़_रहा_था,@RCVerb वह_लड़का@NP1 मेरे@PreMainVerb मामा_की@PreMainVerb दुकान_में@PreMainVerb काम_करता_है।@MainVerb
+? क्या लड़का पेड़ से अमरूद तोड़ रहा था? N
+# RC2 4 c
+वह_लड़का@NP1 मेरे@PreMainVerb मामा_की@PreMainVerb दुकान_में@PreMainVerb काम_करता_है,@MainVerb जिसने@RCPn पेड़_से@PreRCVerb आम@PreRCVerb तोड़े।@RCVerb
+? क्या लड़का अस्पताल में काम करता है? N
+# RC2 4 d
+वह_लड़का@NP1 कई_सालों_से@PreMainVerb1 मेरे@PreMainVerb मामा_की@PreMainVerb दुकान_में@PreMainVerb काम_करता_है,@MainVerb जिसने@RCPn पेड़_से@PreRCVerb आम@PreRCVerb तोड़े।@RCVerb
+? क्या लड़का अस्पताल में काम करता है? N
+
+# RC2 5 a
+जो@RCPn इन्फोसिस_में@PreRCVerb काम_कर_रही_थी,@RCVerb वह_लड़की@NP1 अब@PreMainVerb समाजसेवा_करती_है।@MainVerb
+? क्या लड़की अब समाजसेवा करती है? Y
+# RC2 5 b
+जो@RCPn कुछ_महीनों_तक@PreRCVerb1 खुशी-खुशी@PreRCVerb1 इन्फोसिस_में@PreRCVerb काम_कर_रही_थी,@RCVerb वह_लड़की@NP1 अब@PreMainVerb समाजसेवा_करती_है।@MainVerb
+? क्या लड़की अब समाजसेवा करती है? Y
+# RC2 5 c
+वह_लड़की@NP1 समाजसेवा_करती_है,@MainVerb जिसने@RCPn इन्फोसिस_में@PreRCVerb काम_किया_था।@RCVerb
+? क्या लड़की अब समाजसेवा करती है? Y
+# RC2 5 d
+वह_लड़की@NP1 सुबह-शाम@PreMainVerb1 बहुत_मेहनत_से@PreMainVerb1 समाजसेवा_करती_है,@MainVerb जिसने@RCPn इन्फोसिस_में@PreRCVerb काम_किया_था।@RCVerb
+? क्या लड़की अब समाजसेवा करती है? Y
+
+# RC2 6 a
+जो@RCPn मूर्तियाँ@PreRCVerb बनाता_है,@RCVerb वह_कलाकार@NP1 बहुत_बीमार@PreMainVerb है।@MainVerb
+? क्या कलाकार स्वस्थ है? N
+# RC2 6 b
+जो@RCPn जी-टी_रोड_के_बगल_में@PreRCVerb1 मूर्तियाँ@PreRCVerb बनाता_है,@RCVerb वह_कलाकार@NP1 बहुत_बीमार@PreMainVerb है।@MainVerb
+? क्या कलाकार स्वस्थ है? N
+# RC2 6 c
+वह_कलाकार@NP1 बहुत_बीमार@PreMainVerb है,@MainVerb जिसने@RCPn संसद_के_सामने@PreRCVerb मोर्चा_डाला_था।@RCVerb
+? क्या कलाकार स्वस्थ है? N
+# RC2 6 d
+वह_कलाकार@NP1 कल_रात@PreMainVerb1 तीन_बजे_से@PreMainVerb1 बहुत_बीमार@PreMainVerb है,@MainVerb जिसने@RCPn संसद_के_सामने@PreRCVerb मोर्चा_डाला_था।@RCVerb
+? क्या कलाकार स्वस्थ है? N
+
+# RC2 7 a
+जो@RCPn साईकिलों_की@PreRCVerb मरम्मत_करता_है,@RCVerb वह_कारीगर@NP1 कालेज_की@PreMainVerb पड़ाई_कर_रहा_है।@MainVerb
+? क्या कारीगर साईकिलों की मरम्मत करता है? Y
+# RC2 7 b
+जो@RCPn होटल_के_सामने_वाली@PreRCVerb1 दुकान_में@PreRCVerb1 साईकिलों_की@PreRCVerb मरम्मत_करता_है,@RCVerb वह_कारीगर@NP1 कालेज_की@PreMainVerb पड़ाई_कर_रहा_है।@MainVerb
+? क्या कारीगर साईकिलों की मरम्मत करता है? Y
+# RC2 7 c
+वह_कारीगर@NP1 कालेज_की@PreMainVerb पड़ाई_कर_रहा_है,@MainVerb जिसने@RCPn रमेश_की@PreRCVerb मोटरसाइकिल@PreRCVerb बनाई_थी।@RCVerb
+? क्या कारीगर ने रमेश की कार बनाई? N
+# RC2 7 d
+वह_कारीगर@NP1 पिछले_एक_साल_से@PreMainVerb1 रातों_में@PreMainVerb1 कालेज_की@PreMainVerb पड़ाई_कर_रहा_है,@MainVerb जिसने@RCPn रमेश_की@PreRCVerb मोटरसाइकिल@PreRCVerb बनाई_थी।@RCVerb
+? क्या कारीगर ने रमेश की कार बनाई? N
+
+# RC2 8 a
+जो@RCPn अंग्रेजी@PreRCVerb पढ़ाता_है,@RCVerb वह_शिक्षक@NP1 गाने@PreMainVerb लिखता_है।@MainVerb
+? क्या शिक्षक गाने लिखता है? Y
+# RC2 8 b
+जो@RCPn स्कूल_में@PreRCVerb1 हर_मंगलवार@PreRCVerb1 अंग्रेजी@PreRCVerb पढ़ाता_है,@RCVerb वह_शिक्षक@NP1 गाने@PreMainVerb लिखता_है।@MainVerb
+? क्या शिक्षक गाने लिखता है? Y
+# RC2 8 c
+वह_शिक्षक@NP1 गाने@PreMainVerb लिखता_है,@MainVerb जिसने@RCPn रकेश_की@PreRCVerb मदद_की_थी।@RCVerb
+? क्या शिक्षक कहानियाँ लिखता है? N
+# RC2 8 d
+वह_शिक्षक@NP1 हर_15_अगस्त@PreMainVerb1 गाने@PreMainVerb लिखता_है,@MainVerb जिसने@RCPn रकेश_की@PreRCVerb मदद_की_थी।@RCVerb
+? क्या शिक्षक कहानियाँ लिखता है? N
+
+# RC2 9 a
+जो@RCPn फुटबाल@PreRCVerb खेल_रहा_है,@RCVerb वह_बच्चा@NP1 राष्ट्रीय_क्रिकेट_अकादमी@PreMainVerb जाता_रहता_है।@MainVerb
+? क्या बच्चा क्रिकेट खेल रहा है? N
+# RC2 9 b
+जो@RCPn वहाँ@PreRCVerb1 मैदान_में@PreRCVerb1 फुटबाल@PreRCVerb खेल_रहा_है,@RCVerb वह_बच्चा@NP1 राष्ट्रीय_क्रिकेट_अकादमी@PreMainVerb जाता_रहता_है।@MainVerb
+? क्या बच्चा क्रिकेट खेल रहा है? N
+# RC2 9 c
+वह_बच्चा@NP1 राष्ट्रीय_क्रिकेट_अकादमी@PreMainVerb जाता_रहता_है,@MainVerb जिसने@RCPn सबको@PreRCVerb पार्टी_में@PreRCVerb बुलाया_था।@RCVerb
+? क्या बच्चे ने सबको पार्टी में बुलाया था? Y
+# RC2 9 d
+वह_बच्चा@NP1 2010_से@PreMainVerb1 हर_साल@PreMainVerb1 राष्ट्रीय_क्रिकेट_अकादमी@PreMainVerb जाता_रहता_है,@MainVerb जिसने@RCPn सबको@PreRCVerb पार्टी_में@PreRCVerb बुलाया_था।@RCVerb
+? क्या बच्चे ने सबको पार्टी में बुलाया था? Y
+
+# RC2 10 a
+जो@RCPn मैदान_की@PreRCVerb सिचाई_कर_रहा_है,@RCVerb वह_आदमी@NP1 अपने@PreMainVerb गांव@PreMainVerb वापस@PreMainVerb जा_रहा_है।@MainVerb
+? क्या आदमी दिल्ली वापस जा रहा है? N
+# RC2 10 b
+जो@RCPn आज_दोपहर@PreRCVerb1 12_बजे@PreRCVerb1 मैदान_की@PreRCVerb सिचाई_कर_रहा_है,@RCVerb वह_आदमी@NP1 अपने@PreMainVerb गांव@PreMainVerb वापस@PreMainVerb जा_रहा_है।@MainVerb
+? क्या आदमी दिल्ली वापस जा रहा है? N
+# RC2 10 c
+वह_आदमी@NP1 अपने@PreMainVerb गांव@PreMainVerb वापस@PreMainVerb जा_रहा_है,@MainVerb जिसने@RCPn रेलवे_स्टेशन_के_बगल_में@PreRCVerb चाय_की@PreRCVerb दुकान@PreRCVerb खोली_थी।@RCVerb
+? क्या आदमी गांव वापस जा रहा है? Y
+# RC2 10 d
+वह_आदमी@NP1 एक_महीने_बाद@PreMainVerb1 दिवाली_पर@PreMainVerb1 अपने@PreMainVerb गांव@PreMainVerb वापस@PreMainVerb जा_रहा_है,@MainVerb जिसने@RCPn रेलवे_स्टेशन_के_बगल_में@PreRCVerb चाय_की@PreRCVerb दुकान@PreRCVerb खोली_थी।@RCVerb
+? क्या आदमी गांव वापस जा रहा है? Y
+
+# RC2 11 a
+जो@RCPn रद्दी-अखबार@PreRCVerb खरीद_रहा_था,@RCVerb वह_रद्दीवाला@NP1 जीप_में@PreMainVerb आता_है।@MainVerb
+? क्या रद्दीवाला रद्दी-अखबार खरीद रहा था? Y
+# RC2 11 b
+जो@RCPn आज_सुबह@PreRCVerb1 दुकान_में@PreRCVerb1 रद्दी-अखबार@PreRCVerb खरीद_रहा_था,@RCVerb वह_रद्दीवाला@NP1 जीप_में@PreMainVerb आता_है।@MainVerb
+? क्या रद्दीवाला रद्दी-अखबार खरीद रहा था? Y
+# RC2 11 c
+वह_रद्दीवाला@NP1 जीप_में@PreMainVerb आता_है,@MainVerb जिसने@RCPn हमारे@PreRCVerb पुराने_अखबार@PreRCVerb खरीदे_थे।@RCVerb
+? क्या रद्दीवाला स्कूटर पर आता है? N
+# RC2 11 d
+वह_रद्दीवाला@NP1 जून_से@PreMainVerb1 काम_पर@PreMainVerb1 जीप_में@PreMainVerb आता_है,@MainVerb जिसने@RCPn हमारे@PreRCVerb पुराने_अखबार@PreRCVerb खरीदे_थे।@RCVerb
+? क्या रद्दीवाला स्कूटर पर आता है? N
+
+# RC2 12 a
+जो@RCPn नारे_लगा_रहा_था,@RCVerb वह_पत्रकार@NP1 मजदूरों_की@PreMainVerb उन्नति_के_लिए@PreMainVerb काम_करता_है।@MainVerb
+? क्या पत्रकार मजदूरों की अवनति के लिए काम करता है? N
+# RC2 12 b
+जो@RCPn राजभवन_के_सामने@PreRCVerb1 सुबह@PreRCVerb1 नारे_लगा_रहा_था,@RCVerb वह_पत्रकार@NP1 मजदूरों_की@PreMainVerb उन्नति_के_लिए@PreMainVerb काम_करता_है।@MainVerb
+? क्या पत्रकार मजदूरों की अवनति के लिए काम करता है? N
+# RC2 12 c
+वह_पत्रकार@NP1 मजदूरों_की@PreMainVerb उन्नति_के_लिए@PreMainVerb काम_करता_है,@MainVerb जिसने@RCPn भूख_हड़ताल_की_थी।@RCVerb
+? क्या पत्रकार ने भूख हड़ताल की थी? Y
+# RC2 12 d
+वह_पत्रकार@NP1 करीब_12_साल_से@PreMainVerb1 इस_इलाके_में@PreMainVerb1 मजदूरों_की@PreMainVerb उन्नति_के_लिए@PreMainVerb काम_करता_है,@MainVerb जिसने@RCPn भूख_हड़ताल_की_थी।@RCVerb
+? क्या पत्रकार ने भूख हड़ताल की थी? Y
+
+# RC2 13 a
+जो@RCPn टी-वी@PreRCVerb देख_रही_थी,@RCVerb वह_बच्ची@NP1 हमारे@PreMainVerb पड़ोस_में@PreMainVerb रहती_है।@MainVerb
+# RC2 13 b
+जो@RCPn घर_में@PreRCVerb1 शाम_तक@PreRCVerb1 टी-वी@PreRCVerb देख_रही_थी,@RCVerb वह_बच्ची@NP1 हमारे@PreMainVerb पड़ोस_में@PreMainVerb रहती_है।@MainVerb
+# RC2 13 c
+वह_बच्ची@NP1 हमारे@PreMainVerb पड़ोस_में@PreMainVerb रहती_है,@MainVerb जिसने@RCPn बस_में@PreRCVerb हंगामा_खड़ा_किया_था।@RCVerb
+# RC2 13 d
+वह_बच्ची@NP1 कुछ_दिनो_से@PreMainVerb1 पीछे@PreMainVerb1 हमारे@PreMainVerb पड़ोस_में@PreMainVerb रहती_है,@MainVerb जिसने@RCPn बस_में@PreRCVerb हंगामा_खड़ा_किया_था।@RCVerb
+
+# RC2 14 a
+जो@RCPn कबूतर@PreRCVerb उड़ा_रहे_थे,@RCVerb वह_बुजुर्ग@NP1 फौज_में@PreMainVerb कप्तान@PreMainVerb थे।@MainVerb
+# RC2 14 b
+जो@RCPn छत_पर@PreRCVerb1 कल_सुबाह@PreRCVerb1 कबूतर@PreRCVerb उड़ा_रहे_थे,@RCVerb वह_बुजुर्ग@NP1 फौज_में@PreMainVerb कप्तान@PreMainVerb थे।@MainVerb
+# RC2 14 c
+वह_बुजुर्ग@NP1 फौज_में@PreMainVerb कप्तान@PreMainVerb थे,@MainVerb जिन्होने@RCPn सरकारी_अफसर_को@PreRCVerb घूस@PreRCVerb लेते@PreRCVerb पकड़ा_था।@RCVerb
+# RC2 14 d
+वह_बुजुर्ग@NP1 1975_से_1995@PreMainVerb1 करीब_20_साल_तक@PreMainVerb1 फौज_में@PreMainVerb कप्तान@PreMainVerb थे,@MainVerb जिन्होने@RCPn सरकारी_अफसर_को@PreRCVerb घूस@PreRCVerb लेते@PreRCVerb पकड़ा_था।@RCVerb
+
+# RC2 15 a
+जो@RCPn कपड़े@PreRCVerb धो_रहा_है,@RCVerb वह_धोबी@NP1 गरीबों_की@PreMainVerb मदद_करता_है।@MainVerb
+# RC2 15 b
+जो@RCPn तालाब_के_किनारे@PreRCVerb1 सुबह_में@PreRCVerb1 कपड़े@PreRCVerb धो_रहा_है,@RCVerb वह_धोबी@NP1 गरीबों_की@PreMainVerb मदद_करता_है।@MainVerb
+# RC2 15 c
+वह_धोबी@NP1 गरीबों_की@PreMainVerb मदद_करता_है,@MainVerb जिसने@RCPn तुमसे@PreRCVerb तुम्हारा@PreRCVerb नाम@PreRCVerb पूछा_था।@RCVerb
+# RC2 15 d
+वह_धोबी@NP1 इस_कालोनी_में@PreMainVerb1 सालों_से@PreMainVerb1 गरीबों_की@PreMainVerb मदद_करता_है,@MainVerb जिसने@RCPn तुमसे@PreRCVerb तुम्हारा@PreRCVerb नाम@PreRCVerb पूछा_था।@RCVerb
+
+# RC2 16 a
+जो@RCPn चिल्ला_रहा_था,@RCVerb वह_व्यक्ति@NP1 मेरे@PreMainVerb पिताजी_के@PreMainVerb दफतर_में@PreMainVerb काम_करता_है।@MainVerb
+# RC2 16 b
+जो@RCPn सड़क_के_बीच_में@PreRCVerb1 सबके_ऊपर@PreRCVerb1 चिल्ला_रहा_था,@RCVerb वह_व्यक्ति@NP1 मेरे@PreMainVerb पिताजी_के@PreMainVerb दफतर_में@PreMainVerb काम_करता_है।@MainVerb
+# RC2 16 c
+वह_व्यक्ति@NP1 मेरे@PreMainVerb पिताजी_के@PreMainVerb दफतर_में@PreMainVerb काम_करता_है,@MainVerb जिसने@RCPn हमें@PreRCVerb टैक्सी_में@PreRCVerb बैठाला_था।@RCVerb
+# RC2 16 d
+वह_व्यक्ति@NP1 काफी_दिनो_से@PreMainVerb1 एक_ही_प्रोजेक्ट_पर@PreMainVerb1 मेरे@PreMainVerb पिताजी_के@PreMainVerb दफतर_में@PreMainVerb काम_करता_है,@MainVerb जिसने@RCPn हमें@PreRCVerb टैक्सी_में@PreRCVerb बैठाला_था।@RCVerb
+
+# RC2 17 a
+जो@RCPn भाषण@PreRCVerb दे_रहा_है,@RCVerb वह_नेता@NP1 गांव_में@PreMainVerb रहता_है।@MainVerb
+# RC2 17 b
+जो@RCPn दो_घंटे_से@PreRCVerb1 मंच_पर@PreRCVerb1 भाषण@PreRCVerb दे_रहा_है,@RCVerb वह_नेता@NP1 गांव_में@PreMainVerb रहता_है।@MainVerb
+# RC2 17 c
+वह_नेता@NP1 गांव_में@PreMainVerb रहता_है,@MainVerb जिसने@RCPn किसानों_को@PreRCVerb मुफत_बिजली@PreRCVerb देने_का@PreRCVerb वादा_किया_है।@RCVerb
+# RC2 17 d
+वह_नेता@NP1 चुनाव_के_समय@PreMainVerb1 करीब_एक_हफते@PreMainVerb1 गांव_में@PreMainVerb रहता_है,@MainVerb जिसने@RCPn किसानों_को@PreRCVerb मुफत_बिजली@PreRCVerb देने_का@PreRCVerb वादा_किया_है।@RCVerb
+
+# RC2 18 a
+जो@RCPn राशन@PreRCVerb बांट_रहा_है,@RCVerb वह_कर्मचारी@NP1 सबसे@PreMainVerb आदर_से@PreMainVerb बात_करता_है।@MainVerb
+# RC2 18 b
+जो@RCPn लोगो_में@PreRCVerb1 सुबह_9_बजे_से@PreRCVerb1 राशन@PreRCVerb बांट_रहा_है,@RCVerb वह_कर्मचारी@NP1 सबसे@PreMainVerb आदर_से@PreMainVerb बात_करता_है।@MainVerb
+# RC2 18 c
+वह_कर्मचारी@NP1 सबसे@PreMainVerb आदर_से@PreMainVerb बात_करता_है,@MainVerb जिसने@RCPn मोहन_की@PreRCVerb शादी_में@PreRCVerb नाचा_था।@RCVerb
+# RC2 18 d
+वह_कर्मचारी@NP1 काम_पर@PreMainVerb1 हमेशा@PreMainVerb1 सबसे@PreMainVerb आदर_से@PreMainVerb बात_करता_है,@MainVerb जिसने@RCPn मोहन_की@PreRCVerb शादी_में@PreRCVerb नाचा_था।@RCVerb
+
+# RC2 19 a
+जो@RCPn पान@PreRCVerb खा_रहा_है,@RCVerb वह_आदमी@NP1 इस_मोहल्ले_का@PreMainVerb गुंडा@PreMainVerb है।@MainVerb
+# RC2 19 b
+जो@RCPn दुकान_के_सामने@PreRCVerb1 सड़क_पर@PreRCVerb1 पान@PreRCVerb खा_रहा_है,@RCVerb वह_आदमी@NP1 इस_मोहल्ले_का@PreMainVerb गुंडा@PreMainVerb है।@MainVerb
+# RC2 19 c
+वह_आदमी@NP1 इस_मोहल्ले_का@PreMainVerb गुंडा@PreMainVerb है,@MainVerb जिसने@RCPn दुकानदार_से@PreRCVerb झगड़ा_किया।@RCVerb
+# RC2 19 d
+वह_आदमी@NP1 पिछले_एक_दशक_से@PreMainVerb1 इस_मोहल्ले_का@PreMainVerb गुंडा@PreMainVerb है,@MainVerb जिसने@RCPn दुकानदार_से@PreRCVerb झगड़ा_किया।@RCVerb
+
+# RC2 20 a
+जो@RCPn बच्चों_से@PreRCVerb मिल_रहा_था,@RCVerb वह_नेता@NP1 हमारा@PreMainVerb उम्मीदवार@PreMainVerb है।@MainVerb
+# RC2 20 b
+जो@RCPn कल@PreRCVerb1 स्कूल_में@PreRCVerb1 बच्चों_से@PreRCVerb मिल_रहा_था,@RCVerb वह_नेता@NP1 हमारा@PreMainVerb उम्मीदवार@PreMainVerb है।@MainVerb
+# RC2 20 c
+वह_नेता@NP1 हमारा@PreMainVerb उम्मीदवार@PreMainVerb है,@MainVerb जिसने@RCPn अस्पताल_की@PreRCVerb स्थापना_की_थी।@RCVerb
+# RC2 20 d
+वह_नेता@NP1 इस_बार@PreMainVerb1 कानपुर_से@PreMainVerb1 हमारा@PreMainVerb उम्मीदवार@PreMainVerb है,@MainVerb जिसने@RCPn अस्पताल_की@PreRCVerb स्थापना_की_थी।@RCVerb
+
+# RC2 21 a
+जो@RCPn फोटो_खींच_रहा_था,@RCVerb वह_पत्रकार@NP1 इस_अपराध_की@PreMainVerb जांच_कर_रहा_है।@MainVerb
+# RC2 21 b
+जो@RCPn हत्याकंड_पर@PreRCVerb1 जगह_जगह@PreRCVerb1 फोटो_खींच_रहा_था,@RCVerb वह_पत्रकार@NP1 इस_अपराध_की@PreMainVerb जांच_कर_रहा_है।@MainVerb
+# RC2 21 c
+वह_पत्रकार@NP1 इस_अपराध_की@PreMainVerb जांच_कर_रहा_है,@MainVerb जिसने@RCPn मोहन_से@PreRCVerb काफी_लंबी@PreRCVerb बात-चीत_की_थी।@RCVerb
+# RC2 21 d
+वह_पत्रकार@NP1 कई_दिनों_से@PreMainVerb1 इंटरनेट_पर@PreMainVerb1 इस_अपराध_की@PreMainVerb जांच_कर_रहा_है,@MainVerb जिसने@RCPn मोहन_से@PreRCVerb काफी_लंबी@PreRCVerb बात-चीत_की_थी।@RCVerb
+
+# RC2 22 a
+जो@RCPn हरी_मारूती@PreRCVerb चलाता_है,@RCVerb वह_ड्राइवर@NP1 हिन्दी@PreMainVerb सीख_रहा_है।@MainVerb
+# RC2 22 b
+जो@RCPn तुम्हारी_गली_में@PreRCVerb1 रोजाना@PreRCVerb1 हरी_मारूती@PreRCVerb चलाता_है,@RCVerb वह_ड्राइवर@NP1 हिन्दी@PreMainVerb सीख_रहा_है।@MainVerb
+# RC2 22 c
+वह_ड्राइवर@NP1 हिन्दी@PreMainVerb सीख_रहा_है,@MainVerb जिसने@RCPn हमें@PreRCVerb कोलकता_की@PreRCVerb सैर_कराई_थी।@RCVerb
+# RC2 22 d
+वह_ड्राइवर@NP1 भाषा_संस्थान_में@PreMainVerb1 6_महीने_से@PreMainVerb1 हिन्दी@PreMainVerb सीख_रहा_है,@MainVerb जिसने@RCPn हमें@PreRCVerb कोलकता_की@PreRCVerb सैर_कराई_थी।@RCVerb
+
+# RC2 23 a
+जो@RCPn नोटिस@PreRCVerb लगा_रहा_था,@RCVerb वह_व्यक्ति@NP1 राकेश_को@PreMainVerb जानता_है।@MainVerb
+# RC2 23 b
+जो@RCPn डाकघर_में@PreRCVerb1 दिवार_पर@PreRCVerb1 नोटिस@PreRCVerb लगा_रहा_था,@RCVerb वह_व्यक्ति@NP1 राकेश_को@PreMainVerb जानता_है।@MainVerb
+# RC2 23 c
+वह_व्यक्ति@NP1 राकेश_को@PreMainVerb जानता_है,@MainVerb जिसने@RCPn हमसे@PreRCVerb रास्ता@PreRCVerb पूछा_था।@RCVerb
+# RC2 23 d
+वह_व्यक्ति@NP1 बचपन_से@PreMainVerb1 अच्छी_तरह@PreMainVerb1 राकेश_को@PreMainVerb जानता_है,@MainVerb जिसने@RCPn हमसे@PreRCVerb रास्ता@PreRCVerb पूछा_था।@RCVerb
+
+# RC2 24 a
+जो@RCPn चाय@PreRCVerb बनाता_है,@RCVerb वह_चायवाला@NP1 बहुत_प्रसिद्ध@PreMainVerb है।@MainVerb
+# RC2 24 b
+जो@RCPn रेलवे_स्टेशन_पर@PreRCVerb1 बरसों_से@PreRCVerb1 चाय@PreRCVerb बनाता_है,@RCVerb वह_चायवाला@NP1 बहुत_प्रसिद्ध@PreMainVerb है।@MainVerb
+# RC2 24 c
+वह_चायवाला@NP1 बहुत_प्रसिद्ध@PreMainVerb है,@MainVerb जिसने@RCPn हमें@PreRCVerb मुफ्त_में@PreRCVerb चाय@PreRCVerb पिलाई_थी।@RCVerb
+# RC2 24 d
+वह_चायवाला@NP1 सालों_से@PreMainVerb1 इस_शहर_में@PreMainVerb1 बहुत_प्रसिद्ध@PreMainVerb है,@MainVerb जिसने@RCPn हमें@PreRCVerb मुफ्त_में@PreRCVerb चाय@PreRCVerb पिलाई_थी।@RCVerb
+
+
+# PP1 1 a
+मनुष्य_की@PreGenDep गरीमा,@GenDep जिसको@PreHeadNP हमारे@PreHeadNP संविधान_में@PreHeadNP सराहा_गया_है,@PreHeadNP का@PreHeadNP आधार@HeadNP प्रेम@PreMainVerb है।@MainVerb
+? क्या मनुष्य की गरीमा को हमारे संविधान में सराहा गया है? Y
+# PP1 1 b
+मनुष्य_की@PreGenDep गरीमा_का,@GenDep जिसको@PreHeadNP हमारे@PreHeadNP संविधान_में@PreHeadNP सराहा_गया_है,@PreHeadNP आधार@HeadNP प्रेम@PreMainVerb है।@MainVerb
+? क्या मनुष्य की गरीमा को हमारे संविधान में सराहा गया है? Y
+# PP1 1 c
+मनुष्य_की@PreGenDep गरीमा,@GenDep जो@PreHeadNP असीम@PreHeadNP है,@PreHeadNP का@PreHeadNP आधार@HeadNP प्रेम@PreMainVerb है।@MainVerb
+? क्या मनुष्य की गरीमा का आधार प्रेम है? Y
+# PP1 1 d
+मनुष्य_की@PreGenDep गरीमा_का,@GenDep जो@PreHeadNP असीम@PreHeadNP है,@PreHeadNP आधार@HeadNP प्रेम@PreMainVerb है।@MainVerb
+? क्या मनुष्य की गरीमा का आधार प्रेम है? Y
+
+# PP1 2 a
+यहाँ@PreGenDep पैदल@PreGenDep चलने_पर@PreGenDep दिल्ली_की@PreGenDep पुरानी_इमारत,@GenDep जिसको@PreHeadNP बनाने_में@PreHeadNP करोड़ो_रुपय@PreHeadNP लगे_थे,@PreHeadNP के@PreHeadNP ईंट-पत्थर@HeadNP साफ-साफ@PreMainVerb दिखते_हैं।@MainVerb
+? क्या पुरानी इमारत को बनाने में कम पैसे लगे थे? N
+# PP1 2 b
+यहाँ@PreGenDep पैदल@PreGenDep चलने_पर@PreGenDep दिल्ली_की@PreGenDep पुरानी_इमारत_के,@GenDep जिसको@PreHeadNP बनाने_में@PreHeadNP करोड़ो_रुपय@PreHeadNP लगे_थे,@PreHeadNP ईंट-पत्थर@HeadNP साफ-साफ@PreMainVerb दिखते_हैं।@MainVerb
+? क्या पुरानी इमारत को बनाने में कम पैसे लगे थे? N
+# PP1 2 c
+यहाँ@PreGenDep पैदल@PreGenDep चलने_पर@PreGenDep दिल्ली_की@PreGenDep पुरानी_इमारत,@GenDep जो@PreHeadNP बहुत_खूबसूरत@PreHeadNP है,@PreHeadNP के@PreHeadNP ईंट-पत्थर@HeadNP साफ-साफ@PreMainVerb दिखते_हैं।@MainVerb
+? क्या पुरानी इमारत खूबसूरत है? Y
+# PP1 2 d
+यहाँ@PreGenDep पैदल@PreGenDep चलने_पर@PreGenDep दिल्ली_की@PreGenDep पुरानी_इमारत_के,@GenDep जो@PreHeadNP बहुत_खूबसूरत@PreHeadNP है,@PreHeadNP ईंट-पत्थर@HeadNP साफ-साफ@PreMainVerb दिखते_हैं।@MainVerb
+? क्या पुरानी इमारत खूबसूरत है? Y
+
+# PP1 3 a
+लखनऊ_में@PreGenDep स्थित@PreGenDep अमीनाबाद_की@PreGenDep मैदे_की@PreGenDep रोटी,@GenDep जिसको@PreHeadNP अंग्रेज़ी_में@PreHeadNP ब्रेड@PreHeadNP कहते_हैं,@PreHeadNP का@PreHeadNP स्वाद@HeadNP 
+काफी_मशहूर@PreMainVerb है।@MainVerb
+? क्या अमीनाबाद की मैदे की रोटी का स्वाद मशहूर है? Y
+# PP1 3 b
+लखनऊ_में@PreGenDep स्थित@PreGenDep अमीनाबाद_की@PreGenDep मैदे_की@PreGenDep रोटी_का,@GenDep जिसको@PreHeadNP अंग्रेज़ी_में@PreHeadNP ब्रेड@PreHeadNP कहते_हैं,@PreHeadNP स्वाद@HeadNP 
+काफी_मशहूर@PreMainVerb है।@MainVerb
+? क्या अमीनाबाद की मैदे की रोटी का स्वाद मशहूर है? Y
+# PP1 3 c
+लखनऊ_में@PreGenDep स्थित@PreGenDep अमीनाबाद_की@PreGenDep मैदे_की@PreGenDep रोटी,@GenDep जो@PreHeadNP खुशबूदार@PreHeadNP होती_है,@PreHeadNP का@PreHeadNP स्वाद@HeadNP 
+काफी_मशहूर@PreMainVerb है।@MainVerb
+? क्या अमीनाबाद की मैदे की रोटी खुशबूदार होती है? Y
+# PP1 3 d
+लखनऊ_में@PreGenDep स्थित@PreGenDep अमीनाबाद_की@PreGenDep मैदे_की@PreGenDep रोटी_का,@GenDep जो@PreHeadNP खुशबूदार@PreHeadNP होती_है,@PreHeadNP स्वाद@HeadNP 
+काफी_मशहूर@PreMainVerb है।@MainVerb
+? क्या अमीनाबाद की मैदे की रोटी खुशबूदार होती है? Y
+
+# PP1 4 a
+पिछले_साल@PreGenDep आन्ध्र_प्रदेश_के@PreGenDep नकसली_नेता,@GenDep जिनको@PreHeadNP बरसों_से@PreHeadNP पुलिस@PreHeadNP ढूंड_रही_है,@PreHeadNP की@PreHeadNP पत्नी@HeadNP इस_गांव_में@PreMainVerb देखी_गई_थी।@MainVerb
+? क्या नकसली नेता की बेटी इस गांव में देखी गई थी? N
+# PP1 4 b
+पिछले_साल@PreGenDep आन्ध्र_प्रदेश_के@PreGenDep नकसली_नेता_की,@GenDep जिनको@PreHeadNP बरसों_से@PreHeadNP पुलिस@PreHeadNP ढूंड_रही_है,@PreHeadNP पत्नी@HeadNP इस_गांव_में@PreMainVerb देखी_गई_थी।@MainVerb
+? क्या नकसली नेता की बेटी इस गांव में देखी गई थी? N
+# PP1 4 c
+पिछले_साल@PreGenDep आन्ध्र_प्रदेश_के@PreGenDep नकसली_नेता,@GenDep जो@PreHeadNP काफी_दबंग@PreHeadNP हैं,@PreHeadNP की@PreHeadNP पत्नी@HeadNP इस_गांव_में@PreMainVerb देखी_गई_थी।@MainVerb
+? क्या नकसली नेता डरपोक हैं? N
+# PP1 4 d
+पिछले_साल@PreGenDep आन्ध्र_प्रदेश_के@PreGenDep नकसली_नेता_की,@GenDep जो@PreHeadNP काफी_दबंग@PreHeadNP हैं,@PreHeadNP पत्नी@HeadNP इस_गांव_में@PreMainVerb देखी_गई_थी।@MainVerb
+? क्या नकसली नेता डरपोक हैं? N
+
+# PP1 5 a
+इस_महीने@PreGenDep उड़िसा_की@PreGenDep राजधानी,@GenDep जिसको@PreHeadNP देखने@PreHeadNP दुनिया_भर_से@PreHeadNP लोग@PreHeadNP आते_हैं,@PreHeadNP के@PreHeadNP कलेक्टर_ने@HeadNP अपना@PreMainVerb इस्तीफा@PreMainVerb दे_दिया।@MainVerb
+? क्या उड़िसा के मुख्यमंत्री ने अपना इस्तीफा दे दिया? N
+# PP1 5 b
+इस_महीने@PreGenDep उड़िसा_की@PreGenDep राजधानी_के,@GenDep जिसको@PreHeadNP देखने@PreHeadNP दुनिया_भर_से@PreHeadNP लोग@PreHeadNP आते_हैं,@PreHeadNP कलेक्टर_ने@HeadNP अपना@PreMainVerb इस्तीफा@PreMainVerb दे_दिया।@MainVerb
+? क्या उड़िसा के मुख्यमंत्री ने अपना इस्तीफा दे दिया? N
+# PP1 5 c
+इस_महीने@PreGenDep उड़िसा_की@PreGenDep राजधानी,@GenDep जो@PreHeadNP बहुत_प्राचीन@PreHeadNP है,@PreHeadNP के@PreHeadNP कलेक्टर_ने@HeadNP अपना@PreMainVerb इस्तीफा@PreMainVerb दे_दिया।@MainVerb
+? क्या उड़िसा की राजधीनी नयी है? N
+# PP1 5 d
+इस_महीने@PreGenDep उड़िसा_की@PreGenDep राजधानी_के,@GenDep जो@PreHeadNP बहुत_प्राचीन@PreHeadNP है,@PreHeadNP कलेक्टर_ने@HeadNP अपना@PreMainVerb इस्तीफा@PreMainVerb दे_दिया।@MainVerb
+? क्या उड़िसा की राजधीनी नयी है? N
+
+# PP1 6 a
+भारत_के@PreGenDep प्रधानमंत्री@PreGenDep मनमोहन_सिंह,@GenDep जिनको@PreHeadNP कई_विश्वविद्यालयों_ने@PreHeadNP पुरस्कार@PreHeadNP दिए_हैं,@PreHeadNP का@PreHeadNP घर@HeadNP पंजाब_में@PreMainVerb है।@MainVerb
+? क्या प्रधानमंत्री मनमोहन सिंह का घर पंजाब में है? Y
+# PP1 6 b
+भारत_के@PreGenDep प्रधानमंत्री@PreGenDep मनमोहन_सिंह_का,@GenDep जिनको@PreHeadNP कई_विश्वविद्यालयों_ने@PreHeadNP पुरस्कार@PreHeadNP दिए_हैं,@PreHeadNP घर@HeadNP पंजाब_में@PreMainVerb है।@MainVerb
+? क्या प्रधानमंत्री मनमोहन सिंह का घर पंजाब में है? Y
+# PP1 6 c
+भारत_के@PreGenDep प्रधानमंत्री@PreGenDep मनमोहन_सिंह,@GenDep जो@PreHeadNP बहुत_मेहनती@PreHeadNP हैं,@PreHeadNP का@PreHeadNP घर@HeadNP पंजाब_में@PreMainVerb है।@MainVerb
+? क्या प्रधानमंत्री मनमोहन सिंह कामचोर हैं? N
+# PP1 6 d
+भारत_के@PreGenDep प्रधानमंत्री@PreGenDep मनमोहन_सिंह_का,@GenDep जो@PreHeadNP बहुत_मेहनती@PreHeadNP हैं,@PreHeadNP घर@HeadNP पंजाब_में@PreMainVerb है।@MainVerb
+? क्या प्रधानमंत्री मनमोहन सिंह कामचोर हैं? N
+
+# PP1 7 a
+इस_फ़िल्म_की@PreGenDep हीरोइन,@GenDep जिनको@PreHeadNP इस_देश_में@PreHeadNP लाखों_लोग@PreHeadNP प्यार_करते_हैं,@PreHeadNP का@PreHeadNP बेटा@HeadNP अब@PreMainVerb फ़िल्मों_में@PreMainVerb काम_करने_लगा_है।@MainVerb
+# PP1 7 b
+इस_फ़िल्म_की@PreGenDep हीरोइन_का,@GenDep जिनको@PreHeadNP इस_देश_में@PreHeadNP लाखों_लोग@PreHeadNP प्यार_करते_हैं,@PreHeadNP बेटा@HeadNP अब@PreMainVerb फ़िल्मों_में@PreMainVerb काम_करने_लगा_है।@MainVerb
+# PP1 7 c
+इस_फ़िल्म_की@PreGenDep हीरोइन,@GenDep जो@PreHeadNP बहुत_बूढ़ी@PreHeadNP हैं,@PreHeadNP का@PreHeadNP बेटा@HeadNP अब@PreMainVerb फ़िल्मों_में@PreMainVerb काम_करने_लगा_है।@MainVerb
+# PP1 7 d
+इस_फ़िल्म_की@PreGenDep हीरोइन_का,@GenDep जो@PreHeadNP बहुत_बूढ़ी@PreHeadNP हैं,@PreHeadNP बेटा@HeadNP अब@PreMainVerb फ़िल्मों_में@PreMainVerb काम_करने_लगा_है।@MainVerb
+
+# PP1 8 a
+इस_गाड़ी_की@PreGenDep सीट,@GenDep जिसको@PreHeadNP जर्मनी_में@PreHeadNP पिछले_तीन_दशक_से@PreHeadNP बनाया_जा_रहा_है,@PreHeadNP का@PreHeadNP रंग@HeadNP कभी@PreMainVerb उड़ता_नहीं_है।@MainVerb
+# PP1 8 b
+इस_गाड़ी_की@PreGenDep सीट_का,@GenDep जिसको@PreHeadNP जर्मनी_में@PreHeadNP पिछले_तीन_दशक_से@PreHeadNP बनाया_जा_रहा_है,@PreHeadNP रंग@HeadNP कभी@PreMainVerb उड़ता_नहीं_है।@MainVerb
+# PP1 8 c
+इस_गाड़ी_की@PreGenDep सीट,@GenDep जो@PreHeadNP चमड़े_से@PreHeadNP बनती_है,@PreHeadNP का@PreHeadNP रंग@HeadNP कभी@PreMainVerb उड़ता_नहीं_है।@MainVerb
+# PP1 8 d
+इस_गाड़ी_की@PreGenDep सीट_का,@GenDep जो@PreHeadNP चमड़े_से@PreHeadNP बनती_है,@PreHeadNP रंग@HeadNP कभी@PreMainVerb उड़ता_नहीं_है।@MainVerb
+
+# PP1 9 a
+कई_बरसों_से@PreGenDep इस_कुर्ते_की@PreGenDep कढ़ाई,@GenDep जिसको@PreHeadNP बनाने_में@PreHeadNP कारीगरों_की@PreHeadNP आखें@PreHeadNP कमज़ोर_हो_जाती_हैं,@PreHeadNP का@PreHeadNP धागा@HeadNP बहुत_महंगा@PreMainVerb है।@MainVerb
+# PP1 9 b
+कई_बरसों_से@PreGenDep इस_कुर्ते_की@PreGenDep कढ़ाई_का,@GenDep जिसको@PreHeadNP बनाने_में@PreHeadNP कारीगरों_की@PreHeadNP आखें@PreHeadNP कमज़ोर_हो_जाती_हैं,@PreHeadNP धागा@HeadNP बहुत_महंगा@PreMainVerb है।@MainVerb
+# PP1 9 c
+कई_बरसों_से@PreGenDep इस_कुर्ते_की@PreGenDep कढ़ाई,@GenDep जो@PreHeadNP बहुत_लोकप्रिय@PreHeadNP है,@PreHeadNP का@PreHeadNP धागा@HeadNP बहुत_महंगा@PreMainVerb है।@MainVerb
+# PP1 9 d
+कई_बरसों_से@PreGenDep इस_कुर्ते_की@PreGenDep कढ़ाई_का,@GenDep जो@PreHeadNP बहुत_लोकप्रिय@PreHeadNP है,@PreHeadNP धागा@HeadNP बहुत_महंगा@PreMainVerb है।@MainVerb
+
+# PP1 10 a
+मुरादाबाद_की@PreGenDep इस_दुकान_की@PreGenDep दही,@GenDep जिसको@PreHeadNP बनाने_में@PreHeadNP कम_से_कम@PreHeadNP दो_दिन@PreHeadNP लगते_हैं,@PreHeadNP का@PreHeadNP नाम@HeadNP लोगो_ने@PreMainVerb मीना_कुमारी@PreMainVerb रखा_है।@MainVerb
+# PP1 10 b
+मुरादाबाद_की@PreGenDep इस_दुकान_की@PreGenDep दही_का,@GenDep जिसको@PreHeadNP बनाने_में@PreHeadNP कम_से_कम@PreHeadNP दो_दिन@PreHeadNP लगते_हैं,@PreHeadNP नाम@HeadNP लोगो_ने@PreMainVerb मीना_कुमारी@PreMainVerb रखा_है।@MainVerb
+# PP1 10 c
+मुरादाबाद_की@PreGenDep इस_दुकान_की@PreGenDep दही,@GenDep जो@PreHeadNP मीठी@PreHeadNP होती_है,@PreHeadNP का@PreHeadNP नाम@HeadNP लोगो_ने@PreMainVerb मीना_कुमारी@PreMainVerb रखा_है।@MainVerb
+# PP1 10 d
+मुरादाबाद_की@PreGenDep इस_दुकान_की@PreGenDep दही_का,@GenDep जो@PreHeadNP मीठी@PreHeadNP होती_है,@PreHeadNP नाम@HeadNP लोगो_ने@PreMainVerb मीना_कुमारी@PreMainVerb रखा_है।@MainVerb
+
+# PP1 11 a
+अज़ादी_के_दौरान@PreGenDep रमेश_के@PreGenDep दादाजी,@GenDep जिनको@PreHeadNP भारत_सरकार_ने@PreHeadNP कई_बार@PreHeadNP इनामों_से@PreHeadNP नवाज़ा_है,@PreHeadNP की@PreHeadNP दुकान@HeadNP क्रान्तिकारी-अखबार@PreMainVerb छापती_थी।@MainVerb
+# PP1 11 b
+अज़ादी_के_दौरान@PreGenDep रमेश_के@PreGenDep दादाजी_की,@GenDep जिनको@PreHeadNP भारत_सरकार_ने@PreHeadNP कई_बार@PreHeadNP इनामों_से@PreHeadNP नवाज़ा_है,@PreHeadNP दुकान@HeadNP क्रान्तिकारी-अखबार@PreMainVerb छापती_थी।@MainVerb
+# PP1 11 c
+अज़ादी_के_दौरान@PreGenDep रमेश_के@PreGenDep दादाजी,@GenDep जो@PreHeadNP अब@PreHeadNP नहीं_रहे,@PreHeadNP की@PreHeadNP दुकान@HeadNP क्रान्तिकारी-अखबार@PreMainVerb छापती_थी।@MainVerb
+# PP1 11 d
+अज़ादी_के_दौरान@PreGenDep रमेश_के@PreGenDep दादाजी_की,@GenDep जो@PreHeadNP अब@PreHeadNP नहीं_रहे,@PreHeadNP दुकान@HeadNP क्रान्तिकारी-अखबार@PreMainVerb छापती_थी।@MainVerb
+
+# PP1 12 a
+लोगों_के_मुताबिक@PreGenDep केरल_की@PreGenDep इलाइची,@GenDep जिसके_बारे_में@PreHeadNP प्राचीन_यूनानी@PreHeadNP जानते_थे,@PreHeadNP का@PreHeadNP पेड़@HeadNP कम_बारिश_से@PreMainVerb खराब_हो_जाता_है।@MainVerb
+# PP1 12 b
+लोगों_के_मुताबिक@PreGenDep केरल_की@PreGenDep इलाइची_का,@GenDep जिसके_बारे_में@PreHeadNP प्राचीन_यूनानी@PreHeadNP जानते_थे,@PreHeadNP पेड़@HeadNP कम_बारिश_से@PreMainVerb खराब_हो_जाता_है।@MainVerb
+# PP1 12 c
+लोगों_के_मुताबिक@PreGenDep केरल_की@PreGenDep इलाइची,@GenDep जो@PreHeadNP हरी@PreHeadNP होती_है,@PreHeadNP का@PreHeadNP पेड़@HeadNP कम_बारिश_से@PreMainVerb खराब_हो_जाता_है।@MainVerb
+# PP1 12 d
+लोगों_के_मुताबिक@PreGenDep केरल_की@PreGenDep इलाइची_का,@GenDep जो@PreHeadNP हरी@PreHeadNP होती_है,@PreHeadNP पेड़@HeadNP कम_बारिश_से@PreMainVerb खराब_हो_जाता_है।@MainVerb
+
+
+# CP1 1 a
+इस_मैगज़ीन_ने@PreNounPred करीना_को@PreNounPred सबसे_खूबसूरत_भारतीय@PreNounPred करार@CPNounPred पहली_बार@PreLV1 पिछले_साल@PreLV1 जून_के@PreLV प्रकाशन_में@PreLV दिया_था,@CPLightVerb करीना_ने@PreCoordMV उसके_बाद@PreCoordMV चुप्पी_साध_ली।@CoordMainVerb
+? क्या मैगज़ीन ने करीना को सबसे खूबसूरत भारतीय करार दिया? Y
+# CP1 1 b
+इस_मैगज़ीन_ने@PreNounPred करीना_को@PreNounPred सबसे_खूबसूरत_भारतीय@PreNounPred करार@CPNounPred जून_के@PreLV प्रकाशन_में@PreLV दिया_था,@CPLightVerb करीना_ने@PreCoordMV उसके_बाद@PreCoordMV चुप्पी_साध_ली।@CoordMainVerb
+? क्या मैगज़ीन ने करीना को सबसे खूबसूरत भारतीय करार दिया? Y
+# CP1 1 c
+इस_मैगज़ीन_ने@PreMVObj करीना_को@PreMVObj सबसे_खूबसूरत_भारतीय@PreMVObj कपड़ा@MVObj पहली_बार@PreMV1 पिछले_साल@PreMV1 जून_के@PreMV प्रकाशन_में@PreMV दिया_था,@MainVerb करीना_ने@PreCoordMV उसके_बाद@PreCoordMV चुप्पी_साध_ली।@CoordMainVerb
+? क्या करीना ने चुप्पी साध ली? Y
+# CP1 1 d
+इस_मैगज़ीन_ने@PreMVObj करीना_को@PreMVObj सबसे_खूबसूरत_भारतीय@PreMVObj कपड़ा@MVObj जून_के@PreMV प्रकाशन_में@PreMV दिया_था,@MainVerb करीना_ने@PreCoordMV उसके_बाद@PreCoordMV चुप्पी_साध_ली।@CoordMainVerb
+? क्या करीना ने चुप्पी साध ली? Y
+
+# CP1 2 a
+यह_पादरी@PreNounPred अमेज़न_के@PreNounPred जंगलो_में@PreNounPred तीन_दशक_तक@PreNounPred ओझल_रहने_के_बाद@PreNounPred कल@PreNounPred नज़र@CPNounPred अचानक_से@PreLV1 सूरज_ढलने_से_पहले@PreLV आए,@CPLightVerb दो_घंटे_बाद@PreCoordMV वह@PreCoordMV फिर_से@PreCoordMV लुप्त_हो_गए।@CoordMainVerb
+? क्या पादरी अमेज़न के जंगलो में चार दिन तक ओझल रहे? N
+# CP1 2 b
+यह_पादरी@PreNounPred अमेज़न_के@PreNounPred जंगलो_में@PreNounPred तीन_दशक_तक@PreNounPred ओझल_रहने_के_बाद@PreNounPred कल@PreNounPred नज़र@CPNounPred सूरज_ढलने_से_पहले@PreLV आए,@CPLightVerb दो_घंटे_बाद@PreCoordMV वह@PreCoordMV फिर_से@PreCoordMV लुप्त_हो_गए।@CoordMainVerb
+? क्या पादरी अमेज़न के जंगलो में चार दिन तक ओझल रहे? N
+# CP1 2 c
+यह_पादरी@PreMVObj अमेज़न_के@PreMVObj जंगलो_में@PreMVObj तीन_दशक_तक@PreMVObj ओझल_रहने_के_बाद@PreMVObj कल@PreMVObj चर्च@MVObj अचानक_से@PreMV1 सूरज_ढलने_से_पहले@PreMV आए,@MainVerb दो_घंटे_बाद@PreCoordMV वह@PreCoordMV फिर_से@PreCoordMV लुप्त_हो_गए।@CoordMainVerb
+? क्या पादरी एक महीने बाद फिर से लुप्त हो गए? N
+# CP1 2 d
+यह_पादरी@PreMVObj अमेज़न_के@PreMVObj जंगलो_में@PreMVObj तीन_दशक_तक@PreMVObj ओझल_रहने_के_बाद@PreMVObj कल@PreMVObj ﻿चर्च@MVObj सूरज_ढलने_से_पहले@PreMV आए,@MainVerb दो_घंटे_बाद@PreCoordMV वह@PreCoordMV फिर_से@PreCoordMV लुप्त_हो_गए।@CoordMainVerb
+? क्या पादरी एक महीने बाद फिर से लुप्त हो गए? N
+
+# CP1 3 a
+सुप्रीम_कोर्ट_के@PreNounPred आदेश_पर@PreNounPred पुलिस_कर्मचारी@PreNounPred सभी_चार_पहिए_वाली@PreNounPred बड़ी_गाड़ियों_पर@PreNounPred रोक@CPNounPred सुबह_सात_से@PreLV1 ग्यारह_के_बीच@PreLV1 चार_जुलाई_से@PreLV लगाएंगे,@CPLightVerb प्रदूषण_पर@PreCoordMV काम_कर_रहीं@PreCoordMV संस्थाओं_ने@PreCoordMV इस_आदेश_का@PreCoordMV स्वागत_किया_है।@CoordMainVerb
+? क्या पुलिस कर्मचारी सभी चार पहिए वाली बड़ी गाड़ियों पर रोक लगाएंगे? Y
+# CP1 3 b
+सुप्रीम_कोर्ट_के@PreNounPred आदेश_पर@PreNounPred पुलिस_कर्मचारी@PreNounPred सभी_चार_पहिए_वाली@PreNounPred बड़ी_गाड़ियों_पर@PreNounPred रोक@CPNounPred चार_जुलाई_से@PreLV लगाएंगे,@CPLightVerb प्रदूषण_पर@PreCoordMV काम_कर_रहीं@PreCoordMV संस्थाओं_ने@PreCoordMV इस_आदेश_का@PreCoordMV स्वागत_किया_है।@CoordMainVerb
+? क्या पुलिस कर्मचारी सभी चार पहिए वाली बड़ी गाड़ियों पर रोक लगाएंगे? Y
+# CP1 3 c
+सुप्रीम_कोर्ट_के@PreMVObj आदेश_पर@PreMVObj पुलिस_कर्मचारी@PreMVObj सभी_चार_पहिए_वाली@PreMVObj बड़ी_गाड़ियों_पर@PreMVObj मशीन@MVObj सुबह_सात_से@PreMV1 ग्यारह_के_बीच@PreMV1 चार_जुलाई_से@PreMV लगाएंगे,@MainVerb प्रदूषण_पर@PreCoordMV काम_कर_रहीं@PreCoordMV संस्थाओं_ने@PreCoordMV इस_आदेश_का@PreCoordMV स्वागत_किया_है।@CoordMainVerb
+? क्या पुलिस कर्मचारी सभी चार पहिए वाली बड़ी गाड़ियों से मशीन हटाएंगे? N
+# CP1 3 d
+सुप्रीम_कोर्ट_के@PreMVObj आदेश_पर@PreMVObj पुलिस_कर्मचारी@PreMVObj सभी_चार_पहिए_वाली@PreMVObj बड़ी_गाड़ियों_पर@PreMVObj मशीन@MVObj चार_जुलाई_से@PreMV लगाएंगे,@MainVerb प्रदूषण_पर@PreCoordMV काम_कर_रहीं@PreCoordMV संस्थाओं_ने@PreCoordMV इस_आदेश_का@PreCoordMV स्वागत_किया_है।@CoordMainVerb
+? क्या पुलिस कर्मचारी सभी चार पहिए वाली बड़ी गाड़ियों से मशीन हटाएंगे? N
+
+# CP1 4 a
+इस_काम_को@PreNounPred अंजाम_तक@PreNounPred पहुचाने_के_लिए@PreNounPred संजय_को@PreNounPred निर्णय@CPNounPred लोगों_से@PreLV1 पूछ-ताछ_कर_के@PreLV1 जल्द_से_जल्द@PreLV लेना_होगा,@CPLightVerb इस_काम_के@PreCoordMV सही_वक्त_पर@PreCoordMV खतम_होने_पर@PreCoordMV संजय_की@PreCoordMV तरक्की@PreCoordMV निरभर_है।@CoordMainVerb
+? क्या काम को अंजाम तक पहुचाने के लिए संजय को गाड़ी लेनी होगी? N
+# CP1 4 b
+इस_काम_को@PreNounPred अंजाम_तक@PreNounPred पहुचाने_के_लिए@PreNounPred संजय_को@PreNounPred निर्णय@CPNounPred जल्द_से_जल्द@PreLV लेना_हो﻿गा,@CPLightVerb इस_काम_के@PreCoordMV सही_वक्त_पर@PreCoordMV खतम_होने_पर@PreCoordMV संजय_की@PreCoordMV तरक्की@PreCoordMV निरभर_है।@CoordMainVerb
+? क्या काम को अंजाम तक पहुचाने के लिए संजय को गाड़ी लेनी होगी? N
+# CP1 4 c
+इस_काम_को@PreMVObj अंजाम_तक@PreMVObj पहुचाने_के_लिए@PreMVObj संजय_को@PreMVObj कैलंडर@MVObj लोगों_से@PreMV1 पूछ-ताछ_कर_के@PreMV1 जल्द_से_जल्द@PreMV लेना_हो﻿गा,@MainVerb इस_काम_के@PreCoordMV सही_वक्त_पर@PreCoordMV खतम_होने_पर@PreCoordMV संजय_की@PreCoordMV तरक्की@PreCoordMV निरभर_है।@CoordMainVerb
+? क्या काम को अंजाम तक पहुचाने के लिए संजय को कैलंडर जल्द से जल्द लेना होगा? Y
+# CP1 4 d
+इस_काम_को@PreMVObj अंजाम_तक@PreMVObj पहुचाने_के_लिए@PreMVObj संजय_को@PreMVObj कैलंडर@MVObj जल्द_से_जल्द@PreMV लेना_हो﻿गा,@MainVerb इस_काम_के@PreCoordMV सही_वक्त_पर@PreCoordMV खतम_होने_पर@PreCoordMV संजय_की@PreCoordMV तरक्की@PreCoordMV निरभर_है।@CoordMainVerb
+? क्या काम को अंजाम तक पहुचाने के लिए संजय को कैलंडर जल्द से जल्द लेना होगा? Y
+
+# CP1 5 a
+सरकार@PreNounPred इस_भूकंप_में@PreNounPred अनाथ_हो_गए@PreNounPred बच्चों_का@PreNounPred ध्यान@CPNounPred उनके@PreLV1 बालिग_हो_जाने_तक@PreLV1 बिना_किसी_शुल्क_के@PreLV रखेगी,@CPLightVerb देखना_बाकी_है@PreCoordMV की@PreCoordMV यह@PreCoordMV कितना@PreCoordMV सच_है@PreCoordMV और@PreCoordMV कितना_झूठ।@CoordMainVerb
+? क्या सरकार ने अनाथ हो गए बच्चों का ध्यान रखने का वादा किया है? Y
+# CP1 5 b
+सरकार@PreNounPred इस_भूकंप_में@PreNounPred अनाथ_हो_गए@PreNounPred बच्चों_का@PreNounPred ध्यान@CPNounPred बिना_किसी_शुल्क_के@PreLV रखेगी,@CPLightVerb देखना_बाकी_है@PreCoordMV की@PreCoordMV यह@PreCoordMV कितना@PreCoordMV सच_है@PreCoordMV और@PreCoordMV कितना_झूठ।@CoordMainVerb
+? क्या सरकार ने अनाथ हो गए बच्चों का ध्यान रखने का वादा किया है? Y
+# CP1 5 c
+सरकार@PreMVObj इस_भूकंप_में@PreMVObj अनाथ_हो_गए@PreMVObj बच्चों_का@PreMVObj सामान@MVObj उनके@PreMV1 बालिग_हो_जाने_तक@PreMV1 बिना_किसी_शुल्क_के@PreMV रखेगी,@MainVerb देखना_बाकी_है@PreCoordMV की@PreCoordMV यह@PreCoordMV कितना@PreCoordMV सच_है@PreCoordMV और@PreCoordMV कितना_झूठ।@CoordMainVerb
+? क्या भूकंप से बच्चे अनाथ हो गए थे? Y
+# CP1 5 d
+सरकार@PreMVObj इस_भूकंप_में@PreMVObj अनाथ_हो_गए@PreMVObj बच्चों_का@PreMVObj सामान@MVObj बिना_किसी_शुल्क_के@PreMV रखेगी,@MainVerb देखना_बाकी_है@PreCoordMV की@PreCoordMV यह@PreCoordMV कितना@PreCoordMV सच_है@PreCoordMV और@PreCoordMV कितना_झूठ।@CoordMainVerb
+? क्या भूकंप से बच्चे अनाथ हो गए थे? Y
+
+# CP1 6 a
+माँ_ने@PreNounPred बच्चे_को@PreNounPred स्कूल@PreNounPred छोड़ा@PreNounPred और@PreNounPred उससे@PreNounPred कहा@PreNounPred कि@PreNounPred वह@PreNounPred अपना@PreNounPred खयाल@CPNounPred बिना_किसी_लापरवाही_के@PreLV1 अच्छे_से@PreLV रखे,@CPLightVerb फिर@PreCoordMV 
+वह@PreCoordMV अपने@PreCoordMV दफ़तर_की_ओर@PreCoordMV चल_पड़ी।@CoordMainVerb
+? क्या माँ ने बच्चे को स्कूल छोड़ा? Y
+# CP1 6 b
+माँ_ने@PreNounPred बच्चे_को@PreNounPred स्कूल@PreNounPred छोड़ा@PreNounPred और@PreNounPred उससे@PreNounPred कहा@PreNounPred कि@PreNounPred वह@PreNounPred अपना@PreNounPred खयाल@CPNounPred अच्छे_से@PreLV रखे,@CPLightVerb फिर@PreCoordMV 
+वह@PreCoordMV अपने@PreCoordMV दफ़तर_की_ओर@PreCoordMV चल_पड़ी।@CoordMainVerb
+? क्या माँ ने बच्चे को स्कूल छोड़ा? Y
+# CP1 6 c
+माँ_ने@PreMVObj बच्चे_को@PreMVObj स्कूल@PreMVObj छोड़ा@PreMVObj और@PreMVObj उससे@PreMVObj कहा@PreMVObj कि@PreMVObj वह@PreMVObj अपना@PreMVObj गिटार@MVObj बिना_किसी_लापरवाही_के@PreMV1 अच्छे_से@PreMV रखे,@MainVerb फिर@PreCoordMV 
+वह@PreCoordMV अपने@PreCoordMV दफ़तर_की_ओर@PreCoordMV चल_पड़ी।@CoordMainVerb
+? क्या माँ अपने घर की ओर चल पड़ी? N
+# CP1 6 d
+माँ_ने@PreMVObj बच्चे_को@PreMVObj स्कूल@PreMVObj छोड़ा@PreMVObj और@PreMVObj उससे@PreMVObj कहा@PreMVObj कि@PreMVObj वह@PreMVObj अपना@PreMVObj गिटार@MVObj अच्छे_से@PreMV रखे,@MainVerb फिर@PreCoordMV 
+वह@PreCoordMV अपने@PreCoordMV दफ़तर_की_ओर@PreCoordMV चल_पड़ी।@CoordMainVerb
+? क्या माँ अपने घर की ओर चल पड़ी? N
+
+# CP1 7 a
+दो_बार@PreNounPred असफल_रहने_के_बाद,@PreNounPred बहुत_जरूरी@PreNounPred है@PreNounPred कि@PreNounPred 20_जनवरी_को@PreNounPred यह_यन्त्र@PreNounPred मंगल_ग्रह_पर@PreNounPred खरा@CPNounPred सुबह_तीन_बजे@PreLV1 बिना_किसी_तकनीकी_खराबी_के@PreLV उतरे,@CPLightVerb इस_अभियान_पर@PreCoordMV अमेरिका_ने@PreCoordMV अरबों_रुपए@PreCoordMV लगाए_हैं।@CoordMainVerb
+# CP1 7 b
+दो_बार@PreNounPred असफल_रहने_के_बाद,@PreNounPred बहुत_जरूरी@PreNounPred है@PreNounPred कि@PreNounPred 20_जनवरी_को@PreNounPred यह_यन्त्र@PreNounPred मंगल_ग्रह_पर@PreNounPred खरा@CPNounPred बिना_किसी_तकनीकी_खराबी_के@PreLV उतरे,@CPLightVerb इस_अभियान_पर@PreCoordMV अमेरिका_ने@PreCoordMV अरबों_रुपए@PreCoordMV लगाए_हैं।@CoordMainVerb
+# CP1 7 c
+दो_बार@PreMVObj असफल_रहने_के_बाद,@PreMVObj बहुत_जरूरी@PreMVObj है@PreMVObj कि@PreMVObj 20_जनवरी_को@PreMVObj यह_यन्त्र@PreMVObj मंगल_ग्रह_पर@PreMVObj समूचा@MVObj सुबह_तीन_बजे@PreMV1 बिना_किसी_तकनीकी_खराबी_के@PreMV उतरे,@MainVerb इस_अभियान_पर@PreCoordMV अमेरिका_ने@PreCoordMV अरबों_रुपए@PreCoordMV लगाए_हैं।@CoordMainVerb
+# CP1 7 d
+दो_बार@PreMVObj असफल_रहने_के_बाद,@PreMVObj बहुत_जरूरी@PreMVObj है@PreMVObj कि@PreMVObj 20_जनवरी_को@PreMVObj यह_यन्त्र@PreMVObj मंगल_ग्रह_पर@PreMVObj समूचा@MVObj बिना_किसी_तकनीकी_खराबी_के@PreMV उतरे,@MainVerb इस_अभियान_पर@PreCoordMV अमेरिका_ने@PreCoordMV अरबों_रुपए@PreCoordMV लगाए_हैं।@CoordMainVerb
+
+# CP1 8 a
+नौकरी_के_लिए@PreNounPred मनोज@PreNounPred दो_महीने_से@PreNounPred इस_अमीर_बढ़ई_के@PreNounPred गोदाम_के@PreNounPred चक्कर@CPNounPred बिना_नागा_किए@PreLV1 हर_मंगलवार@PreLV लगाता_था,@CPLightVerb पिछले_एक_हफ़ते_से@PreCoordMV मनोज@PreCoordMV बिमार@PreCoordMV है।@CoordMainVerb
+? क्या मनोज पासपोर्ट आफिस के चक्कर लगा रहा था? N
+# CP1 8 b
+नौकरी_के_लिए@PreNounPred मनोज@PreNounPred दो_महीने_से@PreNounPred इस_अमीर_बढ़ई_के@PreNounPred गोदाम_के@PreNounPred चक्कर@CPNounPred हर_मंगलवार@PreLV लगाता_था,@CPLightVerb पिछले_एक_हफ़ते_से@PreCoordMV मनोज@PreCoordMV बिमार@PreCoordMV है।@CoordMainVerb
+? क्या मनोज पासपोर्ट आफिस के चक्कर लगा रहा था? N
+# CP1 8 c
+नौकरी_के_लिए@PreMVObj मनोज@PreMVObj दो_महीने_से@PreMVObj इस_अमीर_बढ़ई_के@PreMVObj गोदाम_के@PreMVObj दरवाजे@MVObj बिना_नागा_किए@PreMV1 हर_मंगलवार@PreMV लगाता_था,@MainVerb पिछले_एक_हफ़ते_से@PreCoordMV मनोज@PreCoordMV बिमार@PreCoordMV है।@CoordMainVerb
+? क्या मनोज गोदाम के दरवाजे लगाता था? Y
+# CP1 8 d
+नौकरी_के_लिए@PreMVObj मनोज@PreMVObj दो_महीने_से@PreMVObj इस_अमीर_बढ़ई_के@PreMVObj गोदाम_के@PreMVObj दरवाजे@MVObj हर_मंगलवार@PreMV लगाता_था,@MainVerb पिछले_एक_हफ़ते_से@PreCoordMV मनोज@PreCoordMV बिमार@PreCoordMV है।@CoordMainVerb
+? क्या मनोज गोदाम के दरवाजे लगाता था? Y
+
+# CP1 9 a
+इस_साल@PreNounPred मौसम_विज्ञान_विभाग_ने@PreNounPred 2_क्षेत्रों_में@PreNounPred भूकंप_का@PreNounPred अनुमान@CPNounPred बड़ी_कुशलता_से@PreLV1 काफी_जल्दी@PreLV लगाया_था,@CPLightVerb 
+इससे@PreCoordMV कई_जाने@PreCoordMV बचीं।@CoordMainVerb
+? क्या मौसम विज्ञान विभाग के कारण कई जाने गईं? N
+# CP1 9 b
+इस_साल@PreNounPred मौसम_विज्ञान_विभाग_ने@PreNounPred 2_क्षेत्रों_में@PreNounPred भूकंप_का@PreNounPred अनुमान@CPNounPred काफी_जल्दी@PreLV लगाया_था,@CPLightVerb 
+इससे@PreCoordMV कई_जाने@PreCoordMV बचीं।@CoordMainVerb
+? क्या मौसम विज्ञान विभाग के कारण कई जाने गईं? N
+# CP1 9 c
+इस_साल@PreMVObj मौसम_विज्ञान_विभाग_ने@PreMVObj 2_क्षेत्रों_में@PreMVObj भूकंप_का@PreMVObj उपकरण@MVObj बड़ी_कुशलता_से@PreMV1 काफी_जल्दी@PreMV लगाया_था,@MainVerb 
+इससे@PreCoordMV कई_जाने@PreCoordMV बचीं।@CoordMainVerb
+? क्या मौसम विज्ञान विभाग ने 20 क्षेत्रों में उपकरण लगाए थे? N
+# CP1 9 d
+इस_साल@PreMVObj मौसम_विज्ञान_विभाग_ने@PreMVObj 2_क्षेत्रों_में@PreMVObj भूकंप_का@PreMVObj उपकरण@MVObj काफी_जल्दी@PreMV लगाया_था,@MainVerb 
+इससे@PreCoordMV कई_जाने@PreCoordMV बचीं।@CoordMainVerb
+? क्या मौसम विज्ञान विभाग ने 20 क्षेत्रों में उपकरण लगाए थे? N
+
+# CP1 10 a
+मोहन_की@PreNounPred शादी_के_दिन@PreNounPred रमेश_ने@PreNounPred मोहन_की@PreNounPred खिल्ली@CPNounPred सबके_सामने@PreLV1 मौका_मिलते_ही@PreLV उड़ाई,@CPLightVerb रमेश@PreCoordMV और@PreCoordMV मोहन@PreCoordMV 
+जिगरी_दोस्त@PreCoordMV हैं।@CoordMainVerb
+# CP1 10 b
+मोहन_की@PreNounPred शादी_के_दिन@PreNounPred रमेश_ने@PreNounPred मोहन_की@PreNounPred खिल्ली@CPNounPred मौका_मिलते_ही@PreLV उड़ाई,@CPLightVerb रमेश@PreCoordMV और@PreCoordMV मोहन@PreCoordMV 
+जिगरी_दोस्त@PreCoordMV हैं।@CoordMainVerb
+# CP1 10 c
+मोहन_की@PreMVObj शादी_के_दिन@PreMVObj रमेश_ने@PreMVObj मोहन_की@PreMVObj पगड़ी@MVObj सबके_सामने@PreMV1 मौका_मिलते_ही@PreMV उड़ाई,@MainVerb रमेश@PreCoordMV और@PreCoordMV मोहन@PreCoordMV 
+जिगरी_दोस्त@PreCoordMV हैं।@CoordMainVerb
+# CP1 10 d
+मोहन_की@PreMVObj शादी_के_दिन@PreMVObj रमेश_ने@PreMVObj मोहन_की@PreMVObj पगड़ी@MVObj मौका_मिलते_ही@PreMV उड़ाई,@MainVerb रमेश@PreCoordMV और@PreCoordMV मोहन@PreCoordMV 
+जिगरी_दोस्त@PreCoordMV हैं।@CoordMainVerb
+
+# CP1 11 a
+सारे_खतरों_को@PreNounPred जानते_हुए_भी@PreNounPred विवेक_ने@PreNounPred जोखिम@CPNounPred बिना_किसी_हिचकिचाहट_के@PreLV1 पलक_झपकते@PreLV उठा_लिया,@CPLightVerb विवेक@PreCoordMV ऐसी_हरकतें_करता_रहता_है।@CoordMainVerb
+# CP1 11 b
+सारे_खतरों_को@PreNounPred जानते_हुए_भी@PreNounPred विवेक_ने@PreNounPred जोखिम@CPNounPred पलक_झपकते@PreLV उठा_लिया,@CPLightVerb विवेक@PreCoordMV ऐसी_हरकतें_करता_रहता_है।@CoordMainVerb
+# CP1 11 c
+सारे_खतरों_को@PreMVObj जानते_हुए_भी@PreMVObj विवेक_ने@PreMVObj टीवी@MVObj बिना_किसी_हिचकिचाहट_के@PreMV1 पलक_झपकते@PreMV उठा_लिया,@MainVerb विवेक@PreCoordMV ऐसी_हरकतें_करता_रहता_है।@CoordMainVerb
+# CP1 11 d
+सारे_खतरों_को@PreMVObj जानते_हुए_भी@PreMVObj विवेक_ने@PreMVObj टीवी@MVObj पलक_झपकते@PreMV उठा_लिया,@MainVerb विवेक@PreCoordMV ऐसी_हरकतें_करता_रहता_है।@CoordMainVerb
+
+# CP1 12 a
+इस_फ़िल्म_में@PreNounPred बिपाशा_का@PreNounPred किरदार@PreNounPred ऐसा@PreNounPred है@PreNounPred कि@PreNounPred उन्होनें@PreNounPred फिल्म_के@PreNounPred गानो_में@PreNounPred ठुमके@CPNounPred बड़ी_कुशलता_से@PreLV1 
+नाच-नाच_कर@PreLV लगाए,@CPLightVerb दर्शकों_ने@PreCoordMV बिपाशा_के@PreCoordMV किरदार_को@PreCoordMV काफी_सरहाया है।@CoordMainVerb
+# CP1 12 b
+इस_फ़िल्म_में@PreNounPred बिपाशा_का@PreNounPred किरदार@PreNounPred ऐसा@PreNounPred है@PreNounPred कि@PreNounPred उन्होनें@PreNounPred फिल्म_के@PreNounPred गानो_में@PreNounPred ठुमके@CPNounPred 
+नाच-नाच_कर@PreLV लगाए,@CPLightVerb दर्शकों_ने@PreCoordMV बिपाशा_के@PreCoordMV किरदार_को@PreCoordMV काफी_सरहाया है।@CoordMainVerb
+# CP1 12 c
+इस_फ़िल्म_में@PreMVObj बिपाशा_का@PreMVObj किरदार@PreMVObj ऐसा@PreMVObj है@PreMVObj कि@PreMVObj उन्होनें@PreMVObj फिल्म_के@PreMVObj गानो_में@PreMVObj इश्तेहार@MVObj बड़ी_कुशलता_से@PreMV1 
+नाच-नाच_कर@PreMV लगाए,@MainVerb दर्शकों_ने@PreCoordMV बिपाशा_के@PreCoordMV किरदार_को@PreCoordMV काफी_सरहाया है।@CoordMainVerb
+# CP1 12 d
+इस_फ़िल्म_में@PreMVObj बिपाशा_का@PreMVObj किरदार@PreMVObj ऐसा@PreMVObj है@PreMVObj कि@PreMVObj उन्होनें@PreMVObj फिल्म_के@PreMVObj गानो_में@PreMVObj इश्तेहार@MVObj 
+नाच-नाच_कर@PreMV लगाए,@MainVerb दर्शकों_ने@PreCoordMV बिपाशा_के@PreCoordMV किरदार_को@PreCoordMV काफी_सरहाया है।@CoordMainVerb
+
+# CP1 13 a
+सपा_के@PreNounPred सांसदों_ने@PreNounPred कोर्ट_के@PreNounPred आदेश_की@PreNounPred धज्जियाँ@CPNounPred पत्रकारों_के_सामने@PreLV1 कल@PreLV खुलेआम@PreLV उड़ाई,@CPLightVerb सांसदों_को@PreCoordMV 
+कोर्ट_का@PreCoordMV आदेश@PreCoordMV पसंद_नही_आया।@CoordMainVerb
+# CP1 13 b
+सपा_के@PreNounPred सांसदों_ने@PreNounPred कोर्ट_के@PreNounPred आदेश_की@PreNounPred धज्जियाँ@CPNounPred कल@PreLV खुलेआम@PreLV उड़ाई,@CPLightVerb सांसदों_को@PreCoordMV 
+कोर्ट_का@PreCoordMV आदेश@PreCoordMV पसंद_नही_आया।@CoordMainVerb
+# CP1 13 c
+सपा_के@PreMVObj सांसदों_ने@PreMVObj कोर्ट_के@PreMVObj आदेश_की@PreMVObj कापी@MVObj पत्रकारों_के_सामने@PreMV1 कल@PreMV खुलेआम@PreMV उड़ाई,@MainVerb सांसदों_को@PreCoordMV 
+कोर्ट_का@PreCoordMV आदेश@PreCoordMV पसंद_नही_आया।@CoordMainVerb
+# CP1 13 d
+सपा_के@PreMVObj सांसदों_ने@PreMVObj कोर्ट_के@PreMVObj आदेश_की@PreMVObj कापी@MVObj कल@PreMV खुलेआम@PreMV उड़ाई,@MainVerb सांसदों_को@PreCoordMV 
+कोर्ट_का@PreCoordMV आदेश@PreCoordMV पसंद_नही_आया।@CoordMainVerb
+
+# CP1 14 a
+नौकरी_के_लिए@PreNounPred मनोज@PreNounPred दो_साल_से@PreNounPred इस_अमीर_बढ़ई_के@PreNounPred गोदाम_के@PreNounPred चक्कर@CPNounPred बिना_नागा@PreLV1 रात-दिन@PreLV1 सुबह-शाम@PreLV काटता_है,@CPLightVerb अभी_तक@PreCoordMV उसको@PreCoordMV कहीं_और नौकरी@PreCoordMV न_मिल_सकी_है।@CoordMainVerb
+# CP1 14 b
+नौकरी_के_लिए@PreNounPred मनोज@PreNounPred दो_साल_से@PreNounPred इस_अमीर_बढ़ई_के@PreNounPred गोदाम_के@PreNounPred चक्कर@CPNounPred सुबह-शाम@PreLV काटता_है,@CPLightVerb अभी_तक@PreCoordMV उसको@PreCoordMV कहीं_और नौकरी@PreCoordMV न_मिल_सकी_है।@CoordMainVerb
+# CP1 14 c
+नौकरी_के_लिए@PreMVObj मनोज@PreMVObj दो_साल_से@PreMVObj इस_अमीर_बढ़ई_के@PreMVObj गोदाम_के@PreMVObj दरवाजे@MVObj बिना_नागा@PreMV1 रात-दिन@PreMV1 सुबह-शाम@PreMV काटता_है,@MainVerb अभी_तक@PreCoordMV उसको@PreCoordMV कहीं_और नौकरी@PreCoordMV न_मिल_सकी_है।@CoordMainVerb
+# CP1 14 d
+नौकरी_के_लिए@PreMVObj मनोज@PreMVObj दो_साल_से@PreMVObj इस_अमीर_बढ़ई_के@PreMVObj गोदाम_के@PreMVObj दरवाजे@MVObj सुबह-शाम@PreMV काटता_है,@MainVerb अभी_तक@PreCoordMV उसको@PreCoordMV कहीं_और नौकरी@PreCoordMV न_मिल_सकी_है।@CoordMainVerb
+
+# CP1 15 a
+छोटे_बच्चे_ने@PreNounPred दशहरे_के_दिन@PreNounPred मेले_में@PreNounPred लोक_संगीत_कलाकारों_का@PreNounPred लुत्फ@CPNounPred पूरी_शाम@PreMV1 जी_भर_के@PreMV उठाया,@CPLightVerb यह@PreCoordMV देख@PreCoordMV कलाकारों_नें@PreCoordMV अपना_तबला@PreCoordMV बच्चे_को@PreCoordMV भेंट_कर_दिया।@CoordMainVerb
+# CP1 15 b
+छोटे_बच्चे_ने@PreNounPred दशहरे_के_दिन@PreNounPred मेले_में@PreNounPred लोक_संगीत_कलाकारों_का@PreNounPred लुत्फ@CPNounPred जी_भर_के@PreMV उठाया,@CPLightVerb यह@PreCoordMV देख@PreCoordMV कलाकारों_नें@PreCoordMV अपना_तबला@PreCoordMV बच्चे_को@PreCoordMV भेंट_कर_दिया।@CoordMainVerb
+# CP1 15 c
+छोटे_बच्चे_ने@PreMVObj दशहरे_के_दिन@PreMVObj मेले_में@PreMVObj लोक_संगीत_कलाकारों_का@PreMVObj तबला@MVObj पूरी_शाम@PreMV1 जी_भर_के@PreMV उठाया,@MainVerb यह@PreCoordMV देख@PreCoordMV कलाकारों_नें@PreCoordMV अपना_तबला@PreCoordMV बच्चे_को@PreCoordMV भेंट_कर_दिया।@CoordMainVerb
+# CP1 15 d
+छोटे_बच्चे_ने@PreMVObj दशहरे_के_दिन@PreMVObj मेले_में@PreMVObj लोक_संगीत_कलाकारों_का@PreMVObj तबला@MVObj जी_भर_के@PreMV उठाया,@MainVerb यह@PreCoordMV देख@PreCoordMV कलाकारों_नें@PreCoordMV अपना_तबला@PreCoordMV बच्चे_को@PreCoordMV भेंट_कर_दिया।@CoordMainVerb
+
+# CP1 16 a
+इलेक्शन_के_दौरान@PreNounPred यह_नेता@PreNounPred गरीबों_को@PreNounPred झांसा@CPNounPred इसी_तरह@PreLV1 हर_साल@PreLV देता_था,@CPLightVerb इस_साल@PreCoordMV किसी_जेल_में@PreCoordMV सड़_रहा_है।@CoordMainVerb
+# CP1 16 b
+इलेक्शन_के_दौरान@PreNounPred यह_नेता@PreNounPred गरीबों_को@PreNounPred झांसा@CPNounPred हर_साल@PreLV देता_था,@CPLightVerb इस_साल@PreCoordMV किसी_जेल_में@PreCoordMV सड़_रहा_है।@CoordMainVerb
+# CP1 16 c
+इलेक्शन_के_दौरान@PreMVObj यह_नेता@PreMVObj गरीबों_को@PreMVObj डबलरोटी@MVObj इसी_तरह@PreMV1 हर_साल@PreMV देता_था,@MainVerb इस_साल@PreCoordMV किसी_जेल_में@PreCoordMV सड़_रहा_है।@CoordMainVerb
+# CP1 16 d
+इलेक्शन_के_दौरान@PreMVObj यह_नेता@PreMVObj गरीबों_को@PreMVObj डबलरोटी@MVObj हर_साल@PreMV देता_था,@MainVerb इस_साल@PreCoordMV किसी_जेल_में@PreCoordMV सड़_रहा_है।@CoordMainVerb
+
+
+# filler 1 a
+रवि जानता_है कि वह_कवि कभी मशहूर_नहीं_होगा, कवियों_की बरसो_से यही_दशा रही_है।
+
+# filler 2 a
+राम_को सीता_से और हरि_को कमला_से प्यार_है, मगर कोई किसी_को कुछ केहता_ही_नही।
+
+# filler 3 a
+नेहा_को नहीं_लगता कि पार्टी_में कोई आएगा, नेहा_की किसी_से पटती_नही_है।
+
+# filler 4 a
+चोर_को पुलिस_ने गोली मारी और प्रबल_को अनिल_ने, फ़िल्म इसके_बाद खत्म_हो_गई।
+? क्या प्रबल ने पुलिस को गोली मारी? N
+
+# filler 5 a
+पकड़ा गोविन्द_को अखिल_ने और पकड़ा प्रबल_को अनिल_ने, उनके स्कूल_में यह_खेल काफी_लोकप्रिय है।
+
+# filler 6 a
+उनके दाएं_हाथ_में तलवार है और बांए_हाथ_में खंजर, और फिर बात_करते_हैं अहिंसा_की।
+
+# filler 7 a
+मुझे यह बिलकुल नहीं_पसन्द कि आप वहाँ जाएं, आपकी जान_को वहाँ खतरा_है।
+
+# filler 8 a
+उसने मुझे पैसे दिये_थे, मैंने वह_पैसे अभी_तक नहीं_लौटाए।
+? क्या उसने मुझे पैसे दिये थे? Y
+
+# filler 9 a
+उसको शक है कि यह_बात झूठ है कि आज कोई_भी नहीं_आएगा।
+
+# filler 10 a
+इस_दुकान में दाल काफी_ससती_है, शक होता_है कि कहीं कुछ_गड़बड़ तो_नही_है।
+
+# filler 11 a
+ऐसा नहीं_हो_सकता कि तुम सारे_पैसा ले_लो, कुछ_पैसे आगे_के_लिए_भी तो बचाओ।
+
+# filler 12 a
+डाला उसने चाबी_को दरवाजे_में और ऐनक_को जेब_में, लगता_है कि वह कहीं_बाहर जा_रहा_है।
+? क्या उसने चाबी को जेब में डाला? N
+
+# filler 13 a
+कल बारिश हुई_थी, इस_साल कम_बारिश_के_कारण किसानो_को ख़ासा_नुकसान_हुआ_है।
+
+# filler 14 a
+आज स्ट्राइक_के_कारण कोई_बस नहीं_आएगी, पता_नहीं कोई_टैक्सी मिलेगी_की_नहीं।
+
+# filler 15 a
+कमला_ने अर्विंद_को और कपिल_ने अभय_को घर दिखाया, कमला_और_कपिल_की एक_कंपनी है।
+
+# filler 16 a
+रानी_की मौत_के_बारे_में अखबार_में बहुत_चर्चा हुई_थी, उसकी असमय_मौत_का सभी_को झटका_लगा_था।
+? क्या रानी की मौत असमय हुई थी? Y
+
+# filler 17 a
+मैने उसको बताया कि मैं कल दुकान जाना चाहता_हूँ, मुझे दुकान गए कई_दिन हो_गए_हैं।
+
+# filler 18 a
+अनुज घर_में हिन्दी_में बात_करता_है और स्कूल_में अन्ग्रेज़ी_में, अनुज_की पकड़ दोनो_भाषाओं_पर है।
+
+# filler 19 a
+सरपंच_ने गांव_वालों_को अपने_अपने_घरों_में भेजा, उनके बीच बात-चीत करीब_तीन_घंटे चली।
+
+# filler 20 a
+कुत्ते_ने बिल्ली_का पीछा_किया और बिल्ली_ने चूहे_का, कोई किसी_को न_पकड़_सका।
+? क्या चूहे ने कुत्ते का पीछा किया? N
+
+# filler 21 a
+बन्दर_ने शेर_को कहा कि कुछ_देर_बाद एक_खरगोश अएगा, उसे तुम खा_जाना।
+
+# filler 22 a
+कमरे_में सुबह_से धूप नहीं_आई, धूप न_आने_के_कारण बहुत_उमस_सी हो_गई_है।
+
+# filler 23 a
+यह_घर सुरेश_को बहुत_पसन्द_है, मगर इसे खरीदने_के_लिए उसके_पास पैसे नही_हैं।
+
+# filler 24 a
+हरि जानता_था कि वह_किताब बहुत_महंगी_होगी, इसलिए उसने पैसे जमा_करके रखे_हैं।
+? क्या हरि ने पैसे जमा किए थे? Y
+
+# filler 25 a
+यह_कम्प्यूटर कई_दिनों_से मुझे परेशान_कर_रहा_है, जा_कर इसकी जाँच_करवानी_पड़ेगी।
+
+# filler 26 a
+चाबियों_का गुच्छा कल साफ़-सफ़ाई_करते_समय मिल_गया, दो_दिन_से यह किसी_को_भी मिल_नहीं_रहा_था।
+
+# filler 27 a
+राकेश दो_हफ़तों_के_लिए शिमला गया_है, यह राकेश_की तीन_साल_में पहली_छुट्टी है।
+
+# filler 28 a
+इस_शहर_में गरमी केवल_1_महीने पड़ती_है, यही वजह है कि जो यहाँ एक_बार आता_है जाने_का नाम नहीं_लेता।
+? क्या इस शहर में गरमी 6 महीने पड़ती है? N 
+
+# filler 29 a
+अभीषेक हर_रोज़ 12_कि.मी दौड़ता_है, पिछले_5_साल_से कोई_भी उसे इस_शहर_के वार्षिक_मेराथन_में पछाड़_नहीं_पाया_है।
+
+# filler 30 a
+पिछले_साल जापान_में दो_बार भूकम्प_आया, इसके_कारण करोड़ों_की संपत्ति और लाखों_लोगों_पर असर_हुआ_है।
+
+# filler 31 a
+अभय_की नौकरी उसे जगह-जगह ले_जाती_है, इसी_बहाने उसने करीब-करीब_पूरे_भारत_की सैर_कर_ली_है।
+
+# filler 32 a
+हम बाहर पिकनिक_मनाने जाने_ही_वाले_थे कि अचानक बड़ी_ज़ोर_का तूफ़ान आया और फिर सारा_प्लान 
+चौपट_हो_गया।
+? क्या पिकनिक मनाने से पहले तूफान आया? Y
+
+# filler 33 a
+मंत्री_जी_ने पूरी_सभा_को यह आश्वासन दिया कि पूरे_देश_में सड़क-बिजली-पानी_की सुविधा मुहैया करवाई_जाएगी।
+
+# filler 34 a
+वह_जानवर बहुत_ही_ज्यादा_खूंखार है, कई_सालों_से इस_इलाके_में वह_बच्चों और बूढ़ों_की जाने ले_रहा_है।
+
+# filler 35 a
+वह_लड़का मेरे साथ दसवीं_में पढ़ता_था, अब वह कानपुर_में एक_केमिकल_फैक्ट्री_में काम_करता_है।
+
+# filler 36 a
+वह_लड़की इस_साल अपनी कक्षा_में अव्वल_आई_है, सभी_लोग उसकी सफलता_से खुश_हैं।
+? क्या लड़की अपनी कक्षा में फेल हो गई? N
+
+# filler 37 a
+वह_अदमी मोहन_के_साथ रोज_सुबह दौड़ने जाता_है, मैने उसको कई_बार इस_दुकान_पर देखा_है।
+
+# filler 38 a
+वह_औरत नौकरी_के_लिए आज_सोनिया_का इंटरव्यू_लेगी, वह अपनी कंपनी_में काफी_ऊंचे_दर्जे_पर है।
+
+# filler 39 a
+वह_बच्चा घर_के_सामने_वाले मैदान_में रोज़_शाम साईकिल चलाना सीखता_है, अपनी उमर_के_हिसाब_से वह काफी_तेज़ है।
+
+# filler 40 a
+कमरे_में चाँदी_से बनाए_गए कमल_के फूल, जिसकी हजार_पंखुड़ियाँ हैं, पर गाँधीजी_की मूर्ति खड़ी_हुई_है।
+? क्या कमरे में गाँधीजी की मूर्ति है? Y
+
+# filler 41 a
+पार्टी_के अध्यक्ष कोमल_सिंह, जिनके नेतृत्व_में पिछले_हफ्ते जुलूस निकाला_गया_था, ने सरकार_को इस_घोटाले_का जिम्मेदार ठहराया_है।
+
+# filler 42 a
+डाक्टर_ने कहा कि सभी_2-3_साल_के बच्चों, जिन्होंने पहले इस_रोग_की दवा नहीं_ली_है, को टीका लगवाना अनिवार्य_है।
+
+# filler 43 a
+अभय_ने यहाँ काम_कर_रहे कर्मचारियों, जिनको इस_महीने_की तनख्वाह नहीं_मिली_है, से बात करके उनके साथ जुलूस_में भाग_लिया।
+
+# filler 44 a
+सुनने_में आ_रहा_है कि जैसलमेर, जहाँ पिछले_साल सूखा_पड़ा_था, में आज बारिश_हो_रही_है।
+? क्या जैसलमेर में इस साल सूखा पड़ा था? N

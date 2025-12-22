@@ -1,0 +1,1508 @@
+\documentclass{article}
+
+\begin{document}
+
+\section{Experiment 1 analysis}
+
+Load libraries, set up data:
+
+<<>>=
+library(lme4)
+library(xtable)
+library(plyr)
+library(ggplot2)
+library(reshape)
+library(gdata)      
+
+data<-read.table("data/data.txt",header=F)
+
+colnames(data)<-c("subj","expt","item","cond","pos","word","region","rt")
+
+
+## RC1: Levy et al Russian RCs replication
+#RC1: Distance manipulaton between relative pronoun and the relative clause verb in Subject RCs and Object RCs. Replication of the Levy Russian RC paper.
+
+#No. of conditions: 4
+#Condition a: Subject RC, Long (Canonical word-order)
+#Condition b: Subject RC, Short (Non-Canonical word-order)
+#Condition c: Object RC, Long (Canonical word-order)
+#Condition d: Object RC, Short (Non-Canonical word-order)
+
+#Total items: 24
+
+#Critical region: RCVerb
+
+RC1<-subset(data,expt=="RC1")
+
+## nested contrasts:
+RC1$dist.SR  <- ifelse(RC1$cond=="a",1,
+                ifelse(RC1$cond=="b",-1,0))
+RC1$dist.OR  <- ifelse(RC1$cond=="c",1,
+              ifelse(RC1$cond=="d",-1,0))
+RC1$RCType <- ifelse(RC1$cond%in%c("a","b"),-1,1)
+
+## anova contrasts:
+RC1$dist  <- ifelse(RC1$cond%in%c("a","c"),1,-1)
+## RCType will be one contrast used here.
+RC1$int <- ifelse(RC1$cond%in%c("a","d"),-1,1)
+
+questions.RC1<-subset(RC1,word%in%c("Y","N"))
+#summary(questions.RC1)
+questions.RC1$acc<-as.numeric(as.character(questions.RC1$region))
+questions.RC1$cond<-drop.levels(questions.RC1$cond)
+mean.accs.RC1<-round(100*with(questions.RC1,tapply(acc,cond,mean)),digits=0)
+@
+
+Accuracy analysis:
+<<>>=
+m0.acc.aov<-lmer(acc~dist+RCType+int+(1+dist+RCType+int|subj)+(1+dist+RCType+int|item),questions.RC1,family=binomial())
+
+fixefs<-fixef(m0.acc.aov)
+SEs<-sqrt(diag(vcov(m0.acc.aov)))
+zs<-fixefs/SEs
+
+e1acc<-round(cbind(fixefs,SEs,zs),digits=2)[2:4,1:3]
+
+rownames(e1acc) <- c("Distance","RC Type","DistxRC Type")
+
+colnames(e1acc)<-c("coef.","SE","z-score")
+@
+
+<<echo=F,results=tex>>=
+xtable(e1acc,caption="The main effect of distance, of RC Type, and their interaction on question-response accuracy in Experiment 1.",label="e1acc2")
+@
+
+
+<<>>=
+m0.acc<-lmer(acc~dist.SR+dist.OR+RCType+(1+dist.SR+dist.OR+RCType|subj)+(1|item),questions.RC1,family=binomial())  
+
+fixefs<-fixef(m0.acc)
+SEs<-sqrt(diag(vcov(m0.acc)))
+zs<-fixefs/SEs
+
+e1acc<-round(cbind(fixefs,SEs,zs),digits=2)[2:4,1:3]
+
+rownames(e1acc) <- c("Distance [SR]","Distance [OR]","RC Type")
+
+colnames(e1acc)<-c("coef.","SE","z-score")
+@
+
+<<echo=F,results=tex>>=
+xtable(e1acc,caption="The effect of distance within subject and object relatives, and the effect of relative clause on question-response accuracy in Experiment 1.",label="e1acc1")
+@
+
+Question response RTs analysis:
+
+<<>>=
+m0.resp.RT<-lmer(log(rt)~dist.SR+dist.OR+RCType+(1+dist.SR+dist.OR+RCType|subj)+(1+dist.SR+dist.OR+RCType|item),questions.RC1)
+@
+
+<<>>=
+mean.q.resp<-round(with(questions.RC1,tapply(rt,cond,mean)),digits=0)
+@
+
+Analysis of critical region:
+
+<<>>=
+## crit region RCVerb:
+## remove irrelevant tags:
+RC1<-subset(RC1,region!="1" & region!="0" & region!="-")
+
+RC1$region<-drop.levels(RC1$region)
+
+RC1.orig<-RC1
+
+## box-cox transform:
+RC1$rrt<- -1000/RC1$rt
+## we will use log rt:
+RC1$lrt<- log(RC1$rt)
+
+m0<-lmer(lrt~dist+RCType+int+(1+dist+RCType+int|subj)+(1|item),
+         subset(RC1,region=="RCVerb" & rrt>-10))
+
+fixefs<-round(fixef(m0)[2:4],digits=3)
+SEs<-round(sqrt(diag(vcov(m0)))[2:4],digits=3)
+ts<-round(fixefs/SEs,digits=2)
+
+## we could be discussing predictions in terms of preRCverb, but complicates presentation for reader:
+m0.pre<-lmer(lrt~dist+RCType+int+(1+dist+RCType+int|subj)+
+           (1+dist+RCType+int|item),
+         subset(RC1,region=="PreRCVerb" & rrt>-10))
+
+fixefs.pre<-round(fixef(m0.pre)[2:4],digits=3)
+SEs.pre<-round(sqrt(diag(vcov(m0.pre)))[2:4],digits=3)
+ts.pre<-round(fixefs.pre/SEs.pre,digits=2)
+
+#library(car)
+#qqPlot(residuals(m0.prercverb))
+
+## all model assumptions more or less OK:
+#qqPlot(residuals(m0))
+
+#qqPlot(ranef(m0)$subj[1])
+#qqPlot(ranef(m0)$subj[2])
+#qqPlot(ranef(m0)$item)
+
+expt1RCVerbresults<-cbind(fixefs,SEs,ts)
+rownames(expt1RCVerbresults)<-c("Distance","RC Type", "Distance x RC Type")
+colnames(expt1RCVerbresults)<-c("coef.","SE","t-value")
+
+expt1RCVerbresults.pre<-cbind(fixefs.pre,SEs.pre,ts.pre)
+rownames(expt1RCVerbresults.pre)<-c("Distance","RC Type", "Distance x RC Type")
+colnames(expt1RCVerbresults.pre)<-c("coef.","SE","t-value")
+
+precrit.crite1<-rbind(expt1RCVerbresults,expt1RCVerbresults.pre)
+
+#xtable(expt1RCVerbresults)
+}
+@
+
+<<echo=F,results=tex>>=
+xtable(precrit.crite1,
+       caption="The main effect of distance, of RC Type, and their interaction on reading times at the pre-critical and critical regions in Experiment 1.",
+       label="tab:e1RCVerb")
+@
+
+<<>>=
+m2.nested<-lmer(lrt~dist.SR+dist.OR+RCType+(1+dist.SR+dist.OR+RCType|subj)+(1+dist.SR+dist.OR+RCType|item),subset(RC1,region=="RCVerb" & rrt>-10))
+
+fixefs<-round(fixef(m2.nested)[2:4],digits=3)
+SEs<-round(sqrt(diag(vcov(m2.nested)))[2:4],digits=3)
+ts<-round(fixefs/SEs,digits=2)
+
+expt1RCVerbresultsnested<-cbind(fixefs,SEs,ts)
+
+rownames(expt1RCVerbresultsnested)<-
+c("Distance [SR]","Distance [OR]","RC Type")  
+
+colnames(expt1RCVerbresultsnested)<-c("coef.","SE","t-value")
+}
+@
+
+<<echo=F,results=T>>=
+xtable(expt1RCVerbresultsnested,
+       caption="The main effect of distance within SRs and ORs, and the main effect of RC Type at the critical region in Experiment 1.",label="tab:e1RCVerbnested")
+@
+
+\subsection{Stan analyses}
+
+<<>>=
+#RC1<-read.table("expt1critdata.txt",header=T)
+
+RC1<-subset(RC1,region=="RCVerb" & rrt>-10)
+
+e1data <- list(mu_prior=c(0,0,0,0),
+             subj=sort(as.integer(factor(RC1$subj))),
+             item=sort(as.integer(factor(RC1$item))),
+             lrt = RC1$lrt,
+             distance = RC1$dist,
+             rctype = RC1$RCType,
+             interaction = RC1$int,
+             dist_SR = RC1$dist.SR,
+             dist_OR = RC1$dist.OR,
+             N = nrow(RC1),
+             I = length(unique(RC1$subj)),
+             K = length(unique(RC1$item))
+)  
+
+expt1_code <- '
+data {
+int<lower=0> N;
+real lrt[N];                     //outcome
+real distance[N];                     //predictor
+real rctype[N];                     //predictor
+real interaction[N];                     //predictor
+int<lower=1> I;                 //number of subjects
+int<lower=1> K;                 //number of items
+int<lower=1, upper=I> subj[N];    //subject id
+int<lower=1, upper=K> item[N];    //item id
+vector[4] mu_prior;             //vector of zeros passed in from R
+}
+transformed data {
+real ZERO;                      // like #define ZERO 0 in C/C++
+ZERO <- 0.0;
+}
+parameters {
+vector[4] beta;                 // intercept and slope
+vector[4] u[I];                 // random intercept and slopes subj
+vector[4] w[K];
+real<lower=0> sigma_e;          // residual sd
+vector<lower=0>[4] sigma_u;     // subj sd
+vector<lower=0>[4] sigma_w;     // item sd
+corr_matrix[4] Omega_u;           // correlation matrix for random intercepts and slopes subj
+corr_matrix[4] Omega_w;           // correlation matrix for random intercepts and slopes item
+}
+transformed parameters {
+matrix[4,4] D_u;
+matrix[4,4] D_w;
+D_u <- diag_matrix(sigma_u);
+D_w <- diag_matrix(sigma_w);
+}
+model {
+matrix[4,4] L_u;
+matrix[4,4] DL_u;
+matrix[4,4] L_w;
+matrix[4,4] DL_w;
+real mu[N]; // mu for likelihood
+//priors:
+beta ~ normal(0,10);
+sigma_e ~ normal(0,10);
+sigma_u ~ normal(0,10);
+sigma_w ~ normal(0,10);
+Omega_u ~ lkj_corr(4.0);
+Omega_w ~ lkj_corr(4.0);
+L_u <- cholesky_decompose(Omega_u);
+L_w <- cholesky_decompose(Omega_w);
+for (m in 1:4) {
+for (n in 1:m) {
+DL_u[m,n] <- L_u[m,n] * sigma_u[m];
+}
+}
+for (m in 1:4){
+for (n in (m+1):4){
+DL_u[m,n] <- ZERO;
+}
+}
+for (m in 1:4){
+for (n in 1:m){
+DL_w[m,n] <- L_w[m,n] * sigma_w[m];
+}
+}
+for (m in 1:4){
+for (n in (m+1):4){
+DL_w[m,n] <- ZERO;
+}
+}
+for (i in 1:I)                  // loop for subj random effects
+u[i] ~ multi_normal_cholesky(mu_prior, DL_u);
+for (k in 1:K)                  // loop for item random effects
+w[k] ~ multi_normal_cholesky(mu_prior, DL_w);    
+for (n in 1:N) {
+mu[n] <- beta[1] + beta[2]*distance[n] + beta[3]*rctype[n] + beta[4]*interaction[n] + u[subj[n], 1] + u[subj[n], 2]*distance[n] + u[subj[n], 3]*rctype[n] + u[subj[n], 4]*interaction[n] + w[item[n], 1] + w[item[n], 2]*distance[n] + w[item[n], 3]*rctype[n] + w[item[n], 4]*interaction[n];
+}
+lrt ~ normal(mu,sigma_e);        // likelihood
+}
+generated quantities {
+cov_matrix[4] Sigma_u;
+cov_matrix[4] Sigma_w;
+Sigma_u <- D_u * Omega_u * D_u;
+Sigma_w <- D_w * Omega_w * D_w;
+}
+'
+
+## testing:
+library(rstan)
+
+set_cppo('fast')
+fit <- stan(model_code = expt1_code, data = e1data, 
+            iter = 500, chains = 4)
+
+print(fit)
+
+mcmcChains<-as.matrix(fit)
+
+## Distance
+table(mcmcChains[,2]<0)
+999/1000
+.999/(1-.999)
+
+## Expectation
+table(mcmcChains[,3]<0)
+
+## Int
+table(mcmcChains[,4]>0)[2]/sum(table(mcmcChains[,4]>0))
+
+print(fit,digits=4)
+@
+
+
+<<>>=
+#library(parallel)
+#sink("expt1resultsrun2.txt")
+#e1.sm <- stan_model("expt1subjitem.stan", model_name = "e1subjitem")
+#sflist <- mclapply(1:4, mc.cores = detectCores(),
+#                   function(i) sampling(e1.sm, data = #e1data,
+#                                        chains = 1, #chain_id = i, 
+#                                        seed = 12345
+  #))
+#e1.sf <- sflist2stanfit(sflist)
+#print(e1.sf,digits=4)
+@
+
+Nested contrasts in Stan:
+
+<<>>=
+expt1_codenested <- '
+data {
+int<lower=0> N;
+real lrt[N];                     //outcome
+real dist_SR[N];                     //predictor
+real dist_OR[N];                     //predictor
+real rctype[N];                     //predictor
+int<lower=1> I;                 //number of subjects
+int<lower=1> K;                 //number of items
+int<lower=1, upper=I> subj[N];    //subject id
+int<lower=1, upper=K> item[N];    //item id
+vector[4] mu_prior;             //vector of zeros passed in from R
+}
+transformed data {
+real ZERO;                      // like #define ZERO 0 in C/C++
+ZERO <- 0.0;
+}
+parameters {
+vector[4] beta;                 // intercept and slope
+vector[4] u[I];                 // random intercept and slopes subj
+vector[4] w[K];
+real<lower=0> sigma_e;          // residual sd
+vector<lower=0>[4] sigma_u;     // subj sd
+vector<lower=0>[4] sigma_w;     // item sd
+corr_matrix[4] Omega_u;           // correlation matrix for random intercepts and slopes subj
+corr_matrix[4] Omega_w;           // correlation matrix for random intercepts and slopes item
+}
+transformed parameters {
+matrix[4,4] D_u;
+matrix[4,4] D_w;
+D_u <- diag_matrix(sigma_u);
+D_w <- diag_matrix(sigma_w);
+}
+model {
+matrix[4,4] L_u;
+matrix[4,4] DL_u;
+matrix[4,4] L_w;
+matrix[4,4] DL_w;
+real mu[N]; // mu for likelihood
+//priors:
+beta ~ normal(0,10);
+sigma_e ~ normal(0,10);
+sigma_u ~ normal(0,10);
+sigma_w ~ normal(0,10);
+Omega_u ~ lkj_corr(4.0);
+Omega_w ~ lkj_corr(4.0);
+L_u <- cholesky_decompose(Omega_u);
+L_w <- cholesky_decompose(Omega_w);
+for (m in 1:4) {
+for (n in 1:m) {
+DL_u[m,n] <- L_u[m,n] * sigma_u[m];
+}
+}
+for (m in 1:4){
+for (n in (m+1):4){
+DL_u[m,n] <- ZERO;
+}
+}
+for (m in 1:4){
+for (n in 1:m){
+DL_w[m,n] <- L_w[m,n] * sigma_w[m];
+}
+}
+for (m in 1:4){
+for (n in (m+1):4){
+DL_w[m,n] <- ZERO;
+}
+}
+for (i in 1:I)                  // loop for subj random effects
+u[i] ~ multi_normal_cholesky(mu_prior, DL_u);
+for (k in 1:K)                  // loop for item random effects
+w[k] ~ multi_normal_cholesky(mu_prior, DL_w);    
+for (n in 1:N) {
+mu[n] <- beta[1] + beta[2]*dist_SR[n] + beta[3]*dist_OR[n] + beta[4]*rctype[n] + u[subj[n], 1] + u[subj[n], 2]*dist_SR[n] + u[subj[n], 3]*dist_OR[n] + u[subj[n], 4]*rctype[n] + w[item[n], 1] + w[item[n], 2]*dist_SR[n] + w[item[n], 3]*dist_OR[n] + w[item[n], 4]*rctype[n];
+}
+lrt ~ normal(mu,sigma_e);        // likelihood
+}
+generated quantities {
+cov_matrix[4] Sigma_u;
+cov_matrix[4] Sigma_w;
+Sigma_u <- D_u * Omega_u * D_u;
+Sigma_w <- D_w * Omega_w * D_w;
+}
+'
+
+set_cppo('fast')
+fitnested <- stan(model_code = expt1_codenested, data = e1data, 
+            iter = 500, chains = 4)
+
+print(fitnested,digits=4)
+
+mcmcChains<-as.matrix(fitnested)
+
+## Distance SR
+table(mcmcChains[,2]<0)
+
+## Distance OR
+table(mcmcChains[,3]<0)
+
+## RC Type
+table(mcmcChains[,4]>0)[2]/sum(table(mcmcChains[,4]>0))
+@
+
+\subsection{Plots}
+
+<<>>=
+## Data preparation for plotting:
+
+## crit region RCVerb:
+
+a.regions<-c("NP1","RCPn","RCObj","PreRCVerb","RCVerb","PreMainVerb","MainVerb")
+b.regions<-c("NP1","RCPn","PreRCVerb","RCVerb","RCObj","PreMainVerb","MainVerb")
+c.regions<-c("NP1","RCPn","RCSubj","PreRCVerb","RCVerb","PreMainVerb","MainVerb")
+d.regions<-c("NP1","RCPn","PreRCVerb","RCVerb","RCSubj","PreMainVerb","MainVerb")
+
+regions<-c(a.regions,b.regions,
+           c.regions,d.regions)
+region.id<-rep(1:7,4)
+cond.id<-rep(letters[1:4],each=7)
+
+region.df<-data.frame(cond=factor(cond.id),
+              region.id=region.id,
+              region=factor(regions))
+
+## done before so redundant:
+#RC1<-subset(RC1,region!="1" & region!="0" & region!="-")
+
+RC1$region<-drop.levels(RC1.orig$region)
+
+unique(RC1$region)
+
+#merge multiple "PreRCVerb", "PreMainVerb" regions
+##log rt:
+RC1.uniq.reg<-ddply(RC1, 
+                    .(subj, expt, item, cond, region), 
+                    summarize, 
+                    rt = sum(lrt))
+
+RC1.merged<-merge(RC1.uniq.reg,region.df, 
+                  by.x=c("cond","region"))
+
+RC1.merged$cond<-drop.levels(RC1.merged$cond)
+
+#head(RC1.merged)
+
+#with(RC1.merged,tapply(rt,IND=list(cond,region.id),mean))
+
+#head(RC1.merged)
+
+## define names for factor levels:
+RCType<-factor(ifelse(RC1.merged$cond%in%c("a","b"),"src","orc"),
+               levels=c("src","orc"))
+Dist<-factor(ifelse(RC1.merged$cond%in%c("a","c"),"distant","near"),
+             levels=c("near","distant"))
+
+RC1.merged$RCType<-RCType
+RC1.merged$Dist<-Dist
+
+## plot log rts:
+data.rs <- melt(RC1.merged, 
+          id=c("RCType","Dist","cond","region",
+               "region.id","subj"), 
+                measure=c("rt"),
+                na.rm=TRUE)
+
+data.id  <- data.frame(cast(data.rs, 
+                            subj+RCType+Dist+cond+region+region.id ~ ., 
+                            function(x) c(rt=mean(x), N=length(x) ) ))                     
+
+## compute means and corrected CIs:
+GM <- mean(tapply(data.id$rt, data.id$subj, mean))
+
+data.id <- ddply(data.id, .(subj), 
+                 transform, rt.w = rt - mean(rt) + GM)  
+
+temp<-melt(data.id, id.var=c("subj","RCType","Dist","cond","region","region.id"), measure.var="rt.w")
+
+M.id.w <- cast(temp, RCType+Dist+cond+region+region.id  ~ ., 
+                function(x) c(M=mean(x), SE=sd(x)/sqrt(length(x)), N=length(x) ) ) 
+
+pd <- position_dodge(width = 0.05)
+k<-1
+
+## for PLoS ONE:
+bitmap("e1critregion.tiff", height = 4, width = 7, units = 'in', type="tifflzw", res=600)
+                                        
+(p1a<-ggplot(subset(M.id.w,region=="RCVerb"), 
+             aes(x=Dist, y=M,group=RCType)) + 
+     geom_point(shape=21,fill="white",size=k*3) +
+     geom_line(aes(linetype=RCType),size=k) +
+     geom_errorbar(aes(ymin=M-2*SE, ymax=M+2*SE),
+                   width=.1,size=k)+
+     xlab("Distance")+
+     ylab("reading time [log ms]")+
+     scale_colour_hue(name="relative clause type", # Legend label, use darker colors
+                      breaks=c("src", "orc"),
+                      labels=c("SRC", "ORC"),
+                      l=40)+                     
+     labs(title="Critical region [RC verb]") +
+     #    scale_y_continuous(limits=c(600,900))              
+     theme_bw() +
+     labs(legend.position=c(.87, .6))  
+     #Position legend inside
+   # This must go after theme_bw
+  )
+dev.off()
+
+## for paper:
+pdf("expt1critregion.pdf")
+p1a
+dev.off()
+
+M.id.w.src<-subset(M.id.w,RCType=="src")
+M.id.w.src$RCType<-drop.levels(M.id.w.src$RCType)
+
+M.id.w.orc<-subset(M.id.w,RCType=="orc")
+M.id.w.orc$RCType<-drop.levels(M.id.w.orc$RCType)
+
+## function for generic by-region plots:
+byregion.plot.sr<-function(data,
+                        mytitle,k=1,
+                        x.lab="position",
+                        y.lab="reading time [log ms]"){
+  ggplot(data,aes(x=region.id,y=M,
+                       group=Dist)) + 
+     geom_point(shape=21,size=k*2) +
+     geom_line(aes(linetype=Dist),size=k) +
+     geom_errorbar(aes(ymin=M-2*SE, 
+                       ymax=M+2*SE),
+                   width=.1,size=k)+
+     #xlab(x.lab)+
+     scale_x_continuous(x.lab, breaks = 1:7, labels = c("NP1","RCPn","PreRCVerb\nRCObj","RCVerb\nPreRCVerb","RCObj\nRCVerb","PreMainVerb","MainVerb"))+
+     ylab(y.lab)+             
+     opts(title=mytitle) +
+     theme_bw()+
+     theme(axis.text.x = element_text(size=7))
+}
+
+byregion.plot.or<-function(data,
+                        mytitle,k=1,
+                        x.lab="position",
+                        y.lab="reading time [log ms]"){
+  ggplot(data,aes(x=region.id,y=M,
+                       group=Dist)) + 
+     geom_point(shape=21,size=k*2) +
+     geom_line(aes(linetype=Dist),size=k) +
+     geom_errorbar(aes(ymin=M-2*SE, 
+                       ymax=M+2*SE),
+                   width=.1,size=k)+
+     #xlab(x.lab)+
+     scale_x_continuous(x.lab, breaks = 1:7, labels = c("NP1","RCPn","PreRCVerb\nRCSubj","RCVerb\nPreRCVerb","RCSubj\nRCVerb","PreMainVerb","MainVerb"))+
+     ylab(y.lab)+             
+     opts(title=mytitle) +
+     theme_bw()+
+     theme(axis.text.x = element_text(size=7))
+}
+
+bitmap("e1srbyregion.tiff", height = 4, width = 7, units = 'in', type="tifflzw", res=600)
+
+## SRC plot:
+(plot.src<-byregion.plot.sr(M.id.w.src,
+              mytitle="Effect of distance [subject relatives]",k=1,
+              x.lab="position",y.lab="reading time [log ms]")
+)
+
+dev.off()
+
+pdf("e1srbyregion.pdf")
+plot.src
+dev.off()
+
+###################################################
+### code chunk number 17: HindiExpectationLocalityV8.Rnw:716-720
+###################################################
+
+bitmap("e1orbyregion.tiff", height = 4, width = 7, units = 'in', type="tifflzw", res=600)
+                                        
+(plot.orc<-byregion.plot.or(M.id.w.orc,
+                         mytitle="Effect of distance [object relatives]",k=1,
+                         x.lab="position",y.lab="reading time [log ms]")
+)
+dev.off()
+
+pdf("e1orbyregion.pdf")
+plot.orc
+dev.off()
+
+
+## generic function for RC type comparison:
+byregion.plot.rc.distant<-function(data,
+                        mytitle,k=1,
+                        x.lab="position",
+                        y.lab="reading time [log ms]"){
+  ggplot(data,aes(x=region.id,y=M,
+                  group=RCType)) + 
+    geom_point(shape=21,size=k*2) +
+    geom_line(aes(linetype=RCType),size=k) +
+    geom_errorbar(aes(ymin=M-2*SE, 
+                      ymax=M+2*SE),
+                  width=.1,size=k)+
+    #xlab(x.lab)+
+    scale_x_continuous(x.lab, breaks = 1:7, labels = c("NP1","RCPn","RCObj\nRCSubj","PreRCVerb","RCVerb","PreMainVerb","MainVerb"))+
+    ylab(y.lab)+             
+    opts(title=mytitle) +
+    theme_bw()+
+    theme(axis.text.x = element_text(size=7))
+}
+
+byregion.plot.rc.near<-function(data,
+                        mytitle,k=1,
+                        x.lab="position",
+                        y.lab="reading time [msec]"){
+  ggplot(data,aes(x=region.id,y=M,
+                  group=RCType)) + 
+    geom_point(shape=21,size=k*2) +
+    geom_line(aes(linetype=RCType),size=k) +
+    geom_errorbar(aes(ymin=M-2*SE, 
+                      ymax=M+2*SE),
+                  width=.1,size=k)+
+    #xlab(x.lab)+
+    scale_x_continuous(x.lab, breaks = 1:7, labels = c("NP1","RCPn","PreRCVerb","RCVerb","RCObj\nRCSubj","PreMainVerb","MainVerb"))+
+    ylab(y.lab)+             
+    opts(title=mytitle) +
+    theme_bw()+
+    theme(axis.text.x = element_text(size=7))
+}
+
+## compare SR vs OR:
+M.id.w.dist<-subset(M.id.w,Dist=="distant")
+M.id.w.dist$Dist <- drop.levels(M.id.w.dist$Dist)
+
+M.id.w.near<-subset(M.id.w,Dist=="near")
+M.id.w.near$Dist <- drop.levels(M.id.w.near$Dist)
+
+
+(plot.rctype.dist<-byregion.plot.rc.distant(M.id.w.dist,
+                         mytitle="Effect of RC type (distant conditions)",k=1,
+                         x.lab="position",y.lab="reading time [msec]")
+)
+
+
+(plot.rctype.near<-byregion.plot.rc.near(M.id.w.near,
+                                    mytitle="Effect of RC type (near conditions)",k=1,
+                                    x.lab="position",y.lab="reading time [msec]")
+)
+
+
+## the diff at the premain verb is due to diff. words
+premain<-subset(RC1,region=="PreMainVerb" & rrt>-10 & cond%in%c("a","c"))
+
+#bwplot(log(rt)~cond,premain)
+
+#with(premain,tapply(rt,cond,mean))
+#unique(subset(premain,cond=="a")$word)
+#unique(subset(premain,cond=="c")$word)
+@
+
+\section{Experiment 2}
+
+Sentence completion:
+<<>>=
+completiondata<-read.table("sentence_completion_stats.txt",header=T)
+##probabilities:
+probs<-c(0.5,0.3,
+  1,0.2,
+  1,0.3,
+  0.9,0,
+  0.9,0,
+  1,0.4,
+  0.8,0.3,
+  0.2,0,
+  1,0.7,
+  1,0,
+  1,0,
+  1,0.1,
+  1,0,
+  0.5,0,
+  1,0,
+  1,0.5)
+  
+probabilities<-data.frame(item=rep(1:16,each=4),cond=rep(letters[1:4],16),probs=rep(probs,each=2))
+
+meanprobs<-with(probabilities,tapply(probs,cond,mean))
+
+## noun frequencies:
+npfreq<-read.table("expt2-freq.txt",header=T)
+with(npfreq,tapply(nounfreq,condition,mean))
+with(npfreq,tapply(nounfreq,condition,sd))/sqrt(16)
+
+conda<-subset(npfreq,condition=="a")
+
+condc<-subset(npfreq,condition=="c")
+
+
+
+t.test(conda$nounfreq,condc$nounfreq,paired=T)
+
+#Experiment 4 (Complex predicate)
+##
+CP1<-subset(data,expt=="CP1")
+
+## question response accuracies:
+questions.CP1<-subset(CP1,word%in%c("Y","N"))
+#summary(questions.RC1)
+questions.CP1$acc<-as.numeric(as.character(questions.CP1$region))
+questions.CP1$cond<-drop.levels(questions.CP1$cond)
+mean.accs.CP1<-round(100*with(questions.CP1,tapply(acc,cond,mean)),digits=0)
+
+## nested:
+questions.CP1$dist.exp<-ifelse(questions.CP1$cond=="a",-1,ifelse(questions.CP1$cond=="b",1,0))
+questions.CP1$dist.noexp<-ifelse(questions.CP1$cond=="c",-1,ifelse(questions.CP1$cond=="d",1,0))
+questions.CP1$exp<-ifelse(questions.CP1$cond%in%c("a","b"),1,-1)
+
+## anova contrasts:
+questions.CP1$dist<-ifelse(questions.CP1$cond%in%c("a","c"),-1,1)
+## exp is above:
+questions.CP1$int<-ifelse(questions.CP1$cond%in%c("a","d"),-1,1)
+
+
+m0.acc.aov<-glmer(acc~dist+exp+int+(1+dist+exp+int|subj)+(1+dist+exp+int|item),questions.CP1,family=binomial())
+
+m0.rt.aov<-lmer(log(rt)~dist+exp+int+(1+dist+exp+int|subj)+(1|item),questions.CP1)
+
+
+fixefs<-fixef(m0.acc.aov)
+SEs<-sqrt(diag(vcov(m0.acc.aov)))
+zs<-fixefs/SEs
+
+e1acc<-round(cbind(fixefs,SEs,zs),digits=2)[2:4,1:3]
+
+rownames(e1acc) <- c("Distance","RC Type","DistxRC Type")
+
+colnames(e1acc)<-c("coef.","SE","z-score")
+
+## Data preparation for plotting:
+
+## crit region: CPLightVerb/MainVerb:
+
+a.regions<-c("PreNounPred","CPNounPred","PreLV","CPLightVerb", "PreCoordMV","CoordMainVerb")
+b.regions<-c("PreNounPred","CPNounPred","PreLV","CPLightVerb", "PreCoordMV","CoordMainVerb")
+c.regions<-c("PreMVObj","MVObj","PreMV","MainVerb", "PreCoordMV","CoordMainVerb")
+d.regions<-c("PreMVObj","MVObj","PreMV","MainVerb", "PreCoordMV","CoordMainVerb")
+
+regions<-c(a.regions,b.regions,
+           c.regions,d.regions)
+region.id<-rep(1:6,4)
+cond.id<-rep(letters[1:4],each=6)
+
+region.df<-data.frame(cond=factor(cond.id),
+                      region.id=region.id,
+                      region=factor(regions))
+
+CP1<-subset(CP1,region!="1" & region!="0" & region!="-")
+
+CP1$region<-drop.levels(CP1$region)
+CP1$cond<-drop.levels(CP1$cond)
+
+#update labels in the long conditions (PreLV1, PreMV1)
+CP1$region[CP1$region == 'PreMV1'] <- 'PreMV'
+CP1$region[CP1$region == 'PreLV1'] <- 'PreLV'
+
+#Labeling error in the data; item==15, cond==a,b. 'PreMV' should be 'PreLV'
+CP1$region[CP1$region == 'PreMV' & CP1$item == 15 & CP1$cond == 'a'] <- 'PreLV'
+CP1$region[CP1$region == 'PreMV' & CP1$item == 15 & CP1$cond == 'b'] <- 'PreLV'
+
+#merge multiple "PreNounPred", "PreMVObj", "PreLV", "PreMV", "PreCoordMV" regions
+CP1.uniq.reg<-ddply(CP1, .(subj, expt, item, cond, region), summarize, rt = sum(rt))
+
+unique(CP1.uniq.reg$region)
+region.df
+
+CP1.uniq.reg.merged<-merge(CP1.uniq.reg,region.df, by.x=c("cond","region"))
+
+CP1.uniq.reg.merged$cond<-drop.levels(CP1.uniq.reg.merged$cond)
+
+
+#head(CP1.uniq.reg.merged)
+
+crit_CP1<-subset(CP1.uniq.reg.merged,region=="")
+
+#with(CP1.uniq.reg.merged,tapply(rt,IND=list(cond,region.id),mean))
+
+#head(CP1.uniq.reg.merged)
+
+
+#unique(CP1.uniq.reg.merged$region)
+#CP1: Expectation build-up for the verb due to nominal host of Complex Predicate. Effect of suprisal/locality on Normal vs Complex predicate.
+
+#No. of conditions: 4
+#Condition a: Expectation, Long
+#Condition b: Expectation, Short
+#Condition c: No Expectation, Long
+#Condition d: No Expectation, Short
+
+#Total items: 16
+
+CP1<-CP1.uniq.reg.merged
+
+#Critical region: CPLightVerb
+## these are all region.id==4:
+CP1.ab.crit<-subset(CP1,region=="CPLightVerb")
+CP1.cd.crit<-subset(CP1,region=="MainVerb")
+CP1.crit<-rbind(CP1.ab.crit,CP1.cd.crit)
+
+CP1.crit$region2<-factor("crit")
+
+## Summary for Johan paper:
+head(CP1.crit)
+means<-with(CP1.crit,tapply(rt,cond,mean))
+means
+dist<-rep(c("long","short"),2)
+expectation<-rep(c("expected","unexpected"),each=2)
+means2<-data.frame(dist,expectation,means)
+means2
+
+CP1.postcrit<-subset(CP1,region.id==5)
+CP1.postcrit$region2<-factor("postcrit")
+
+CP1.postcrit2<-subset(CP1,region.id==6)
+CP1.postcrit2$region2<-factor("postcrit2")
+
+CP1.critdata<-rbind(CP1.crit,CP1.postcrit,CP1.postcrit2)
+
+#completiondata<-read.table("sentence_completion_stats.txt",header=T)
+
+#dim(completiondata)
+## print out critical words:
+#completiondata[31:32,c(1:2,68:69)]
+#completiondata[31:32,]
+
+## odds: (abandoned)
+#c(0.5/0.5,0.3/0.7,
+#  Inf,0.2/0.8,
+#  Inf,0.3,
+#  0.9/0.1,0,
+#  0.9/0.1,0,
+#  Inf,0.4/0.6,
+#  0.8/0.2,0.3/0.7,
+#  0.2/0.8,0,
+#  Inf,0.7/0.3,
+#  Inf,0,
+#  Inf,0)
+  
+
+temp<-merge(CP1.critdata,probabilities,by.x=c("item","cond"),by.y=c("item","cond"))
+
+CP1.critdata<-temp
+
+## nested contrasts:
+CP1.critdata$dist.exp<-ifelse(CP1.critdata$cond=="a",-1,ifelse(CP1.critdata$cond=="b",1,0))
+CP1.critdata$dist.noexp<-ifelse(CP1.critdata$cond=="c",-1,ifelse(CP1.critdata$cond=="d",1,0))
+CP1.critdata$exp<-ifelse(CP1.critdata$cond%in%c("a","b"),1,-1)
+
+## anova contrasts:
+CP1.critdata$dist<-ifelse(CP1.critdata$cond%in%c("a","c"),-1,1)
+## exp is above:
+CP1.critdata$int<-ifelse(CP1.critdata$cond%in%c("a","d"),-1,1)
+
+CP1.critdata$lrt<-log(CP1.critdata$rt)
+
+pred<-ifelse(CP1.critdata$probs<median(CP1.critdata$probs),"low","high")
+
+CP1.critdata$pred<-factor(pred)
+
+means.pred<-with(subset(CP1.critdata,region2=="crit"),tapply(rt,IND=list(factor(dist),pred),mean))
+
+Exp<-factor(ifelse(CP1.uniq.reg.merged$cond%in%c("a","b"),"exp","no-exp"),levels=c("exp","no-exp"))
+
+Dist<-factor(ifelse(CP1.uniq.reg.merged$cond%in%c("b","d"),"short","long"),levels=c("short","long"))
+
+CP1.uniq.reg.merged$Exp<-Exp
+CP1.uniq.reg.merged$Dist<-Dist
+
+### log rt:
+CP1.uniq.reg.merged$lrt<-log(CP1.uniq.reg.merged$rt)
+data.rs <- melt(CP1.uniq.reg.merged, 
+                id=c("Exp","Dist","cond","region",
+                     "region.id","subj"), 
+                measure=c("lrt"),
+                na.rm=TRUE)
+
+data.id  <- data.frame(cast(data.rs, 
+                            subj+Exp+Dist+cond+region+region.id ~ ., 
+                            function(x) c(lrt=mean(x), N=length(x) ) ))                     
+
+GM <- mean(tapply(data.id$lrt, data.id$subj, mean))
+
+#removing between subject variance
+data.id <- ddply(data.id, .(subj), 
+                 transform, lrt.w = lrt - mean(lrt) + GM)  
+
+temp<-melt(data.id, id.var=c("subj","Exp","Dist","cond","region","region.id"), measure.var="lrt.w")
+
+M.id.w <- cast(temp, Exp+Dist+cond+region+region.id  ~ ., 
+                function(x) c(M=mean(x), SE=sd(x)/sqrt(length(x)), N=length(x) ) ) 
+
+pd <- position_dodge(width = 0.05)
+k<-1
+
+#rename 'CPLightVerb' in condition (a, b) in order to draw the plot
+M.id.w$region[M.id.w$region=='CPLightVerb'] <- 'MainVerb'
+
+
+###################################################
+### code chunk number 28: HindiExpectationLocalityV8.Rnw:1240-1259
+###################################################
+
+bitmap("e2critregion.tiff", height = 4, width = 7, units = 'in', type="tifflzw", res=600)
+
+MVregion<-subset(M.id.w,region=="MainVerb")
+str(MVregion)
+head(MVregion)
+                                        
+(p1a<-ggplot(subset(M.id.w,region=="MainVerb"), 
+             aes(x=Dist, y=M,group=Exp)) + 
+               geom_point(shape=21,fill="white",size=k*3) +
+               geom_line(aes(linetype=Exp),size=k) +
+               geom_errorbar(aes(ymin=M-2*SE, ymax=M+2*SE),
+                             width=.1,size=k)+
+                               xlab("Distance")+
+                               ylab("reading time [log ms]")+
+                               scale_colour_hue(name="Expectation condition", # Legend label, use darker colors
+                                                breaks=c("exp", "no-exp"),
+                                                labels=c("EXP", "NO-EXP"),
+                                                l=40)+                     
+                                                  ggtitle("Critical region [Finite Verb]") +
+                                                  #    scale_y_continuous(limits=c(600,900))              
+                                                  theme_bw() 
+                                                  #opts(legend.position=c(.87, .6))  
+ #Position legend inside
+ # This must go after theme_bw
+ )
+
+dev.off()
+
+pdf("e2critregion.pdf")
+p1a
+dev.off()
+
+#tmp<-subset(CP1.critdata,item%in%c(2:7,10:13,15,16))
+#m0.anova.crit.asfactor<-lmer(lrt~dist+exp+int+(1|subj)+(0+int|subj)+(1|item),subset(tmp,region2=="crit"))
+#summary(m0.anova.crit.asfactor)
+
+## these models make no sense: prob and exp are the same thing, differently defined.
+#if(maximal==FALSE){
+#m0.anova.crit.asfactor<-lmer(lrt~(dist+exp+int)*scale(probs,scale=F)+(1|subj)+(1|item),subset(CP1.critdata,region2=="crit"))
+#} else {
+  ## fails to converge:
+#m0.anova.crit<-lmer(lrt~(dist+exp+int)*scale(probs,scale=F)+(1+(dist+exp+int)*scale(probs,scale=F)|subj)+(1|item),subset(CP1.critdata,region2=="crit"))  
+
+#m0.anova.crit<-lmer(lrt~(dist+exp+int)*scale(probs,scale=F)+(1+dist+exp+int|subj)+(1+dist+exp+int|item),subset(CP1.critdata,region2=="crit"))  
+
+#m0.anova.crit.asfactor<-lmer(lrt~dist+exp+int+(1+dist+exp+int|subj)+(1+dist+exp+int|item),subset(CP1.critdata,region2=="crit"))
+
+m01.anova.crit.asfactor<-lmer(lrt~dist+exp+int+(1|subj)+(1+|item),subset(CP1.critdata,region2=="crit"),)
+
+m02.anova.crit.asfactor<-lmer(lrt~dist+exp+int+(1+dist+exp+int|subj)+(1|item),subset(CP1.critdata,region2=="crit"),
+control=lmerControl(optimizer="bobyqa"))
+
+
+
+fixefs<-round(fixef(m01.anova.crit.asfactor)[2:4],digits=3)
+SEs<-round(sqrt(diag(vcov(m01.anova.crit.asfactor)))[2:4],digits=3)
+ts<-round(fixefs/SEs,digits=2)
+
+expt4aovcrit<-cbind(fixefs,SEs,ts)
+rownames(expt4aovcrit)<-c("Distance","Expectation", "Dist x Exp")
+
+colnames(expt4aovcrit)<-c("coef.","SE","t-value")
+
+
+xtable(expt4aovcrit,
+       caption="The main effect of distance, of expectation, and their interaction on reading times at the critical region in Experiment 2.",
+       label="tab:e4critaov")
+
+library(car)
+qqPlot(residuals(m01.anova.crit.asfactor))
+res<-ranef(m01.anova.crit.asfactor)
+
+plot(res$subj)
+
+## highly correlated:
+xyplot(probs~exp|item,CP1.critdata)
+
+m01.anova.crit.asprob<-lmer(lrt~dist*scale(probs,scale=F)+(1|subj)+(0+scale(probs,scale=F)|subj)+(0+dist:scale(probs,scale=F)|subj)+(1|item),subset(CP1.critdata,region2=="crit"))
+
+fixefs<-round(fixef(m01.anova.crit.asprob)[2:4],digits=3)
+SEs<-round(sqrt(diag(vcov(m01.anova.crit.asprob)))[2:4],digits=3)
+ts<-round(fixefs/SEs,digits=2)
+
+expt4aovcrit<-cbind(fixefs,SEs,ts)
+rownames(expt4aovcrit)<-c("Distance","Expectation", "Dist x Exp")
+
+colnames(expt4aovcrit)<-c("coef.","SE","t-value")
+
+xtable(expt4aovcrit,
+       caption="The main effect of distance, of expectation (using probabilities), and their interaction on reading times at the critical region in Experiment 2.",
+       label="tab:e4critaov2")
+
+
+
+
+m0.anova.postcrit<-lmer(lrt~dist+exp+int+(1|subj)+(1|item),subset(CP1.critdata,region2=="postcrit"))
+
+m0.anova.postcrit<-lmer(lrt~dist+exp+int+(dist+exp+int-1|subj)+(1|subj)+
+                                            (1|item),subset(CP1.critdata,region2=="postcrit"))  
+
+
+m0.anova.postcrit<-lmer(lrt~dist*scale(probs,scale=F)+(1+dist*scale(probs,scale=F)|subj)+
+                          (1+dist*scale(probs,scale=F)|item),
+                        subset(CP1.critdata,region2=="postcrit"))  
+
+
+
+m0.nested.crit<-lmer(lrt~(dist.exp+dist.noexp+exp)*scale(probs,scale=F)+(1+(dist.exp+dist.noexp+exp)*scale(probs,scale=F)|subj)+(1+dist.exp+dist.noexp+exp|item),subset(CP1.critdata,region2=="crit"))  
+
+m0.nested.postcrit<-lmer(lrt~(dist.exp+dist.noexp+exp)*scale(probs,scale=F)+(1+(dist.exp+dist.noexp+exp)*scale(probs,scale=F)|subj)+(1+dist.exp+dist.noexp+exp|item),subset(CP1.critdata,region2=="postcrit"))  
+
+fixefs<-round(fixef(m01.anova.crit.asprob)[2:4],digits=3)
+SEs<-round(sqrt(diag(vcov(m01.anova.crit.asprob)))[2:4],digits=3)
+ts<-round(fixefs/SEs,digits=2)
+
+expt4aovcrit<-cbind(fixefs,SEs,ts)
+rownames(expt4aovcrit)<-c("Distance","Expectation", "Dist x Exp")
+
+colnames(expt4aovcrit)<-c("coef.","SE","t-value")
+
+fixefs<-round(fixef(m0.anova.postcrit)[2:4],digits=3)
+SEs<-round(sqrt(diag(vcov(m0.anova.postcrit)))[2:4],digits=3)
+ts<-round(fixefs/SEs,digits=2)
+
+expt4aovpostcrit<-cbind(fixefs,SEs,ts)
+rownames(expt4aovpostcrit)<-c("Distance","Expectation", "Dist x Exp")
+
+colnames(expt4aovpostcrit)<-c("coef.","SE","t-value")
+
+fixefs<-round(fixef(m0.nested.crit)[2:4],digits=3)
+SEs<-round(sqrt(diag(vcov(m0.nested.crit)))[2:4],digits=3)
+ts<-round(fixefs/SEs,digits=2)
+
+expt4nestedcrit<-cbind(fixefs,SEs,ts)
+rownames(expt4nestedcrit)<-c("Distance (Exp)","Distance (No Exp)", "Exp")
+
+colnames(expt4nestedcrit)<-c("coef.","SE","t-value")
+
+fixefs<-round(fixef(m0.nested.postcrit)[2:4],digits=3)
+SEs<-round(sqrt(diag(vcov(m0.nested.postcrit)))[2:4],digits=3)
+ts<-round(fixefs/SEs,digits=2)
+
+expt4nestedpostcrit<-cbind(fixefs,SEs,ts)
+rownames(expt4nestedpostcrit)<-c("Distance (Exp)","Distance (No Exp)", "Exp")
+
+colnames(expt4nestedpostcrit)<-c("coef.","SE","t-value")
+
+
+## subset by Expectation condition:
+M.id.w.exp<-subset(M.id.w,Exp=="exp")
+M.id.w.exp$Exp<-drop.levels(M.id.w.exp$Exp)
+
+M.id.w.noexp<-subset(M.id.w,Exp=="no-exp")
+M.id.w.noexp$Exp<-drop.levels(M.id.w.noexp$Exp)
+
+
+## function for generic by-region plots:
+byregion.plot.cp<-function(data,
+                        mytitle,k=1,
+                        x.lab="position",
+                        y.lab="reading time [msec]"){
+  ggplot(data,aes(x=region.id,y=M,
+                  group=Dist)) + 
+                    geom_point(shape=21,size=k*2) +
+                    geom_line(aes(linetype=Dist),size=k) +
+                    geom_errorbar(aes(ymin=M-2*SE, 
+                                      ymax=M+2*SE),
+                                  width=.1,size=k)+
+                                    #xlab(x.lab)+
+                                    scale_x_continuous(x.lab, breaks = 1:6, labels = c("PreNounPred","CPNounPred","PreLV","CPLightVerb", "PreCoordMV","CoordMainVerb"))+
+    ylab(y.lab)+             
+    opts(title=mytitle) +
+    theme_bw()+
+    theme(axis.text.x = element_text(size=7))
+}
+
+byregion.plot.sp<-function(data,
+                        mytitle,k=1,
+                        x.lab="position",
+                        y.lab="reading time [msec]"){
+  ggplot(data,aes(x=region.id,y=M,
+                  group=Dist)) + 
+                    geom_point(shape=21,size=k*2) +
+                    geom_line(aes(linetype=Dist),size=k) +
+                    geom_errorbar(aes(ymin=M-2*SE, 
+                                      ymax=M+2*SE),
+                                  width=.1,size=k)+
+                                    #xlab(x.lab)+
+                                    scale_x_continuous(x.lab, breaks = 1:6, labels = c("PreMVObj","MVObj","PreMV","MainVerb", "PreCoordMV","CoordMainVerb"))+
+    ylab(y.lab)+             
+    opts(title=mytitle) +
+    theme_bw()+
+    theme(axis.text.x = element_text(size=7))
+}
+
+
+
+###################################################
+### code chunk number 42: HindiExpectationLocalityV8.Rnw:1586-1590
+###################################################
+bitmap("e2cpbyregion.tiff", height = 4, width = 7, units = 'in', type="tifflzw", res=600)
+                                        
+(plot.exp<-byregion.plot.cp(M.id.w.exp,
+                         mytitle="Effect of distance [Complex predicate condition]",k=1,
+                         x.lab="position",y.lab="reading time [log ms]")
+ )
+
+bitmap("e2spbyregion.tiff", height = 4, width = 7, units = 'in', type="tifflzw", res=600)
+(plot.noexp<-byregion.plot.sp(M.id.w.noexp,
+                           mytitle="Effect of distance [Simple predicate condition]",k=1,
+                           x.lab="position",y.lab="reading time [log ms]")
+ )
+
+dev.off()
+
+pdf("e2cpbyregion.pdf")
+plot.exp
+dev.off()
+
+pdf("e2spbyregion.pdf")
+plot.noexp
+dev.off()
+
+
+## subset by Distance condition:
+M.id.w.short<-subset(M.id.w,Dist=="short")
+M.id.w.short$Dist<-drop.levels(M.id.w.short$Dist)
+
+M.id.w.long<-subset(M.id.w,Dist=="long")
+M.id.w.long$Dist<-drop.levels(M.id.w.long$Dist)
+
+## function for generic by-region plots:
+byregion.plot2.short<-function(data,
+                         mytitle,k=1,
+                         x.lab="position",
+                         y.lab="reading time [msec]"){
+  ggplot(data,aes(x=region.id,y=M,
+                  group=Exp)) + 
+                    geom_point(shape=21,size=k*2) +
+                    geom_line(aes(linetype=Exp),size=k) +
+                    geom_errorbar(aes(ymin=M-2*SE, 
+                                      ymax=M+2*SE),
+                                  width=.1,size=k)+
+                                    #xlab(x.lab)+
+                                    scale_x_continuous(x.lab, breaks = 1:6, labels = c("PreNounPred\nPreMVObj","CPNounPred\nMVObj","PreLV\nPreMV","CPLightVerb\nMainVerb", "PreCoordMV","CoordMainVerb"))+
+    ylab(y.lab)+             
+    opts(title=mytitle) +
+    theme_bw()+
+    theme(axis.text.x = element_text(size=7)) 
+
+  }
+byregion.plot2.long<-function(data,
+                         mytitle,k=1,
+                         x.lab="position",
+                         y.lab="reading time [msec]"){
+  ggplot(data,aes(x=region.id,y=M,
+                  group=Exp)) + 
+                    geom_point(shape=21,size=k*2) +
+                    geom_line(aes(linetype=Exp),size=k) +
+                    geom_errorbar(aes(ymin=M-2*SE, 
+                                      ymax=M+2*SE),
+                                  width=.1,size=k)+
+                                    #xlab(x.lab)+
+                                    scale_x_continuous(x.lab, breaks = 1:6, labels = c("PreNounPred\nPreMVObj","CPNounPred\nMVObj","PreLV\nPreMV","CPLightVerb\nMainVerb", "PreCoordMV","CoordMainVerb"))+
+    ylab(y.lab)+             
+    opts(title=mytitle) +
+    theme_bw()+
+    theme(axis.text.x = element_text(size=7))
+
+  }
+
+
+
+(plot.short<-byregion.plot2.short(M.id.w.short,
+                            mytitle="Effect of expectation [near condition]",k=1,
+                            x.lab="position",y.lab="reading time [msec]")
+ )
+
+
+###################################################
+### code chunk number 46: HindiExpectationLocalityV8.Rnw:1677-1681
+###################################################
+(plot.long<-byregion.plot2.long(M.id.w.long,
+                           mytitle="Effect of expectation [long condition]",k=1,
+                           x.lab="position",y.lab="reading time [msec]")
+ )
+
+
+###################################################
+### code chunk number 47: HindiExpectationLocalityV8.Rnw:1699-1709
+###################################################
+CP1.pos2<-subset(CP1,region.id==2)
+
+CP1.pos2$exp<-ifelse(CP1.pos2$cond%in%c("a","b"),1,-1)
+
+## anova contrasts:
+CP1.pos2$dist<-ifelse(CP1.pos2$cond%in%c("a","c"),-1,1)
+## exp is above:
+CP1.pos2$int<-ifelse(CP1.pos2$cond%in%c("a","d"),-1,1)
+
+CP1.pos2$lrt<-log(CP1.pos2$rt)
+
+
+###################################################
+### code chunk number 48: HindiExpectationLocalityV8.Rnw:1712-1713
+###################################################
+m0<-lmer(lrt~exp+dist+int+(1+exp+dist+int|subj)+(1+exp+dist+int|item),CP1.pos2)
+@
+
+\subsection{Stan analysis Expt 2}
+
+<<>>=
+CP1<-CP1.crit
+  
+## anova contrasts:
+CP1$exp<-ifelse(CP1$cond%in%c("a","b"),1,-1)
+CP1$dist<-ifelse(CP1$cond%in%c("a","c"),-1,1)
+CP1$int<-ifelse(CP1$cond%in%c("a","d"),-1,1)
+
+CP1$dist.cp<-ifelse(CP1$cond%in%c("a"),-1,
+                    ifelse(CP1$cond%in%c("b"),1,0))
+CP1$dist.sp<-ifelse(CP1$cond%in%c("c"),-1,
+                    ifelse(CP1$cond%in%c("d"),1,0))
+
+                    
+e2data <- list(mu_prior=c(0,0,0,0),
+               subj=sort(as.integer(factor(CP1$subj))),
+               item=sort(as.integer(factor(CP1$item))),
+               lrt = log(CP1$rt),
+               distance = CP1$dist,
+               expectation = CP1$exp,
+               interaction = CP1$int,
+               dist_cp = CP1$dist.cp,
+               dist_sp = CP1$dist.sp,
+               N = nrow(CP1),
+               I = length(unique(CP1$subj)),
+               K = length(unique(CP1$item))
+)  
+
+
+expt2_code <-'
+data {
+    int<lower=0> N;
+    real lrt[N];                     //outcome
+real distance[N];                     //predictor
+real expectation[N];                     //predictor
+real interaction[N];                     //predictor
+int<lower=1> I;                 //number of subjects
+int<lower=1> K;                 //number of items
+int<lower=1, upper=I> subj[N];    //subject id
+int<lower=1, upper=K> item[N];    //item id
+vector[4] mu_prior;             //vector of zeros passed in from R
+}
+transformed data {
+real ZERO;                      // like #define ZERO 0 in C/C++
+ZERO <- 0.0;
+}
+parameters {
+vector[4] beta;                 // intercept and slope
+vector[4] u[I];                 // random intercept and slopes subj
+vector[4] w[K];
+real<lower=0> sigma_e;          // residual sd
+vector<lower=0>[4] sigma_u;     // subj sd
+vector<lower=0>[4] sigma_w;     // item sd
+corr_matrix[4] Omega_u;           // correlation matrix for random intercepts and slopes subj
+corr_matrix[4] Omega_w;           // correlation matrix for random intercepts and slopes item
+}
+transformed parameters {
+matrix[4,4] D_u;
+matrix[4,4] D_w;
+D_u <- diag_matrix(sigma_u);
+D_w <- diag_matrix(sigma_w);
+}
+model {
+matrix[4,4] L_u;
+matrix[4,4] DL_u;
+matrix[4,4] L_w;
+matrix[4,4] DL_w;
+real mu[N]; // mu for likelihood
+//priors:
+beta ~ normal(0,10);
+sigma_e ~ normal(0,10);
+sigma_u ~ normal(0,10);
+sigma_w ~ normal(0,10);
+Omega_u ~ lkj_corr(1.0);
+Omega_w ~ lkj_corr(1.0);
+L_u <- cholesky_decompose(Omega_u);
+L_w <- cholesky_decompose(Omega_w);
+for (m in 1:4) {
+for (n in 1:m) {
+DL_u[m,n] <- L_u[m,n] * sigma_u[m];
+}
+}
+for (m in 1:4){
+for (n in (m+1):4){
+DL_u[m,n] <- ZERO;
+}
+}
+for (m in 1:4){
+for (n in 1:m){
+DL_w[m,n] <- L_w[m,n] * sigma_w[m];
+}
+}
+for (m in 1:4){
+for (n in (m+1):4){
+DL_w[m,n] <- ZERO;
+}
+}
+for (i in 1:I)                  // loop for subj random effects
+u[i] ~ multi_normal_cholesky(mu_prior, DL_u);
+for (k in 1:K)                  // loop for item random effects
+w[k] ~ multi_normal_cholesky(mu_prior, DL_w);    
+for (n in 1:N) {
+mu[n] <- beta[1] + beta[2]*distance[n] + beta[3]*expectation[n] + beta[4]*interaction[n] 
++ u[subj[n], 1] + u[subj[n], 2]*distance[n] + u[subj[n], 3]*expectation[n] + u[subj[n], 4]*interaction[n]+ w[item[n], 1] + w[item[n], 2]*distance[n] + w[item[n], 3]*expectation[n] + w[item[n], 4]*interaction[n];
+}
+lrt ~ normal(mu,sigma_e);        // likelihood
+}
+generated quantities {
+cov_matrix[4] Sigma_u;
+cov_matrix[4] Sigma_w;
+Sigma_u <- D_u * Omega_u * D_u;
+Sigma_w <- D_w * Omega_w * D_w;
+}
+'
+
+
+set_cppo('fast')
+
+fit <- stan(model_code = expt2_code, data = e2data, 
+            iter = 1000, chains = 2)
+
+print(fit,digits=4)
+
+xtabs(~dist+item,CP1)
+
+summary(lmer(log(rt)~exp+dist+int+(1|subj)+(1|item),CP1))
+
+mcmcChains<-as.matrix(fit)
+
+## Distance
+table(mcmcChains[,2]<0)[2]/sum(table(mcmcChains[,2]<0))
+
+## Expectation
+table(mcmcChains[,3]<0)[2]/sum(table(mcmcChains[,3]<0))
+
+## Int
+table(mcmcChains[,4]>0)[2]/sum(table(mcmcChains[,4]>0))
+
+## nested model fit:
+expt2_codenested <-'
+data {
+    int<lower=0> N;
+    real lrt[N];                     //outcome
+real expectation[N];                     //predictor
+real dist_cp[N];
+real dist_sp[N];
+int<lower=1> I;                 //number of subjects
+int<lower=1> K;                 //number of items
+int<lower=1, upper=I> subj[N];    //subject id
+int<lower=1, upper=K> item[N];    //item id
+vector[4] mu_prior;             //vector of zeros passed in from R
+}
+transformed data {
+real ZERO;                      // like #define ZERO 0 in C/C++
+ZERO <- 0.0;
+}
+parameters {
+vector[4] beta;                 // intercept and slope
+vector[4] u[I];                 // random intercept and slopes subj
+vector[4] w[K];
+real<lower=0> sigma_e;          // residual sd
+vector<lower=0>[4] sigma_u;     // subj sd
+vector<lower=0>[4] sigma_w;     // item sd
+corr_matrix[4] Omega_u;           // correlation matrix for random intercepts and slopes subj
+corr_matrix[4] Omega_w;           // correlation matrix for random intercepts and slopes item
+}
+transformed parameters {
+matrix[4,4] D_u;
+matrix[4,4] D_w;
+D_u <- diag_matrix(sigma_u);
+D_w <- diag_matrix(sigma_w);
+}
+model {
+matrix[4,4] L_u;
+matrix[4,4] DL_u;
+matrix[4,4] L_w;
+matrix[4,4] DL_w;
+real mu[N]; // mu for likelihood
+//priors:
+beta ~ normal(0,10);
+sigma_e ~ normal(0,10);
+sigma_u ~ normal(0,10);
+sigma_w ~ normal(0,10);
+Omega_u ~ lkj_corr(1.0);
+Omega_w ~ lkj_corr(1.0);
+L_u <- cholesky_decompose(Omega_u);
+L_w <- cholesky_decompose(Omega_w);
+for (m in 1:4) {
+for (n in 1:m) {
+DL_u[m,n] <- L_u[m,n] * sigma_u[m];
+}
+}
+for (m in 1:4){
+for (n in (m+1):4){
+DL_u[m,n] <- ZERO;
+}
+}
+for (m in 1:4){
+for (n in 1:m){
+DL_w[m,n] <- L_w[m,n] * sigma_w[m];
+}
+}
+for (m in 1:4){
+for (n in (m+1):4){
+DL_w[m,n] <- ZERO;
+}
+}
+for (i in 1:I)                  // loop for subj random effects
+u[i] ~ multi_normal_cholesky(mu_prior, DL_u);
+for (k in 1:K)                  // loop for item random effects
+w[k] ~ multi_normal_cholesky(mu_prior, DL_w);    
+for (n in 1:N) {
+mu[n] <- beta[1] + beta[2]*dist_cp[n] + beta[3]*dist_sp[n] + beta[4]*expectation[n] 
++ u[subj[n], 1] + u[subj[n], 2]*dist_cp[n] + u[subj[n], 3]*dist_sp[n] + u[subj[n], 4]*expectation[n]+ w[item[n], 1] + w[item[n], 2]*dist_cp[n] + w[item[n], 3]*dist_sp[n] + w[item[n], 4]*expectation[n];
+}
+lrt ~ normal(mu,sigma_e);        // likelihood
+}
+generated quantities {
+cov_matrix[4] Sigma_u;
+cov_matrix[4] Sigma_w;
+Sigma_u <- D_u * Omega_u * D_u;
+Sigma_w <- D_w * Omega_w * D_w;
+}
+'
+
+fitnested <- stan(model_code = expt2_codenested, data = e2data, 
+            iter = 1000, chains = 2)
+
+print(fitnested,digits=4)
+
+summary(lmer(log(rt)~dist.cp+dist.sp+exp+(1|subj)+(1|item),CP1))
+
+mcmcChains<-as.matrix(fitnested)
+
+hist(mcmcChains[,2])
+hist(mcmcChains[,3])
+
+
+## Distance CP
+table(mcmcChains[,2]>0)[2]/sum(table(mcmcChains[,2]>0)) 
+0.821/(1-0.821)
+
+## Distance SP
+table(mcmcChains[,3]<0)[2]/sum(table(mcmcChains[,3]<0)) 
+0.596/(1-0.596 )
+
+## Expectation
+table(mcmcChains[,3]<0)
+
+## Int
+table(mcmcChains[,4]>0)[2]/sum(table(mcmcChains[,4]>0))
+
+
+@
+
+\end{document}
