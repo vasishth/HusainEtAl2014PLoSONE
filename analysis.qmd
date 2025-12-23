@@ -84,7 +84,7 @@ zs     <- fixefs/SEs
 e1acc <- round(cbind(fixefs, SEs, zs),digits = 2)[2:4, 1:3]
 
 rownames(e1acc) <- c("Distance", "RC Type", "DistxRC Type")
-colnames(e1acc) < -c("coef.", "SE", "z-score")
+colnames(e1acc) <- c("coef.", "SE", "z-score")
 ```
 
 ```{r}
@@ -135,7 +135,7 @@ RC1$rrt <- -1000/RC1$rt
 ## we will use log rt:
 RC1$lrt <- log(RC1$rt)
 
-m0 < -lmer(
+m0 <- lmer(
     lrt~dist+RCType+int+(1+dist+RCType+int|subj)+(1|item),
     subset(RC1, region == "RCVerb" & rrt>-10)
 )
@@ -185,7 +185,7 @@ xtable(
 )
 ```
 
-```{r}
+```{r eval=FALSE}
 #| echo: false
 
 xtable(
@@ -220,203 +220,6 @@ xtable(
 )
 ```
 
-### Stan analyses
-*ANOVA contrasts:*
-```{r}
-#RC1 <- read.table("expt1critdata.txt", header = T)
-
-RC1 <- subset(RC1, region == "RCVerb" & rrt>-10)
-
-e1data <- list(
-  mu_prior = c(0, 0, 0, 0),
-  subj = sort(as.integer(factor(RC1$subj))),
-  item = sort(as.integer(factor(RC1$item))),
-  lrt = RC1$lrt,
-  distance = RC1$dist,
-  rctype = RC1$RCType,
-  interaction = RC1$int,
-  dist_SR = RC1$dist.SR,
-  dist_OR = RC1$dist.OR,
-  N = nrow(RC1),
-  I = length(unique(RC1$subj)),
-  K = length(unique(RC1$item))
-)  
-
-# this can probably be moved to a separate file /Johan
-expt1_code <- '
-data {
-int<lower = 0> N;
-real lrt[N];                     //outcome
-real distance[N];                     //predictor
-real rctype[N];                     //predictor
-real interaction[N];                     //predictor
-int<lower = 1> I;                 //number of subjects
-int<lower = 1> K;                 //number of items
-int<lower = 1, upper = I> subj[N];    //subject id
-int<lower = 1, upper = K> item[N];    //item id
-vector[4] mu_prior;             //vector of zeros passed in from R
-}
-transformed data {
-real ZERO;                      // like #define ZERO 0 in C/C++
-ZERO <- 0.0;
-}
-parameters {
-vector[4] beta;                 // intercept and slope
-vector[4] u[I];                 // random intercept and slopes subj
-vector[4] w[K];
-real<lower = 0> sigma_e;          // residual sd
-vector<lower = 0>[4] sigma_u;     // subj sd
-vector<lower = 0>[4] sigma_w;     // item sd
-corr_matrix[4] Omega_u;           // correlation matrix for random intercepts and slopes subj
-corr_matrix[4] Omega_w;           // correlation matrix for random intercepts and slopes item
-}
-transformed parameters {
-matrix[4, 4] D_u;
-matrix[4, 4] D_w;
-D_u <- diag_matrix(sigma_u);
-D_w <- diag_matrix(sigma_w);
-}
-model {
-matrix[4, 4] L_u;
-matrix[4, 4] DL_u;
-matrix[4, 4] L_w;
-matrix[4, 4] DL_w;
-real mu[N]; // mu for likelihood
-//priors:
-beta ~ normal(0, 10);
-sigma_e ~ normal(0, 10);
-sigma_u ~ normal(0, 10);
-sigma_w ~ normal(0, 10);
-Omega_u ~ lkj_corr(4.0);
-Omega_w ~ lkj_corr(4.0);
-L_u <- cholesky_decompose(Omega_u);
-L_w <- cholesky_decompose(Omega_w);
-for (m in 1:4) {
-for (n in 1:m) {
-DL_u[m, n] <- L_u[m, n] * sigma_u[m];
-}
-}
-for (m in 1:4){
-for (n in (m+1):4){
-DL_u[m, n] <- ZERO;
-}
-}
-for (m in 1:4){
-for (n in 1:m){
-DL_w[m, n] <- L_w[m, n] * sigma_w[m];
-}
-}
-for (m in 1:4){
-for (n in (m+1):4){
-DL_w[m, n] <- ZERO;
-}
-}
-for (i in 1:I)                  // loop for subj random effects
-u[i] ~ multi_normal_cholesky(mu_prior, DL_u);
-for (k in 1:K)                  // loop for item random effects
-w[k] ~ multi_normal_cholesky(mu_prior, DL_w);    
-for (n in 1:N) {
-mu[n] <- beta[1] + beta[2]*distance[n] + beta[3]*rctype[n] + beta[4]*interaction[n] + u[subj[n], 1] + u[subj[n], 2]*distance[n] + u[subj[n], 3]*rctype[n] + u[subj[n], 4]*interaction[n] + w[item[n], 1] + w[item[n], 2]*distance[n] + w[item[n], 3]*rctype[n] + w[item[n], 4]*interaction[n];
-}
-lrt ~ normal(mu, sigma_e);        // likelihood
-}
-generated quantities {
-cov_matrix[4] Sigma_u;
-cov_matrix[4] Sigma_w;
-Sigma_u <- D_u * Omega_u * D_u;
-Sigma_w <- D_w * Omega_w * D_w;
-}
-'
-```
-
-*Nested contrasts:*
-```{r}
-expt1_codenested <- '
-data {
-int<lower = 0> N;
-real lrt[N];                     //outcome
-real dist_SR[N];                     //predictor
-real dist_OR[N];                     //predictor
-real rctype[N];                     //predictor
-int<lower = 1> I;                 //number of subjects
-int<lower = 1> K;                 //number of items
-int<lower = 1, upper = I> subj[N];    //subject id
-int<lower = 1, upper = K> item[N];    //item id
-vector[4] mu_prior;             //vector of zeros passed in from R
-}
-transformed data {
-real ZERO;                      // like #define ZERO 0 in C/C++
-ZERO <- 0.0;
-}
-parameters {
-vector[4] beta;                 // intercept and slope
-vector[4] u[I];                 // random intercept and slopes subj
-vector[4] w[K];
-real<lower = 0> sigma_e;          // residual sd
-vector<lower = 0>[4] sigma_u;     // subj sd
-vector<lower = 0>[4] sigma_w;     // item sd
-corr_matrix[4] Omega_u;           // correlation matrix for random intercepts and slopes subj
-corr_matrix[4] Omega_w;           // correlation matrix for random intercepts and slopes item
-}
-transformed parameters {
-matrix[4, 4] D_u;
-matrix[4, 4] D_w;
-D_u <- diag_matrix(sigma_u);
-D_w <- diag_matrix(sigma_w);
-}
-model {
-matrix[4, 4] L_u;
-matrix[4, 4] DL_u;
-matrix[4, 4] L_w;
-matrix[4, 4] DL_w;
-real mu[N]; // mu for likelihood
-//priors:
-beta ~ normal(0, 10);
-sigma_e ~ normal(0, 10);
-sigma_u ~ normal(0, 10);
-sigma_w ~ normal(0, 10);
-Omega_u ~ lkj_corr(4.0);
-Omega_w ~ lkj_corr(4.0);
-L_u <- cholesky_decompose(Omega_u);
-L_w <- cholesky_decompose(Omega_w);
-for (m in 1:4) {
-for (n in 1:m) {
-DL_u[m, n] <- L_u[m, n] * sigma_u[m];
-}
-}
-for (m in 1:4){
-for (n in (m+1):4){
-DL_u[m, n] <- ZERO;
-}
-}
-for (m in 1:4){
-for (n in 1:m){
-DL_w[m, n] <- L_w[m, n] * sigma_w[m];
-}
-}
-for (m in 1:4){
-for (n in (m+1):4){
-DL_w[m, n] <- ZERO;
-}
-}
-for (i in 1:I)                  // loop for subj random effects
-u[i] ~ multi_normal_cholesky(mu_prior, DL_u);
-for (k in 1:K)                  // loop for item random effects
-w[k] ~ multi_normal_cholesky(mu_prior, DL_w);    
-for (n in 1:N) {
-mu[n] <- beta[1] + beta[2]*dist_SR[n] + beta[3]*dist_OR[n] + beta[4]*rctype[n] + u[subj[n], 1] + u[subj[n], 2]*dist_SR[n] + u[subj[n], 3]*dist_OR[n] + u[subj[n], 4]*rctype[n] + w[item[n], 1] + w[item[n], 2]*dist_SR[n] + w[item[n], 3]*dist_OR[n] + w[item[n], 4]*rctype[n];
-}
-lrt ~ normal(mu, sigma_e);        // likelihood
-}
-generated quantities {
-cov_matrix[4] Sigma_u;
-cov_matrix[4] Sigma_w;
-Sigma_u <- D_u * Omega_u * D_u;
-Sigma_w <- D_w * Omega_w * D_w;
-}
-'
-```
-
 ## Plots
 ```{r}
 ## Data preparation for plotting:
@@ -438,12 +241,8 @@ region.df <- data.frame(
   region    = factor(regions)
 )
 
-## done before so redundant: # can we then remove this? /Johan
-#RC1 <- subset(RC1, region!="1" & region!="0" & region!="-")
-
 RC1$region <- drop.levels(RC1.orig$region)
-
-unique(RC1$region)
+## unique(RC1$region)
 
 #merge multiple "PreRCVerb", "PreMainVerb" regions
 ##log rt:
@@ -574,7 +373,7 @@ byregion.plot.sr <- function(
      #xlab(x.lab)+
      scale_x_continuous(x.lab, breaks = 1:7, labels = c("NP1", "RCPn", "PreRCVerb\nRCObj", "RCVerb\nPreRCVerb", "RCObj\nRCVerb", "PreMainVerb", "MainVerb")) +
      ylab(y.lab) +             
-     opts(title = mytitle) +
+     ggtitle = mytitle +
      theme_bw() +
      theme(axis.text.x = element_text(size = 7))
 }
@@ -598,7 +397,7 @@ byregion.plot.or <- function(
      #xlab(x.lab)+
      scale_x_continuous(x.lab, breaks = 1:7, labels = c("NP1", "RCPn", "PreRCVerb\nRCSubj", "RCVerb\nPreRCVerb", "RCSubj\nRCVerb", "PreMainVerb", "MainVerb"))+
      ylab(y.lab)+             
-     opts(title = mytitle) +
+     ggtitle = mytitle +
      theme_bw()+
      theme(axis.text.x = element_text(size = 7))
 }
@@ -654,7 +453,7 @@ byregion.plot.rc.distant <- function(
     #xlab(x.lab)+
     scale_x_continuous(x.lab, breaks = 1:7, labels = c("NP1", "RCPn", "RCObj\nRCSubj", "PreRCVerb", "RCVerb", "PreMainVerb", "MainVerb"))+
     ylab(y.lab)+             
-    opts(title = mytitle) +
+    ggtitle = mytitle +
     theme_bw()+
     theme(axis.text.x = element_text(size = 7))
 }
@@ -677,7 +476,7 @@ byregion.plot.rc.near <- function(
     #xlab(x.lab)+
     scale_x_continuous(x.lab, breaks = 1:7, labels = c("NP1", "RCPn", "PreRCVerb", "RCVerb", "RCObj\nRCSubj", "PreMainVerb", "MainVerb"))+
     ylab(y.lab)+             
-    opts(title = mytitle) +
+    ggitle = mytitle +
     theme_bw()+
     theme(axis.text.x = element_text(size = 7))
 }
@@ -752,7 +551,7 @@ CP1$region[CP1$region == 'PreMV' & CP1$item == 15 & CP1$cond == 'b'] <- 'PreLV'
 ```{r}
 completiondata <- read.table("sentence_completion_stats.txt", header = T)
 ##probabilities:
-# where do these come from? /Johan
+# These come from sentence completion data, collected using paper-pencil questionnaires.
 probs <- c(
   0.5, 0.3,
   1,   0.2,
@@ -830,8 +629,6 @@ colnames(e2acc) <- c("coef.", "SE", "z-score")
 ```{r}
 #| echo: false
 
-# I added this for completeness /Johan
-
 xtable(
   e2acc,
   caption = "The main effect of distance, of RC Type, and their interaction on question-response accuracy in Experiment 2."
@@ -886,8 +683,11 @@ CP1.cd.crit <- subset(CP1, region == "MainVerb")
 CP1.crit    <- rbind(CP1.ab.crit, CP1.cd.crit)
 
 CP1.crit$region2 <- factor("crit")
+```
 
 ## Summary for Johan paper:
+
+```{r}
 head(CP1.crit)
 means <- with(CP1.crit, tapply(rt, cond, mean))
 means
@@ -1030,7 +830,7 @@ byregion.plot.cp <- function(
   #xlab(x.lab)+
   scale_x_continuous(x.lab, breaks = 1:6, labels = c("PreNounPred", "CPNounPred", "PreLV", "CPLightVerb", "PreCoordMV", "CoordMainVerb")) +
   ylab(y.lab) +             
-  opts(title = mytitle) +
+  ggtitle = mytitle +
   theme_bw() +
   theme(axis.text.x = element_text(size = 7))
 }
@@ -1051,7 +851,7 @@ byregion.plot.sp <- function(
   #xlab(x.lab)+
   scale_x_continuous(x.lab, breaks = 1:6, labels = c("PreMVObj", "MVObj", "PreMV", "MainVerb", "PreCoordMV", "CoordMainVerb")) +
   ylab(y.lab) +             
-  opts(title = mytitle) +
+  ggtitle = mytitle +
   theme_bw() +
   theme(axis.text.x = element_text(size = 7))
 }
@@ -1111,7 +911,7 @@ byregion.plot2.short <- function(
                   #xlab(x.lab)+
   scale_x_continuous(x.lab, breaks = 1:6, labels = c("PreNounPred\nPreMVObj", "CPNounPred\nMVObj", "PreLV\nPreMV", "CPLightVerb\nMainVerb", "PreCoordMV", "CoordMainVerb"))+
   ylab(y.lab)+             
-  opts(title = mytitle) +
+  ggtitle = mytitle +
   theme_bw()+
   theme(axis.text.x = element_text(size = 7))
 }
@@ -1134,7 +934,7 @@ byregion.plot2.long <- function(
                   #xlab(x.lab)+
   scale_x_continuous(x.lab, breaks = 1:6, labels = c("PreNounPred\nPreMVObj", "CPNounPred\nMVObj", "PreLV\nPreMV", "CPLightVerb\nMainVerb", "PreCoordMV", "CoordMainVerb"))+
   ylab(y.lab)+             
-  opts(title = mytitle) +
+  ggtitle = mytitle +
   theme_bw()+
   theme(axis.text.x = element_text(size = 7))
 }
@@ -1159,7 +959,7 @@ byregion.plot2.long <- function(
 ```
 
 ## Reading time analyses
-### Frequentist
+### Frequentist 
 #### Critical region
 ##### ANOVA contrast
 Using factorial coding for high and low expectation.
@@ -1179,7 +979,6 @@ Using factorial coding for high and low expectation.
 
 #m0.anova.crit.asfactor <- lmer(lrt~dist+exp+int+(1+dist+exp+int|subj)+(1+dist+exp+int|item),subset(CP1.critdata, region2 == "crit"))
 
-# typo here: (1+|item) -> (1|item) /Johan
 m01.anova.crit.asfactor <- lmer(lrt~dist+exp+int+(1|subj)+(1|item), subset(CP1.critdata, region2 == "crit"))
 m02.anova.crit.asfactor <- lmer(
   lrt~dist+exp+int+(1+dist+exp+int|subj)+(1|item), subset(CP1.critdata, region2 == "crit"),
@@ -1277,6 +1076,7 @@ colnames(expt4aovpostcrit) <- c("coef.", "SE", "t-value")
 ```
 
 *Nested contrasts:*
+
 ```{r}
 m0.nested.postcrit <- lmer(
   lrt~(dist.exp+dist.noexp+exp)*scale(probs, scale = F)+(1+(dist.exp+dist.noexp+exp)*scale(probs, scale = F)|subj)+(1+dist.exp+dist.noexp+exp|item),
@@ -1306,267 +1106,3 @@ CP1.pos2$lrt <- log(CP1.pos2$rt)
 
 m0 <- lmer(lrt~exp+dist+int+(1+exp+dist+int|subj)+(1+exp+dist+int|item), CP1.pos2)
 ```
-
-### Bayesian
-#### Critical region
-*ANOVA contrasts*
-```{r}
-CP1 <- CP1.crit
-
-CP1$dist.cp <- ifelse(CP1$cond %in% c("a"), -1, ifelse(CP1$cond %in% c("b"), 1, 0))
-CP1$dist.sp <- ifelse(CP1$cond %in% c("c"), -1, ifelse(CP1$cond %in% c("d"), 1, 0))
-  
-## anova contrasts:
-CP1$dist <- ifelse(CP1$cond%in%c("a", "c"), -1,  1)
-CP1$int  <- ifelse(CP1$cond%in%c("a", "d"), -1,  1)
-CP1$exp  <- ifelse(CP1$cond%in%c("a", "b"),  1, -1)
-                    
-e2data <- list(
-  mu_prior    = c(0, 0, 0, 0),
-  subj        = sort(as.integer(factor(CP1$subj))),
-  item        = sort(as.integer(factor(CP1$item))),
-  lrt         = log(CP1$rt),
-  distance    = CP1$dist,
-  expectation = CP1$exp,
-  interaction = CP1$int,
-  dist_cp     = CP1$dist.cp,
-  dist_sp     = CP1$dist.sp,
-  N           = nrow(CP1),
-  I           = length(unique(CP1$subj)),
-  K           = length(unique(CP1$item))
-)  
-
-expt2_code <-'
-data {
-    int<lower = 0> N;
-    real lrt[N];                     //outcome
-real distance[N];                     //predictor
-real expectation[N];                     //predictor
-real interaction[N];                     //predictor
-int<lower = 1> I;                 //number of subjects
-int<lower = 1> K;                 //number of items
-int<lower = 1, upper = I> subj[N];    //subject id
-int<lower = 1, upper = K> item[N];    //item id
-vector[4] mu_prior;             //vector of zeros passed in from R
-}
-transformed data {
-real ZERO;                      // like #define ZERO 0 in C/C++
-ZERO <- 0.0;
-}
-parameters {
-vector[4] beta;                 // intercept and slope
-vector[4] u[I];                 // random intercept and slopes subj
-vector[4] w[K];
-real<lower = 0> sigma_e;          // residual sd
-vector<lower = 0>[4] sigma_u;     // subj sd
-vector<lower = 0>[4] sigma_w;     // item sd
-corr_matrix[4] Omega_u;           // correlation matrix for random intercepts and slopes subj
-corr_matrix[4] Omega_w;           // correlation matrix for random intercepts and slopes item
-}
-transformed parameters {
-matrix[4, 4] D_u;
-matrix[4, 4] D_w;
-D_u <- diag_matrix(sigma_u);
-D_w <- diag_matrix(sigma_w);
-}
-model {
-matrix[4, 4] L_u;
-matrix[4, 4] DL_u;
-matrix[4, 4] L_w;
-matrix[4, 4] DL_w;
-real mu[N]; // mu for likelihood
-//priors:
-beta ~ normal(0, 10);
-sigma_e ~ normal(0, 10);
-sigma_u ~ normal(0, 10);
-sigma_w ~ normal(0, 10);
-Omega_u ~ lkj_corr(1.0);
-Omega_w ~ lkj_corr(1.0);
-L_u <- cholesky_decompose(Omega_u);
-L_w <- cholesky_decompose(Omega_w);
-for (m in 1:4) {
-for (n in 1:m) {
-DL_u[m, n] <- L_u[m, n] * sigma_u[m];
-}
-}
-for (m in 1:4){
-for (n in (m+1):4){
-DL_u[m, n] <- ZERO;
-}
-}
-for (m in 1:4){
-for (n in 1:m){
-DL_w[m, n] <- L_w[m, n] * sigma_w[m];
-}
-}
-for (m in 1:4){
-for (n in (m+1):4){
-DL_w[m, n] <- ZERO;
-}
-}
-for (i in 1:I)                  // loop for subj random effects
-u[i] ~ multi_normal_cholesky(mu_prior, DL_u);
-for (k in 1:K)                  // loop for item random effects
-w[k] ~ multi_normal_cholesky(mu_prior, DL_w);    
-for (n in 1:N) {
-mu[n] <- beta[1] + beta[2]*distance[n] + beta[3]*expectation[n] + beta[4]*interaction[n] 
-+ u[subj[n], 1] + u[subj[n], 2]*distance[n] + u[subj[n], 3]*expectation[n] + u[subj[n], 4]*interaction[n]+ w[item[n], 1] + w[item[n], 2]*distance[n] + w[item[n], 3]*expectation[n] + w[item[n], 4]*interaction[n];
-}
-lrt ~ normal(mu, sigma_e);        // likelihood
-}
-generated quantities {
-cov_matrix[4] Sigma_u;
-cov_matrix[4] Sigma_w;
-Sigma_u <- D_u * Omega_u * D_u;
-Sigma_w <- D_w * Omega_w * D_w;
-}
-'
-
-
-set_cppo('fast')
-
-fit <- stan(
-  model_code = expt2_code,
-  data = e2data, 
-  iter = 1000,
-  chains = 2
-)
-
-print(fit, digits = 4)
-
-xtabs(~dist+item, CP1)
-
-summary(lmer(log(rt)~exp+dist+int+(1|subj)+(1|item),CP1))
-
-mcmcChains <- as.matrix(fit)
-
-## Distance
-table(mcmcChains[,2]<0)[2]/sum(table(mcmcChains[,2]<0))
-
-## Expectation
-table(mcmcChains[,3]<0)[2]/sum(table(mcmcChains[,3]<0))
-
-## Int
-table(mcmcChains[,4]>0)[2]/sum(table(mcmcChains[,4]>0))
-```
-
-*Nested contrasts:*
-```{r}
-## nested model fit:
-expt2_codenested <-'
-data {
-    int<lower = 0> N;
-    real lrt[N];                     //outcome
-real expectation[N];                     //predictor
-real dist_cp[N];
-real dist_sp[N];
-int<lower = 1> I;                 //number of subjects
-int<lower = 1> K;                 //number of items
-int<lower = 1, upper = I> subj[N];    //subject id
-int<lower = 1, upper = K> item[N];    //item id
-vector[4] mu_prior;             //vector of zeros passed in from R
-}
-transformed data {
-real ZERO;                      // like #define ZERO 0 in C/C++
-ZERO <- 0.0;
-}
-parameters {
-vector[4] beta;                 // intercept and slope
-vector[4] u[I];                 // random intercept and slopes subj
-vector[4] w[K];
-real<lower = 0> sigma_e;          // residual sd
-vector<lower = 0>[4] sigma_u;     // subj sd
-vector<lower = 0>[4] sigma_w;     // item sd
-corr_matrix[4] Omega_u;           // correlation matrix for random intercepts and slopes subj
-corr_matrix[4] Omega_w;           // correlation matrix for random intercepts and slopes item
-}
-transformed parameters {
-matrix[4, 4] D_u;
-matrix[4, 4] D_w;
-D_u <- diag_matrix(sigma_u);
-D_w <- diag_matrix(sigma_w);
-}
-model {
-matrix[4, 4] L_u;
-matrix[4, 4] DL_u;
-matrix[4, 4] L_w;
-matrix[4, 4] DL_w;
-real mu[N]; // mu for likelihood
-//priors:
-beta ~ normal(0, 10);
-sigma_e ~ normal(0, 10);
-sigma_u ~ normal(0, 10);
-sigma_w ~ normal(0, 10);
-Omega_u ~ lkj_corr(1.0);
-Omega_w ~ lkj_corr(1.0);
-L_u <- cholesky_decompose(Omega_u);
-L_w <- cholesky_decompose(Omega_w);
-for (m in 1:4) {
-for (n in 1:m) {
-DL_u[m, n] <- L_u[m, n] * sigma_u[m];
-}
-}
-for (m in 1:4){
-for (n in (m+1):4){
-DL_u[m, n] <- ZERO;
-}
-}
-for (m in 1:4){
-for (n in 1:m){
-DL_w[m, n] <- L_w[m, n] * sigma_w[m];
-}
-}
-for (m in 1:4){
-for (n in (m+1):4){
-DL_w[m, n] <- ZERO;
-}
-}
-for (i in 1:I)                  // loop for subj random effects
-u[i] ~ multi_normal_cholesky(mu_prior, DL_u);
-for (k in 1:K)                  // loop for item random effects
-w[k] ~ multi_normal_cholesky(mu_prior, DL_w);    
-for (n in 1:N) {
-mu[n] <- beta[1] + beta[2]*dist_cp[n] + beta[3]*dist_sp[n] + beta[4]*expectation[n] 
-+ u[subj[n], 1] + u[subj[n], 2]*dist_cp[n] + u[subj[n], 3]*dist_sp[n] + u[subj[n], 4]*expectation[n]+ w[item[n], 1] + w[item[n], 2]*dist_cp[n] + w[item[n], 3]*dist_sp[n] + w[item[n], 4]*expectation[n];
-}
-lrt ~ normal(mu, sigma_e);        // likelihood
-}
-generated quantities {
-cov_matrix[4] Sigma_u;
-cov_matrix[4] Sigma_w;
-Sigma_u <- D_u * Omega_u * D_u;
-Sigma_w <- D_w * Omega_w * D_w;
-}
-'
-
-fitnested <- stan(
-  model_code = expt2_codenested,
-  data = e2data, 
-  iter = 1000,
-  chains = 2
-)
-
-print(fitnested, digits = 4)
-
-summary(lmer(log(rt)~dist.cp+dist.sp+exp+(1|subj)+(1|item), CP1))
-
-mcmcChains <- as.matrix(fitnested)
-
-hist(mcmcChains[,2])
-hist(mcmcChains[,3])
-
-## Distance CP
-table(mcmcChains[,2]>0)[2]/sum(table(mcmcChains[,2]>0)) 
-0.821/(1-0.821)
-
-## Distance SP
-table(mcmcChains[,3]<0)[2]/sum(table(mcmcChains[,3]<0)) 
-0.596/(1-0.596 )
-
-## Expectation
-table(mcmcChains[,3]<0)
-
-## Int
-table(mcmcChains[,4]>0)[2]/sum(table(mcmcChains[,4]>0))
-```
-
