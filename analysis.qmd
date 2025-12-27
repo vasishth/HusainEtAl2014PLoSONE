@@ -549,7 +549,7 @@ CP1$region[CP1$region == 'PreMV' & CP1$item == 15 & CP1$cond == 'b'] <- 'PreLV'
 
 ## Sentence completion study analysis
 ```{r}
-completiondata <- read.table("sentence_completion_stats.txt", header = T)
+completiondata <- read.table("data/sentence_completion_stats.txt", header = T)
 ## the correct verbs:
 verbs<-completiondata$verb
 #For each row in df, look up the verb, then choose
