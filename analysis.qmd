@@ -550,31 +550,22 @@ CP1$region[CP1$region == 'PreMV' & CP1$item == 15 & CP1$cond == 'b'] <- 'PreLV'
 ## Sentence completion study analysis
 ```{r}
 completiondata <- read.table("sentence_completion_stats.txt", header = T)
-##probabilities:
-# These come from sentence completion data, collected using paper-pencil questionnaires.
-probs <- c(
-  0.5, 0.3,
-  1,   0.2,
-  1,   0.3,
-  0.9, 0,
-  0.9, 0,
-  1,   0.4,
-  0.8, 0.3,
-  0.2, 0,
-  1,   0.7,
-  1,   0,
-  1,   0,
-  1,   0.1,
-  1,   0,
-  0.5, 0,
-  1,   0,
-  1,   0.5
-)
-  
+## the correct verbs:
+verbs<-completiondata$verb
+#For each row in df, look up the verb, then choose
+## the column that corresponds to that verb and save the proportion:
+n<-dim(completiondata)[1]
+pr<-rep(NA,n)
+for(i in 1:n){
+  vb<-completiondata[i,]$verb
+  pr[i]<-completiondata[i,vb]
+}
+
+
 probabilities <- data.frame(
   item  = rep(1:16, each = 4),
   cond  = rep(letters[1:4],16),
-  probs = rep(probs, each = 2)
+  probs = rep(pr, each = 2)
 )
 
 meanprobs <- with(probabilities, tapply(probs, cond, mean))
