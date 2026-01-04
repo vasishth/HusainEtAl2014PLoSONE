@@ -17,12 +17,7 @@ library(lme4)
 library(plyr)
 library(reshape)
 library(xtable)
-```
 
-
-# Experiment 1
-The experiment `RC1` refers to the replication of Levy et al. (2013).
-```{r}
 data <- read.table("data/data.txt", header = F)
 
 colnames(data) <- c("subj",
@@ -33,8 +28,11 @@ colnames(data) <- c("subj",
                     "word",
                     "region",
                     "rt")
+```
 
-
+# Experiment 1
+The experiment `RC1` refers to the replication of Levy et al. (2013).
+```{r}
 ## RC1: Levy et al Russian RCs replication
 #RC1: Distance manipulaton between relative pronoun and the relative clause verb in Subject RCs and Object RCs. Replication of the Levy Russian RC paper.
 
@@ -58,8 +56,8 @@ RC1$dist.OR  <- ifelse(RC1$cond == "c",  1,
 RC1$RCType   <- ifelse(RC1$cond%in%c("a", "b"), -1, 1)
 
 ## anova contrasts:
-RC1$dist <- ifelse(RC1$cond%in%c("a", "c"), 1, -1)
-RC1$int <- ifelse(RC1$cond%in%c("a", "d"), -1,  1)
+RC1$dist <- ifelse(RC1$cond %in% c("a", "c"),  1, -1)
+RC1$int  <- ifelse(RC1$cond %in% c("a", "d"), -1,  1)
 
 questions.RC1      <- subset(RC1, word %in% c("Y", "N"))
 questions.RC1$acc  <- as.numeric(as.character(questions.RC1$region))
@@ -84,7 +82,7 @@ zs     <- fixefs/SEs
 e1acc <- round(cbind(fixefs, SEs, zs),digits = 2)[2:4, 1:3]
 
 rownames(e1acc) <- c("Distance", "RC Type", "DistxRC Type")
-colnames(e1acc) < -c("coef.", "SE", "z-score")
+colnames(e1acc) <- c("coef.", "SE", "z-score")
 ```
 
 ```{r}
@@ -128,23 +126,28 @@ RC1 <- subset(RC1, region!="1" & region!="0" & region!="-")
 
 RC1$region <- drop.levels(RC1$region)
 
-RC1.orig <- RC1
+RC1.orig <- RC1 # this isn't really the original RC1 /Johan
 
 ## box-cox transform:
 RC1$rrt <- -1000/RC1$rt
 ## we will use log rt:
 RC1$lrt <- log(RC1$rt)
 
-m0 < -lmer(
-    lrt~dist+RCType+int+(1+dist+RCType+int|subj)+(1|item),
-    subset(RC1, region == "RCVerb" & rrt>-10)
+m0 <- lmer(
+  lrt~dist+RCType+int+(1+dist+RCType+int|subj)+(1|item),
+  subset(RC1, region == "RCVerb" & rrt>-10)
 )
 
 fixefs <- round(fixef(m0)[2:4], digits = 3)
 SEs    <- round(sqrt(diag(vcov(m0)))[2:4], digits = 3)
 ts     <- round(fixefs/SEs, digits = 2)
 
+expt1RCVerbresults <- cbind(fixefs, SEs, ts)
+rownames(expt1RCVerbresults) <- c("Distance", "RC Type", "Distance x RC Type")
+colnames(expt1RCVerbresults) <- c("coef.", "SE", "t-value")
+
 ## we could be discussing predictions in terms of preRCverb, but complicates presentation for reader:
+# potentially irrelevant analysis /Johan
 m0.pre <- lmer(
     lrt~dist+RCType+int+(1+dist+RCType+int|subj)+(1+dist+RCType+int|item),
     subset(RC1, region == "PreRCVerb" & rrt>-10)
@@ -153,20 +156,6 @@ m0.pre <- lmer(
 fixefs.pre <- round(fixef(m0.pre)[2:4],digits = 3)
 SEs.pre <- round(sqrt(diag(vcov(m0.pre)))[2:4],digits = 3)
 ts.pre <- round(fixefs.pre/SEs.pre, digits = 2)
-
-#library(car)
-#qqPlot(residuals(m0.prercverb))
-
-## all model assumptions more or less OK:
-#qqPlot(residuals(m0))
-
-#qqPlot(ranef(m0)$subj[1])
-#qqPlot(ranef(m0)$subj[2])
-#qqPlot(ranef(m0)$item)
-
-expt1RCVerbresults <- cbind(fixefs, SEs, ts)
-rownames(expt1RCVerbresults) <- c("Distance", "RC Type", "Distance x RC Type")
-colnames(expt1RCVerbresults) <- c("coef.", "SE", "t-value")
 
 expt1RCVerbresults.pre <- cbind(fixefs.pre, SEs.pre, ts.pre)
 rownames(expt1RCVerbresults.pre) <- c("Distance", "RC Type", "Distance x RC Type")
@@ -182,15 +171,6 @@ xtable(
   precrit.crite1,
   caption = "The main effect of distance, of RC Type, and their interaction on reading times at the pre-critical and critical regions in Experiment 1.",
   label = "tab:e1RCVerb"
-)
-```
-
-```{r}
-#| echo: false
-
-xtable(
-  expt1RCVerbresultsnested,
-  caption = "The main effect of distance within SRs and ORs, and the main effect of RC Type at the critical region in Experiment 1.", label = "tab:e1RCVerbnested"
 )
 ```
 
@@ -225,22 +205,22 @@ xtable(
 ```{r}
 #RC1 <- read.table("expt1critdata.txt", header = T)
 
-RC1 <- subset(RC1, region == "RCVerb" & rrt>-10)
+RC1.rcverb <- subset(RC1, region == "RCVerb" & rrt>-10)
 
 e1data <- list(
   mu_prior = c(0, 0, 0, 0),
-  subj = sort(as.integer(factor(RC1$subj))),
-  item = sort(as.integer(factor(RC1$item))),
-  lrt = RC1$lrt,
-  distance = RC1$dist,
-  rctype = RC1$RCType,
-  interaction = RC1$int,
-  dist_SR = RC1$dist.SR,
-  dist_OR = RC1$dist.OR,
-  N = nrow(RC1),
-  I = length(unique(RC1$subj)),
-  K = length(unique(RC1$item))
-)  
+  subj = sort(as.integer(factor(RC1.rcverb$subj))),
+  item = sort(as.integer(factor(RC1.rcverb$item))),
+  lrt = RC1.rcverb$lrt,
+  distance = RC1.rcverb$dist,
+  rctype = RC1.rcverb$RCType,
+  interaction = RC1.rcverb$int,
+  dist_SR = RC1.rcverb$dist.SR,
+  dist_OR = RC1.rcverb$dist.OR,
+  N = nrow(RC1.rcverb),
+  I = length(unique(RC1.rcverb$subj)),
+  K = length(unique(RC1.rcverb$item))
+)
 
 # this can probably be moved to a separate file /Johan
 expt1_code <- '
@@ -419,6 +399,9 @@ Sigma_w <- D_w * Omega_w * D_w;
 
 ## Plots
 ```{r}
+# something is wrong with these plots /Johan
+# the by-region plots are not working
+
 ## Data preparation for plotting:
 
 ## crit region RCVerb:
@@ -441,7 +424,7 @@ region.df <- data.frame(
 ## done before so redundant: # can we then remove this? /Johan
 #RC1 <- subset(RC1, region!="1" & region!="0" & region!="-")
 
-RC1$region <- drop.levels(RC1.orig$region)
+#RC1$region <- drop.levels(RC1.orig$region)
 
 unique(RC1$region)
 
@@ -516,38 +499,28 @@ M.id.w <- cast(
   temp,
   RCType+Dist+cond+region+region.id ~ ., 
   function(x) c(M = mean(x), SE = sd(x)/sqrt(length(x)), N = length(x) ) ) 
+```
 
+```{r}
 pd <- position_dodge(width = 0.05)
 k <- 1
-
-## for PLoS ONE:
-bitmap("e1critregion.tiff", height = 4, width = 7, units = 'in', type = "tifflzw", res = 600)
                                         
 (p1a <- ggplot(subset(M.id.w, region == "RCVerb"), 
                aes(x = Dist, y = M, group = RCType)) +
-     geom_point(shape = 21, fill = "white", size = k*3) +
-     geom_line(aes(linetype = RCType), size = k) +
-     geom_errorbar(aes(ymin = M-2*SE, ymax = M+2*SE),
-                   width = .1, size = k) +
-     xlab("Distance") +
-     ylab("reading time [log ms]") +
-     scale_colour_hue(name = "relative clause type", # Legend label, use darker colors
-                      breaks = c("src", "orc"),
-                      labels = c("SRC", "ORC"),
-                      l = 40)+                     
-     labs(title = "Critical region [RC verb]") +
-     #    scale_y_continuous(limits = c(600, 900))
-     theme_bw() +
-     labs(legend.position = c(.87, .6))
-     #Position legend inside
-   # This must go after theme_bw
-  )
-dev.off()
-
-## for paper:
-pdf("expt1critregion.pdf")
-p1a
-dev.off()
+   geom_point(shape = 21, fill = "white", size = k*3) +
+   geom_line(aes(linetype = RCType), size = k) +
+   geom_errorbar(aes(ymin = M-2*SE, ymax = M+2*SE),
+                 width = .1, size = k) +
+   xlab("Distance") +
+   ylab("reading time [log ms]") +
+   scale_colour_hue(name = "relative clause type", # Legend label, use darker colors
+                    breaks = c("src", "orc"),
+                    labels = c("SRC", "ORC"),
+                    l = 40)+                     
+   labs(title = "Critical region [RC verb]") +
+   theme_bw() +
+   labs(legend.position = c(.87, .6))
+)
 
 M.id.w.src <- subset(M.id.w, RCType == "src")
 M.id.w.src$RCType <- drop.levels(M.id.w.src$RCType)
@@ -574,7 +547,7 @@ byregion.plot.sr <- function(
      #xlab(x.lab)+
      scale_x_continuous(x.lab, breaks = 1:7, labels = c("NP1", "RCPn", "PreRCVerb\nRCObj", "RCVerb\nPreRCVerb", "RCObj\nRCVerb", "PreMainVerb", "MainVerb")) +
      ylab(y.lab) +             
-     opts(title = mytitle) +
+     ggtitle(mytitle) +
      theme_bw() +
      theme(axis.text.x = element_text(size = 7))
 }
@@ -598,12 +571,11 @@ byregion.plot.or <- function(
      #xlab(x.lab)+
      scale_x_continuous(x.lab, breaks = 1:7, labels = c("NP1", "RCPn", "PreRCVerb\nRCSubj", "RCVerb\nPreRCVerb", "RCSubj\nRCVerb", "PreMainVerb", "MainVerb"))+
      ylab(y.lab)+             
-     opts(title = mytitle) +
+     ggtitle(mytitle) +
      theme_bw()+
      theme(axis.text.x = element_text(size = 7))
 }
 
-bitmap("e1srbyregion.tiff", height = 4, width = 7, units = 'in', type = "tifflzw", res = 600)
 
 ## SRC plot:
 (plot.src <- byregion.plot.sr(
@@ -613,25 +585,12 @@ bitmap("e1srbyregion.tiff", height = 4, width = 7, units = 'in', type = "tifflzw
   x.lab = "position",
   y.lab = "reading time [log ms]")
 )
-
-dev.off()
-
-pdf("e1srbyregion.pdf")
-plot.src
-dev.off()
-
-bitmap("e1orbyregion.tiff", height = 4, width = 7, units = 'in', type = "tifflzw", res = 600)
                                         
 (plot.orc <- byregion.plot.or(
   M.id.w.orc,
   mytitle = "Effect of distance [object relatives]", k = 1,
   x.lab = "position", y.lab = "reading time [log ms]")
 )
-dev.off()
-
-pdf("e1orbyregion.pdf")
-plot.orc
-dev.off()
 
 
 ## generic function for RC type comparison:
@@ -654,7 +613,7 @@ byregion.plot.rc.distant <- function(
     #xlab(x.lab)+
     scale_x_continuous(x.lab, breaks = 1:7, labels = c("NP1", "RCPn", "RCObj\nRCSubj", "PreRCVerb", "RCVerb", "PreMainVerb", "MainVerb"))+
     ylab(y.lab)+             
-    opts(title = mytitle) +
+    ggtitle(mytitle) +
     theme_bw()+
     theme(axis.text.x = element_text(size = 7))
 }
@@ -677,7 +636,7 @@ byregion.plot.rc.near <- function(
     #xlab(x.lab)+
     scale_x_continuous(x.lab, breaks = 1:7, labels = c("NP1", "RCPn", "PreRCVerb", "RCVerb", "RCObj\nRCSubj", "PreMainVerb", "MainVerb"))+
     ylab(y.lab)+             
-    opts(title = mytitle) +
+    ggtitle(mytitle) +
     theme_bw()+
     theme(axis.text.x = element_text(size = 7))
 }
@@ -689,7 +648,7 @@ M.id.w.dist$Dist <- drop.levels(M.id.w.dist$Dist)
 M.id.w.near <- subset(M.id.w, Dist == "near")
 M.id.w.near$Dist <- drop.levels(M.id.w.near$Dist)
 
-
+# these two plots are not in the paper /Johan
 (plot.rctype.dist <- byregion.plot.rc.distant(
   M.id.w.dist,
   mytitle = "Effect of RC type (distant conditions)",
@@ -718,6 +677,8 @@ premain <- subset(RC1, region == "PreMainVerb" & rrt>-10 & cond %in% c("a", "c")
 
 # Experiment 2
 ```{r}
+CP1 <- subset(data, expt == "CP1")
+
 a.regions <- c("PreNounPred", "CPNounPred", "PreLV", "CPLightVerb", "PreCoordMV", "CoordMainVerb")
 b.regions <- c("PreNounPred", "CPNounPred", "PreLV", "CPLightVerb", "PreCoordMV", "CoordMainVerb")
 c.regions <- c("PreMVObj",    "MVObj",      "PreMV", "MainVerb",    "PreCoordMV", "CoordMainVerb")
@@ -734,18 +695,16 @@ region.df <- data.frame(
   region    = factor(regions)
 )
 
-CP1 <- subset(CP1, region!="1" & region!="0" & region!="-")
+## nested contrasts:
+CP1$dist.exp   <- ifelse(CP1$cond == "a", -1, ifelse(CP1$cond == "b", 1, 0))
+CP1$dist.noexp <- ifelse(CP1$cond == "c", -1, ifelse(CP1$cond == "d", 1, 0))
 
-CP1$region <- drop.levels(CP1$region)
-CP1$cond   <- drop.levels(CP1$cond)
+## anova contrasts:
+CP1$dist <- ifelse(CP1$cond %in% c("a", "c"), -1,  1)
+CP1$exp  <- ifelse(CP1$cond %in% c("a", "b"),  1, -1)
+CP1$int  <- ifelse(CP1$cond %in% c("a", "d"), -1,  1)
 
-#update labels in the long conditions (PreLV1, PreMV1)
-CP1$region[CP1$region == 'PreMV1'] <- 'PreMV'
-CP1$region[CP1$region == 'PreLV1'] <- 'PreLV'
-
-#Labeling error in the data; item == 15, cond == a, b. 'PreMV' should be 'PreLV'
-CP1$region[CP1$region == 'PreMV' & CP1$item == 15 & CP1$cond == 'a'] <- 'PreLV'
-CP1$region[CP1$region == 'PreMV' & CP1$item == 15 & CP1$cond == 'b'] <- 'PreLV'
+CP1$lrt <- log(CP1$rt)
 ```
 
 ## Sentence completion study analysis
@@ -795,8 +754,6 @@ t.test(conda$nounfreq, condc$nounfreq, paired = T)
 ### Response accuracy
 ```{r}
 #Experiment 4 (Complex predicate)
-##
-CP1 <- subset(data, expt == "CP1")
 
 ## question response accuracies:
 questions.CP1 <- subset(CP1, word %in% c("Y", "N"))
@@ -804,15 +761,6 @@ questions.CP1 <- subset(CP1, word %in% c("Y", "N"))
 questions.CP1$acc  <- as.numeric(as.character(questions.CP1$region))
 questions.CP1$cond <- drop.levels(questions.CP1$cond)
 mean.accs.CP1      <- round(100*with(questions.CP1, tapply(acc, cond, mean)), digits = 0)
-
-## nested:
-questions.CP1$dist.exp   <- ifelse(questions.CP1$cond == "a", -1, ifelse(questions.CP1$cond == "b", 1, 0))
-questions.CP1$dist.noexp <- ifelse(questions.CP1$cond == "c", -1, ifelse(questions.CP1$cond == "d", 1, 0))
-
-## anova contrasts:
-questions.CP1$dist <- ifelse(questions.CP1$cond%in%c("a", "c"),  -1,  1)
-questions.CP1$int  <- ifelse(questions.CP1$cond%in%c("a", "d"),  -1,  1)
-questions.CP1$exp  <- ifelse(questions.CP1$cond %in% c("a", "b"), 1, -1)
 
 # fit accuracy model with ANOVA contrasts /Johan
 m0.acc.aov <- glmer(acc~dist+exp+int+(1+dist+exp+int|subj)+(1+dist+exp+int|item), questions.CP1, family = binomial())
@@ -841,16 +789,49 @@ xtable(
 ### Response time
 ```{r}
 m0.rt.aov <- lmer(log(rt)~dist+exp+int+(1+dist+exp+int|subj)+(1|item), questions.CP1) # this response time model is never used /Johan
+
+# added the same table as everywhere else for completeness /Johan
+fixefs <- fixef(m0.rt.aov)
+SEs    <- sqrt(diag(vcov(m0.rt.aov)))
+zs     <- fixefs/SEs
+
+e2qresprt <- round(cbind(fixefs, SEs, zs), digits = 2)[2:4, 1:3]
+
+rownames(e2qresprt) <- c("Distance", "RC Type", "DistxRC Type")
+colnames(e2qresprt) <- c("coef.", "SE", "z-score")
 ```
+
+```{r}
+#| echo: false
+
+xtable(
+  e2qresprt,
+  caption = "The main effect of distance, of RC Type, and their interaction on question-response accuracy in Experiment 2."
+)
+```
+
 
 ## Plots
 ```{r}
 ## Data preparation for plotting:
+CP1 <- subset(CP1, region!="1" & region!="0" & region!="-")
+
+CP1$region <- drop.levels(CP1$region)
+CP1$cond   <- drop.levels(CP1$cond)
+
+#update labels in the long conditions (PreLV1, PreMV1)
+CP1$region[CP1$region == 'PreMV1'] <- 'PreMV'
+CP1$region[CP1$region == 'PreLV1'] <- 'PreLV'
+
+#Labeling error in the data; item == 15, cond == a, b. 'PreMV' should be 'PreLV'
+CP1$region[CP1$region == 'PreMV' & CP1$item == 15 & CP1$cond == 'a'] <- 'PreLV'
+CP1$region[CP1$region == 'PreMV' & CP1$item == 15 & CP1$cond == 'b'] <- 'PreLV'
+
 ## crit region: CPLightVerb/MainVerb:
 #merge multiple "PreNounPred", "PreMVObj", "PreLV", "PreMV", "PreCoordMV" regions
 CP1.uniq.reg <- ddply(
   CP1,
-  .(subj, expt, item, cond, region),
+  .(subj, expt, item, cond, region, dist, exp, int, dist.exp, dist.noexp),
   summarize,
   rt = sum(rt)
 )
@@ -895,7 +876,10 @@ dist <- rep(c("long", "short"), 2)
 expectation <- rep(c("expected", "unexpected"), each = 2)
 means2 <- data.frame(dist, expectation, means)
 means2
+```
 
+
+```{r}
 CP1.postcrit <- subset(CP1, region.id == 5)
 CP1.postcrit$region2 <- factor("postcrit")
 
@@ -903,34 +887,14 @@ CP1.postcrit2 <- subset(CP1, region.id == 6)
 CP1.postcrit2$region2 <- factor("postcrit2")
 
 CP1.critdata <- rbind(CP1.crit, CP1.postcrit, CP1.postcrit2)
+CP1.critdata <- merge(CP1.critdata, probabilities, by.x = c("item", "cond"), by.y = c("item", "cond"))
 
-temp <- merge(CP1.critdata, probabilities, by.x = c("item", "cond"), by.y = c("item", "cond"))
-
-# why do we need the temp? /Johan
-CP1.critdata <- temp
-
-## nested contrasts:
-CP1.critdata$dist.exp   <- ifelse(CP1.critdata$cond == "a", -1, ifelse(CP1.critdata$cond == "b", 1, 0))
-CP1.critdata$dist.noexp <- ifelse(CP1.critdata$cond == "c", -1, ifelse(CP1.critdata$cond == "d", 1, 0))
-
-## anova contrasts:
-CP1.critdata$dist <- ifelse(CP1.critdata$cond %in% c("a", "c"), -1,  1)
-CP1.critdata$int  <- ifelse(CP1.critdata$cond %in% c("a", "d"), -1,  1)
-CP1.critdata$exp  <- ifelse(CP1.critdata$cond %in% c("a", "b"),  1, -1)
-
-CP1.critdata$lrt <- log(CP1.critdata$rt)
-
-pred <- ifelse(CP1.critdata$probs<median(CP1.critdata$probs), "low", "high")
+pred <- ifelse(CP1.critdata$probs < median(CP1.critdata$probs), "low", "high")
 
 CP1.critdata$pred <- factor(pred)
 
-means.pred <- with(subset(CP1.critdata, region2 == "crit"), tapply(rt, IND = list(factor(dist), pred), mean))
-
-Exp  <- factor(ifelse(CP1.uniq.reg.merged$cond %in% c("a", "b"), "exp", "no-exp"), levels = c("exp", "no-exp"))
-Dist <- factor(ifelse(CP1.uniq.reg.merged$cond %in% c("b", "d"), "short", "long"), levels = c("short", "long"))
-
-CP1.uniq.reg.merged$Exp  <- Exp
-CP1.uniq.reg.merged$Dist <- Dist
+CP1.uniq.reg.merged$Exp  <- factor(ifelse(CP1.uniq.reg.merged$cond %in% c("a", "b"), "exp", "no-exp"), levels = c("exp", "no-exp"))
+CP1.uniq.reg.merged$Dist <- factor(ifelse(CP1.uniq.reg.merged$cond %in% c("b", "d"), "short", "long"), levels = c("short", "long"))
 
 ### log rt:
 CP1.uniq.reg.merged$lrt <- log(CP1.uniq.reg.merged$rt)
@@ -971,9 +935,7 @@ pd <- position_dodge(width = 0.05)
 k <- 1
 
 #rename 'CPLightVerb' in condition (a, b) in order to draw the plot
-M.id.w$region[M.id.w$region=='CPLightVerb'] <- 'MainVerb'
-
-bitmap("e2critregion.tiff", height = 4, width = 7, units = 'in', type = "tifflzw", res = 600)
+M.id.w$region[M.id.w$region == 'CPLightVerb'] <- 'MainVerb'
 
 MVregion <- subset(M.id.w, region == "MainVerb")
 str(MVregion)
@@ -993,17 +955,8 @@ head(MVregion)
                      labels = c("EXP", "NO-EXP"),
                      l = 40) +                     
     ggtitle("Critical region [Finite Verb]") +
-    #    scale_y_continuous(limits = c(600, 900))              
     theme_bw() 
-    #opts(legend.position = c(.87, .6))  
- #Position legend inside
- # This must go after theme_bw
 )
-dev.off()
-
-pdf("e2critregion.pdf")
-p1a
-dev.off()
 
 ## subset by Expectation condition:
 M.id.w.exp <- subset(M.id.w, Exp == "exp")
@@ -1027,10 +980,9 @@ byregion.plot.cp <- function(
   geom_errorbar(aes(ymin = M-2*SE, ymax = M+2*SE),
                 width = .1,
                 size = k) +
-  #xlab(x.lab)+
   scale_x_continuous(x.lab, breaks = 1:6, labels = c("PreNounPred", "CPNounPred", "PreLV", "CPLightVerb", "PreCoordMV", "CoordMainVerb")) +
   ylab(y.lab) +             
-  opts(title = mytitle) +
+  ggtitle(mytitle) +
   theme_bw() +
   theme(axis.text.x = element_text(size = 7))
 }
@@ -1051,13 +1003,12 @@ byregion.plot.sp <- function(
   #xlab(x.lab)+
   scale_x_continuous(x.lab, breaks = 1:6, labels = c("PreMVObj", "MVObj", "PreMV", "MainVerb", "PreCoordMV", "CoordMainVerb")) +
   ylab(y.lab) +             
-  opts(title = mytitle) +
+  ggtitle(mytitle) +
   theme_bw() +
   theme(axis.text.x = element_text(size = 7))
 }
 
 
-bitmap("e2cpbyregion.tiff", height = 4, width = 7, units = 'in', type = "tifflzw", res = 600)
 (plot.exp <- byregion.plot.cp(
   M.id.w.exp,
   mytitle = "Effect of distance [Complex predicate condition]",
@@ -1066,23 +1017,12 @@ bitmap("e2cpbyregion.tiff", height = 4, width = 7, units = 'in', type = "tifflzw
   y.lab = "reading time [log ms]"
 ))
 
-bitmap("e2spbyregion.tiff", height = 4, width = 7, units = 'in', type = "tifflzw", res = 600)
 (plot.noexp <- byregion.plot.sp(
   M.id.w.noexp,
   mytitle = "Effect of distance [Simple predicate condition]", k = 1,
   x.lab = "position",
   y.lab = "reading time [log ms]"
 ))
-
-dev.off()
-
-pdf("e2cpbyregion.pdf")
-plot.exp
-dev.off()
-
-pdf("e2spbyregion.pdf")
-plot.noexp
-dev.off()
 
 
 ## subset by Distance condition:
@@ -1111,7 +1051,7 @@ byregion.plot2.short <- function(
                   #xlab(x.lab)+
   scale_x_continuous(x.lab, breaks = 1:6, labels = c("PreNounPred\nPreMVObj", "CPNounPred\nMVObj", "PreLV\nPreMV", "CPLightVerb\nMainVerb", "PreCoordMV", "CoordMainVerb"))+
   ylab(y.lab)+             
-  opts(title = mytitle) +
+  ggtitle(mytitle) +
   theme_bw()+
   theme(axis.text.x = element_text(size = 7))
 }
@@ -1134,28 +1074,10 @@ byregion.plot2.long <- function(
                   #xlab(x.lab)+
   scale_x_continuous(x.lab, breaks = 1:6, labels = c("PreNounPred\nPreMVObj", "CPNounPred\nMVObj", "PreLV\nPreMV", "CPLightVerb\nMainVerb", "PreCoordMV", "CoordMainVerb"))+
   ylab(y.lab)+             
-  opts(title = mytitle) +
-  theme_bw()+
+  ggtitle(mytitle) +
+  theme_bw() +
   theme(axis.text.x = element_text(size = 7))
 }
-
-
-(plot.short <- byregion.plot2.short(
-  M.id.w.short,
-  mytitle = "Effect of expectation [near condition]",
-  k = 1,
-  x.lab = "position",
-  y.lab = "reading time [msec]"
-))
-
-
-(plot.long <- byregion.plot2.long(
-  M.id.w.long,
-  mytitle = "Effect of expectation [long condition]",
-  k = 1,
-  x.lab = "position",
-  y.lab = "reading time [msec]"
-))
 ```
 
 ## Reading time analyses
@@ -1164,27 +1086,8 @@ byregion.plot2.long <- function(
 ##### ANOVA contrast
 Using factorial coding for high and low expectation.
 ```{r}
-#tmp <- subset(CP1.critdata, item%in%c(2:7, 10:13, 15, 16))
-#m0.anova.crit.asfactor <- lmer(lrt~dist+exp+int+(1|subj)+(0+int|subj)+(1|item),subset(tmp, region2 == "crit"))
-#summary(m0.anova.crit.asfactor)
-
-## these models make no sense: prob and exp are the same thing, differently defined.
-#if(maximal == FALSE){
-#m0.anova.crit.asfactor <- lmer(lrt~(dist+exp+int)*scale(probs, scale = F)+(1|subj)+(1|item),subset(CP1.critdata, region2 == "crit"))
-#} else {
-  ## fails to converge:
-#m0.anova.crit <- lmer(lrt~(dist+exp+int)*scale(probs, scale = F)+(1+(dist+exp+int)*scale(probs, scale = F)|subj)+(1|item),subset(CP1.critdata, region2 == "crit"))  
-
-#m0.anova.crit <- lmer(lrt~(dist+exp+int)*scale(probs, scale = F)+(1+dist+exp+int|subj)+(1+dist+exp+int|item),subset(CP1.critdata, region2 == "crit"))  
-
-#m0.anova.crit.asfactor <- lmer(lrt~dist+exp+int+(1+dist+exp+int|subj)+(1+dist+exp+int|item),subset(CP1.critdata, region2 == "crit"))
-
 # typo here: (1+|item) -> (1|item) /Johan
 m01.anova.crit.asfactor <- lmer(lrt~dist+exp+int+(1|subj)+(1|item), subset(CP1.critdata, region2 == "crit"))
-m02.anova.crit.asfactor <- lmer(
-  lrt~dist+exp+int+(1+dist+exp+int|subj)+(1|item), subset(CP1.critdata, region2 == "crit"),
-  control = lmerControl(optimizer = "bobyqa")
-) # this model is never used again /Johan
 
 fixefs <- round(fixef(m01.anova.crit.asfactor)[2:4],digits = 3)
 SEs    <- round(sqrt(diag(vcov(m01.anova.crit.asfactor)))[2:4],digits = 3)
@@ -1252,7 +1155,7 @@ xtable(expt4aovcrit,
 *ANOVA contrasts:*
 ```{r}
 # which one of these was actually of interest? /Johan
-m0.anova.postcrit<- lmer(
+m0.anova.postcrit <- lmer(
   lrt~dist+exp+int+(1|subj)+(1|item),
   subset(CP1.critdata, region2 == "postcrit")
 )

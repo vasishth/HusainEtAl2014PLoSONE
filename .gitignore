@@ -1,1 +1,3 @@
 *.tiff
+*.pdf
+**/.DS_Store
