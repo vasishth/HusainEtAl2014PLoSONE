@@ -706,15 +706,13 @@ M.id.w <- cast(
   temp,
   Exp+Dist+cond+region+region.id ~ .,
   function(x) c(M = mean(x), SE = sd(x)/sqrt(length(x)), N = length(x))
-) 
+)
 
 pd <- position_dodge(width = 0.05)
 k <- 1
 
 #rename 'CPLightVerb' in condition (a, b) in order to draw the plot
 M.id.w$region[M.id.w$region == 'CPLightVerb'] <- 'MainVerb'
-
-MVregion <- subset(M.id.w, region == "MainVerb")
 ```
 
 ```{r}
@@ -872,17 +870,6 @@ byregion.plot2.long <- function(
 }
 ```
 not used in paper; should be removed?
-
-## Summary for Johan paper: SHOULD BE (RE-)MOVED
-```{r}
-head(CP1.crit)
-means <- with(CP1.crit, tapply(rt, cond, mean))
-means
-dist <- rep(c("long", "short"), 2)
-expectation <- rep(c("expected", "unexpected"), each = 2)
-means2 <- data.frame(dist, expectation, means)
-means2
-```
 
 ## Reading time analyses
 ### Frequentist 
