@@ -1,3 +1,7 @@
 *.tiff
 *.pdf
 **/.DS_Store
+*.html
+analysis_files/
+*.RDS
+StanAnalyses_files/
