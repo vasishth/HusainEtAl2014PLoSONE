@@ -154,16 +154,6 @@ if (file.exists("fit_expt1_nested.RDS") & !force_resample) {
 ```
 
 ```{r}
-#| label: fig-expt1-trace-nested
-#| fig-cap: "Density and trace plots for parameters of nested contrast model."
-#| code-fold: true
-
-plot(
-  fit_expt1_nested
-)
-```
-
-```{r}
 #| code-fold: true
 
 fixefs_expt1_nested <- round(as.data.frame(fixef(fit_expt1_nested)), 2)[-1,]
