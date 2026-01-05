@@ -2,6 +2,5 @@
 *.pdf
 **/.DS_Store
 *.html
-analysis_files/
+*_files/
 *.RDS
-StanAnalyses_files/

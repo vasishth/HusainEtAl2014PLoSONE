@@ -24,8 +24,7 @@ colnames(data) <- c("subj",
                     "region",
                     "rt")
 
-force_resample <- TRUE # set to TRUE to resample all models
-
+force_resample <- FALSE # set to TRUE to resample all models
 ```
 
 # Experiment 1
