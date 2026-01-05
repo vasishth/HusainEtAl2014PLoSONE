@@ -1,0 +1,386 @@
+---
+title: "Stan analyses for Husain et al. 2014"
+format: html
+toc: true
+---
+
+```{r}
+#| label: setup
+#| output: false
+
+library(brms)
+library(ggplot2)
+library(knitr)
+library(plyr)
+
+data <- read.table("data/data.txt", header = F)
+
+colnames(data) <- c("subj",
+                    "expt",
+                    "item",
+                    "cond",
+                    "pos",
+                    "word",
+                    "region",
+                    "rt")
+
+force_resample <- TRUE # set to TRUE to resample all models
+
+```
+
+# Experiment 1
+*Data loading and setup for experiment 1:*
+```{r}
+#| label: expt1-setup
+#| output: false
+#| code-fold: true
+
+RC1 <- subset(data, expt == "RC1")
+
+RC1$rrt <- -1000/RC1$rt # Box-Cox transform
+RC1$lrt <- log(RC1$rt)
+
+## anova contrasts:
+RC1$RCType   <- ifelse(RC1$cond %in% c("a", "b"), -1,  1)
+RC1$dist     <- ifelse(RC1$cond %in% c("a", "c"),  1, -1)
+RC1$int      <- ifelse(RC1$cond %in% c("a", "d"), -1,  1)
+
+## nested contrasts:
+RC1$dist.SR  <- ifelse(RC1$cond == "a",  1,
+                ifelse(RC1$cond == "b", -1, 0))
+RC1$dist.OR  <- ifelse(RC1$cond == "c",  1,
+                ifelse(RC1$cond == "d", -1, 0))
+
+RC1.rcverb <- subset(RC1, region == "RCVerb" & rrt>-10)
+
+e1data <- list(
+  mu_prior = c(0, 0, 0, 0),
+  subj = sort(as.integer(factor(RC1.rcverb$subj))),
+  item = sort(as.integer(factor(RC1.rcverb$item))),
+  lrt = RC1.rcverb$lrt,
+  distance = RC1.rcverb$dist,
+  rctype = RC1.rcverb$RCType,
+  interaction = RC1.rcverb$int,
+  dist_SR = RC1.rcverb$dist.SR,
+  dist_OR = RC1.rcverb$dist.OR,
+  N = nrow(RC1.rcverb),
+  I = length(unique(RC1.rcverb$subj)),
+  K = length(unique(RC1.rcverb$item))
+)
+```
+
+## ANOVA contrasts
+```{r}
+#| label: expt1-crit-anova
+#| output: false
+
+if (file.exists("fit_expt1_anova.RDS") & !force_resample) {
+  fit_expt1_anova <- readRDS("fit_expt1_anova.RDS")
+} else {
+  fit_expt1_anova <- brm(
+    lrt ~ 1 + dist + RCType + int + (1 + dist + RCType + int | subj) + (1 + dist + RCType + int | item),
+    data = RC1.rcverb,
+    family = gaussian(),
+    prior = c(
+      prior(normal(0, 10), class = "Intercept"),
+      prior(normal(0, 10), class = "b"),
+      prior(normal(0, 10), class = "sd"),
+      prior(normal(0, 10), class = "sigma"),
+      prior(lkj(4), class = "cor") # eta = 4 like in paper,
+    ),
+    chains = 2,
+    iter = 2000
+  )
+  
+  saveRDS(fit_expt1_anova, "fit_expt1_anova.RDS")
+}
+```
+
+```{r}
+#| code-fold: true
+
+fixefs_expt1_anova <- round(as.data.frame(fixef(fit_expt1_anova)), 2)[-1,]
+rownames(fixefs_expt1_anova) <- c(
+  "Distance",
+  "Relative clause type",
+  "Distance x Relative clause type"
+)
+
+fixefs_expt1_anova <- subset(fixefs_expt1_anova, select = c("Estimate", "Q2.5", "Q97.5"))
+
+fixefs_expt1_anova["95% credible interval"] <- paste(
+  "[", fixefs_expt1_anova[,"Q2.5"], ", ", fixefs_expt1_anova[,"Q97.5"], "]",
+  sep = ""
+)
+
+draws_expt1_anova <- as.data.frame(fit_expt1_anova)
+fixefs_expt1_anova["Posterior prob."] <- round(c(
+  mean(draws_expt1_anova["b_dist"] < 0),
+  mean(draws_expt1_anova["b_RCType"] < 0),
+  mean(draws_expt1_anova["b_int"] > 0)
+), 2)
+
+fixefs_expt1_anova <- subset(fixefs_expt1_anova, select = c("Estimate", "95% credible interval", "Posterior prob."))
+
+colnames(fixefs_expt1_anova) <- c("coef.", "95% credible interval", "Posterior prob.")
+
+fixefs_expt1_anova
+```
+
+## Nested contrasts
+```{r}
+#| label: expt1-crit-nested
+#| output: false
+
+if (file.exists("fit_expt1_nested.RDS") & !force_resample) {
+  fit_expt1_nested <- readRDS("fit_expt1_nested.RDS")
+} else {
+  fit_expt1_nested <- brm(
+    lrt ~ 1 + dist.SR + dist.OR + (1 + dist.SR + dist.OR | subj) + (1 + dist.SR + dist.OR | item),
+    data = RC1.rcverb,
+    family = gaussian(),
+    prior = c(
+      prior(normal(0, 10), class = "Intercept"),
+      prior(normal(0, 10), class = "b"),
+      prior(normal(0, 10), class = "sd"),
+      prior(normal(0, 10), class = "sigma"),
+      prior(lkj(4), class = "cor") # eta = 4 like in paper,
+    ),
+    chains = 2,
+    iter = 2000
+  )
+
+  saveRDS(fit_expt1_nested, "fit_expt1_nested.RDS")
+}
+```
+
+```{r}
+#| label: fig-expt1-trace-nested
+#| fig-cap: "Density and trace plots for parameters of nested contrast model."
+#| code-fold: true
+
+plot(
+  fit_expt1_nested
+)
+```
+
+```{r}
+#| code-fold: true
+
+fixefs_expt1_nested <- round(as.data.frame(fixef(fit_expt1_nested)), 2)[-1,]
+rownames(fixefs_expt1_nested) <- c(
+  "Distance [SR]",
+  "Distance [OR]"
+)
+
+fixefs_expt1_nested <- subset(fixefs_expt1_nested, select = c("Estimate", "Q2.5", "Q97.5"))
+
+fixefs_expt1_nested["95% credible interval"] <- paste(
+  "[", fixefs_expt1_nested[,"Q2.5"], ", ", fixefs_expt1_nested[,"Q97.5"], "]",
+  sep = ""
+)
+
+draws_expt1_nested <- as.data.frame(fit_expt1_nested)
+fixefs_expt1_nested["Posterior prob."] <- round(c(
+  mean(draws_expt1_nested["b_dist.SR"] < 0),
+  mean(draws_expt1_nested["b_dist.OR"] < 0)
+), 2)
+
+fixefs_expt1_nested <- subset(fixefs_expt1_nested, select = c("Estimate", "95% credible interval", "Posterior prob."))
+
+colnames(fixefs_expt1_nested) <- c("coef.", "95% credible interval", "Posterior prob.")
+
+fixefs_expt1_nested
+```
+
+# Experiment 2
+*Data loading and setup for experiment 2:*
+```{r}
+#| label: expt2-setup
+#| output: false
+#| code-fold: true
+
+CP1 <- subset(data, expt == "CP1")
+
+a.regions <- c("PreNounPred", "CPNounPred", "PreLV", "CPLightVerb", "PreCoordMV", "CoordMainVerb")
+b.regions <- c("PreNounPred", "CPNounPred", "PreLV", "CPLightVerb", "PreCoordMV", "CoordMainVerb")
+c.regions <- c("PreMVObj",    "MVObj",      "PreMV", "MainVerb",    "PreCoordMV", "CoordMainVerb")
+d.regions <- c("PreMVObj",    "MVObj",      "PreMV", "MainVerb",    "PreCoordMV", "CoordMainVerb")
+
+# set up data frame for further analysis
+regions   <- c(a.regions, b.regions, c.regions, d.regions)
+region.id <- rep(1:6, 4)
+cond.id   <- rep(letters[1:4], each = 6)
+
+region.df <- data.frame(
+  cond      = factor(cond.id),
+  region.id = region.id,
+  region    = factor(regions)
+)
+
+## nested contrasts:
+CP1$dist.exp   <- ifelse(CP1$cond == "a", -1, ifelse(CP1$cond == "b", 1, 0))
+CP1$dist.noexp <- ifelse(CP1$cond == "c", -1, ifelse(CP1$cond == "d", 1, 0))
+
+## anova contrasts:
+CP1$dist <- ifelse(CP1$cond %in% c("a", "c"), -1,  1)
+CP1$exp  <- ifelse(CP1$cond %in% c("a", "b"),  1, -1)
+CP1$int  <- ifelse(CP1$cond %in% c("a", "d"), -1,  1)
+
+CP1 <- subset(CP1, region!="1" & region!="0" & region!="-")
+
+CP1$region <- droplevels(as.factor(CP1$region))
+CP1$cond   <- droplevels(as.factor(CP1$cond))
+
+#update labels in the long conditions (PreLV1, PreMV1)
+CP1$region[CP1$region == 'PreMV1'] <- 'PreMV'
+CP1$region[CP1$region == 'PreLV1'] <- 'PreLV'
+
+#Labeling error in the data; item == 15, cond == a, b. 'PreMV' should be 'PreLV'
+CP1$region[CP1$region == 'PreMV' & CP1$item == 15 & CP1$cond == 'a'] <- 'PreLV'
+CP1$region[CP1$region == 'PreMV' & CP1$item == 15 & CP1$cond == 'b'] <- 'PreLV'
+
+## crit region: CPLightVerb/MainVerb:
+#merge multiple "PreNounPred", "PreMVObj", "PreLV", "PreMV", "PreCoordMV" regions
+CP1.uniq.reg <- ddply(
+  CP1,
+  .(subj, expt, item, cond, region, dist, exp, int, dist.exp, dist.noexp),
+  summarize,
+  rt = sum(rt)
+)
+
+CP1.uniq.reg.merged <- merge(
+  CP1.uniq.reg,
+  region.df,
+  by.x = c("cond", "region")
+)
+
+CP1.uniq.reg.merged$cond <- droplevels(CP1.uniq.reg.merged$cond)
+CP1.uniq.reg.merged$lrt <- log(CP1.uniq.reg.merged$rt)
+
+CP1 <- CP1.uniq.reg.merged
+
+#Critical region: CPLightVerb
+## these are all region.id == 4:
+CP1.ab.crit <- subset(CP1, region == "CPLightVerb")
+CP1.cd.crit <- subset(CP1, region == "MainVerb")
+CP1.crit    <- rbind(CP1.ab.crit, CP1.cd.crit)
+
+CP1.crit$region2 <- factor("crit")
+```
+
+## ANOVA contrasts
+```{r}
+#| label: expt2-crit-anova
+#| output: false
+
+if (file.exists("fit_expt2_anova.RDS") & !force_resample) {
+  fit_expt2_anova <- readRDS("fit_expt2_anova.RDS")
+} else {
+  fit_expt2_anova <- brm(
+    lrt ~ dist + exp + int + (1 + dist + exp + int | subj) + (1 + dist + exp + int | item),
+    data = CP1.crit,
+    family = gaussian(),
+    prior = c(
+      prior(normal(0, 10), class = "Intercept"),
+      prior(normal(0, 10), class = "b"),
+      prior(normal(0, 10), class = "sd"),
+      prior(normal(0, 10), class = "sigma"),
+      prior(lkj(4), class = "cor") # eta = 4 like in paper,
+    ),
+    chains = 2,
+    iter = 2000,
+    cores = 4
+  )
+
+  saveRDS(fit_expt2_anova, "fit_expt2_anova.RDS")
+}
+```
+
+```{r}
+#| code-fold: true
+
+fixefs_expt2_anova <- round(as.data.frame(fixef(fit_expt2_anova)), 2)[-1,]
+rownames(fixefs_expt2_anova) <- c(
+  "Distance",
+  "Expectation",
+  "Distance x Expectation"
+)
+
+fixefs_expt2_anova <- subset(fixefs_expt2_anova, select = c("Estimate", "Q2.5", "Q97.5"))
+
+fixefs_expt2_anova["95% credible interval"] <- paste(
+  "[", fixefs_expt2_anova[,"Q2.5"], ", ", fixefs_expt2_anova[,"Q97.5"], "]",
+  sep = ""
+)
+
+draws_expt2_anova <- as.data.frame(fit_expt2_anova)
+fixefs_expt2_anova["Posterior prob."] <- round(c(
+  mean(draws_expt2_anova["b_dist"] > 0),
+  mean(draws_expt2_anova["b_exp"] < 0),
+  mean(draws_expt2_anova["b_int"] > 0)
+), 2)
+
+fixefs_expt2_anova <- subset(fixefs_expt2_anova, select = c("Estimate", "95% credible interval", "Posterior prob."))
+
+colnames(fixefs_expt2_anova) <- c("coef.", "95% credible interval", "Posterior prob.")
+
+fixefs_expt2_anova
+```
+
+## Nested contrasts
+```{r}
+#| label: expt2-crit-nested
+#| output: false
+
+if (file.exists("fit_expt2_nested.RDS") & !force_resample) {
+  fit_expt2_nested <- readRDS("fit_expt2_nested.RDS")
+} else {
+  fit_expt2_nested <- brm(
+    lrt ~ dist.exp + dist.noexp + (1 + dist.exp + dist.noexp | subj) + (1 + dist.exp + dist.noexp | item),
+    data = CP1.crit,
+    family = gaussian(),
+    prior = c(
+      prior(normal(0, 10), class = "Intercept"),
+      prior(normal(0, 10), class = "b"),
+      prior(normal(0, 10), class = "sd"),
+      prior(normal(0, 10), class = "sigma"),
+      prior(lkj(4), class = "cor") # eta = 4 like in paper
+    ),
+    chains = 2,
+    iter = 2000,
+    cores = 4
+  )
+
+  saveRDS(fit_expt2_nested, "fit_expt2_nested.RDS")
+}
+```
+
+```{r}
+#| code-fold: true
+
+fixefs_expt2_nested <- round(as.data.frame(fixef(fit_expt2_nested)), 2)[-1,]
+rownames(fixefs_expt2_nested) <- c(
+  "Distance [Comp. Pred.]",
+  "Distance [Simple Pred.]"
+)
+
+fixefs_expt2_nested <- subset(fixefs_expt2_nested, select = c("Estimate", "Q2.5", "Q97.5"))
+
+fixefs_expt2_nested["95% credible interval"] <- paste(
+  "[", fixefs_expt2_nested[,"Q2.5"], ", ", fixefs_expt2_nested[,"Q97.5"], "]",
+  sep = ""
+)
+
+draws_expt2_nested <- as.data.frame(fit_expt2_nested)
+fixefs_expt2_nested["Posterior prob."] <- round(c(
+  mean(draws_expt2_nested["b_dist.exp"] > 0),
+  mean(draws_expt2_nested["b_dist.noexp"] < 0)
+), 2)
+
+fixefs_expt2_nested <- subset(fixefs_expt2_nested, select = c("Estimate", "95% credible interval", "Posterior prob."))
+
+colnames(fixefs_expt2_nested) <- c("coef.", "95% credible interval", "Posterior prob.")
+
+fixefs_expt2_nested
+```
